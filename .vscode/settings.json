@@ -1,0 +1,12 @@
+{
+    "sync.autoDownload": true,
+    "sync.autoUpload": true,
+    "sync.forceDownload": true,
+    "sync.forceUpload": true,
+    "sync.quietSync": true,
+    "cSpell.words": [
+        "Datos",
+        "NOMBRE",
+        "plantilla"
+    ]
+}
