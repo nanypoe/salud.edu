@@ -323,12 +323,12 @@
                         </div>
                     </li>
                     <!-- User Account -->
-                    <li class="dropdown user-menu">
-                        <button class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <li class="dropdown user-menu ">
+                        <button class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                             <img src="images/user/user-xs-01.jpg" class="user-image rounded-circle" alt="User Image" />
                             <span class="d-none d-lg-inline-block">John Doe</span>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
+                        <ul class="dropdown-menu dropdown-menu-right mr-2">
                             <li>
                                 <a class="dropdown-link-item" href="user-profile.html">
                                     <i class="mdi mdi-account-outline"></i>

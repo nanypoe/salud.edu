@@ -1,6 +1,8 @@
 CREATE DATABASE GymBro;
 USE GymBro;
 
+hola
+
 -- Tabla de credenciales
 CREATE TABLE credenciales (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,0 +1,160 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+        <center><strong>Registro y Listado de Alumnos</strong></center>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button data-bs-target="#modalAgregarGerente" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Gerente</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Sexo</th>
+                        <th>Telefono</th>
+                        <th>Lugar Nacio</th>
+                        <th>Acción</th>
+                        <th>Lugar Nacio</th>
+                        <th>Acción</th>
+                        <th>Lugar Nacio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?= $this->tabla ?>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<!-- Modal agregar alumno -->
+
+    <div class="modal fade" id="modalAgregarGerente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Gerente</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formAgregarGerente" enctype="multipart/form-data">
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Nombre Completo Gerente</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Fecha de Nacimiento</label>
+                            <input type="tel" class="form-control" id="telefonoAlumno" name="telefonoAlumno">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Sexo</label>
+                            <select class="form-select" name="sexoAlumno" id="sexoAlumno">
+                                <option value="0">SELECCIONE UN OPCIÓN</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                            </select>
+                        </div>
+
+                        
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Ciudad Nacimiento</label>
+                            <input type="text" class="form-control" id="ciudadAlumno" name="ciudadAlumno">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Ciudad Nacimiento</label>
+                            <textarea type="text" class="form-control" id="ciudadAlumno" name="ciudadAlumno"></textarea>
+                        </div>
+
+
+                       
+                       
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal actualizar alumno -->
+
+    <div class="modal fade" id="modalEditarAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Alumnos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formEditarAlumno" enctype="multipart/form-data">
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">ID Alumno</label>
+                            <input type="text" class="form-control" id="idAlumno" name="idAlumno">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Nombre Alumno</label>
+                            <input type="text" class="form-control" id="nombreAlumnoUp" name="nombreAlumnoUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Sexo del Alumno</label>
+                            <select class="form-select" name="sexoAlumnoUp" id="sexoAlumnoUp">
+                                <option value="0">SELECCIONE UN OPCIÓN</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Telefono</label>
+                            <input type="tel" class="form-control" id="telefonoAlumnoUp" name="telefonoAlumnoUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Ciudad Nacimiento</label>
+                            <input type="text" class="form-control" id="ciudadAlumnoUp" name="ciudadAlumnoUp">
+                        </div>
+
+
+                       
+                       
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>

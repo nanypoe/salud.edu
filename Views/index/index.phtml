@@ -1,7 +1,19 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col">
-            <h1>Vista INDEX</h1>
+            <div style="height:350px;width:100%" id="map"></div>
         </div>
     </div>
 </div>
+
+
+<script>
+    var map = L.map('map').setView([13.483288219415183, -86.5832157754854], 13);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
+</script>

@@ -23,7 +23,7 @@
         <div class="app-brand">
           <a href="/index.html">
             <img src="images/logo.png" alt="Mono">
-            <span class="brand-name">MONO</span>
+            <span class="brand-name">GYMBRO</span>
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
@@ -33,8 +33,15 @@
 
             <li class="active">
               <a class="sidenav-item-link" href="index.html">
-                <i class="fa-solid fa-home"></i>
+                <i class="fa-solid  fa-house"></i>
                 <span class="nav-text">Inicio</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
+                <i class="fa-solid  fa-people-roof"></i>
+                <span class="nav-text">Gerente</span>
               </a>
             </li>
 

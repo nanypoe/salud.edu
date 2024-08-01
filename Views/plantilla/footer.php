@@ -2,8 +2,7 @@
 <footer class="footer mt-auto">
     <div class="copyright bg-white">
         <p>
-            &copy; <span id="copy-year"></span> Copyright Mono Dashboard Bootstrap Template by <a class="text-primary"
-                href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+            &copy; <span id="copy-year"></span> Copyright derechos resevados GYMBRO 
         </p>
     </div>
     <script>
@@ -121,11 +120,15 @@
     </div>
 </div>
 
+<!-- Incluyendo libreria jquery  -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
+<!-- <script src="plugins/jquery/jquery.min.js"></script> 
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 
-<script src="<?=PLANTILLA?>plugins/jquery/jquery.min.js"></script>
-<script src="<?=PLANTILLA?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <script src="<?=PLANTILLA?>plugins/simplebar/simplebar.min.js"></script>
 <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
 
@@ -183,7 +186,17 @@
 
 
 
-<!--  -->
+<!-- Data table js  -->
+<script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.3/af-2.7.0/b-3.1.1/b-html5-3.1.1/b-print-3.1.1/r-3.0.2/datatables.min.js"></script>
+
+
+
+
+<!-- incluyendo el archivo de funciones  -->
+<script src="<?=PLANTILLA?>js/funciones.js"></script>
 
 
 </body>
