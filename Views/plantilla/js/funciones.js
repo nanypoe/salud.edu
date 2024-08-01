@@ -21,5 +21,54 @@ $(function(){
           ]
     });
 
+    /*------- Funciones para Gerentes------------ */
+
+    /* Funcion para enviar los datos de los gerentes*/
+
+    $('#formAgregarGerente').submit(function(e){
+        e.preventDefault();
+        let nombre=$('#nombre').val();
+        let sexo=$('#sexo').val();
+        let fecha=$('#fechaNacio').val();
+        let telefono=$('#telefono').val();
+        let cedula=$('#cedula').val();
+        let edad=$('#edad').val();
+        let usuario=$('#usuario').val();
+        let clave=$('#clave').val();
+        let direccion=$('#direccion').val();
+        let correo=$('#correo').val();
+        
+        $.ajax({
+            url:'gerente/agregarGerente/',
+            type:'post',
+            data:{'nombre':nombre,'sexo':sexo,'fecha':fecha,'telefono':telefono,'cedula':cedula,'edad':edad,'usuario':usuario,'clave':clave,'direccion':direccion,'correo':correo},
+            success:function(respuesta){
+                $('#modalAgregarGerente').modal('hide');
+                $('#formAgregarGerente')[0].reset();
+                $('#table').DataTable().destroy();
+                $('#table tbody').html(respuesta);
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'print'
+                    ],
+                    language:{
+                        "sSearch":"Buscar",
+                        "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "zeroRecords":"No se encuentraron coincidencias",
+                        "infoEmpty":"Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered":"(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive:true 
+                });
+                Swal.fire({
+                    title: "Agregado!",
+                    text: "El registro a sido Agregado de forma correcta.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+
 
 });

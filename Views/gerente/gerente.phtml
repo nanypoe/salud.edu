@@ -18,13 +18,15 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Fecha Nacimiento</th>
                         <th>Sexo</th>
+                        <th>Direccion</th>
                         <th>Telefono</th>
-                        <th>Lugar Nacio</th>
-                        <th>Acción</th>
-                        <th>Lugar Nacio</th>
-                        <th>Acción</th>
-                        <th>Lugar Nacio</th>
+                        <th>Correo</th>
+                        <th>Edad</th>
+                        <th>Cedula</th>
+                        <th>Usuario</th>
+                        <th>Clave</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
@@ -62,29 +64,59 @@
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Fecha de Nacimiento</label>
-                            <input type="tel" class="form-control" id="telefonoAlumno" name="telefonoAlumno">
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
                             <label for="" class="form-label">Sexo</label>
-                            <select class="form-select" name="sexoAlumno" id="sexoAlumno">
-                                <option value="0">SELECCIONE UN OPCIÓN</option>
+                            <select class="form-select" name="sexo" id="sexo">
+                                <option value="0">Seleccione una opcion</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="femenino">Femenino</option>
                             </select>
                         </div>
 
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fechaNacio" name="fechaNacio">
+                        </div>
+
                         
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Ciudad Nacimiento</label>
-                            <input type="text" class="form-control" id="ciudadAlumno" name="ciudadAlumno">
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Telefono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono">
+                        </div>
+
+                        
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="edad" name="edad">
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Ciudad Nacimiento</label>
-                            <textarea type="text" class="form-control" id="ciudadAlumno" name="ciudadAlumno"></textarea>
+                            <label for="" class="form-label">Correo Electronico</label>
+                            <input type="text" class="form-control" id="correo" name="correo">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Cedula de identidad</label>
+                            <input type="text" class="form-control" id="cedula" name="cedula">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Clave</label>
+                            <input type="password" class="form-control" id="clave" name="clave">
+                        </div>
+
+
+
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Direccion</label>
+                            <textarea type="text" class="form-control" id="direccion" name="direccion"></textarea>
                         </div>
 
 
@@ -125,7 +157,7 @@
                             <input type="text" class="form-control" id="nombreAlumnoUp" name="nombreAlumnoUp">
                         </div>
 
-                        <div class="mb-3 col-lg-12">
+                        <div class="mb-3 col-lg-6">
                             <label for="" class="form-label">Sexo del Alumno</label>
                             <select class="form-select" name="sexoAlumnoUp" id="sexoAlumnoUp">
                                 <option value="0">SELECCIONE UN OPCIÓN</option>
@@ -134,7 +166,7 @@
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-12">
+                        <div class="mb-3 col-lg-6">
                             <label for="" class="form-label">Telefono</label>
                             <input type="tel" class="form-control" id="telefonoAlumnoUp" name="telefonoAlumnoUp">
                         </div>

@@ -32,7 +32,7 @@
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
             <li class="active">
-              <a class="sidenav-item-link" href="index.html">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>index">
                 <i class="fa-solid  fa-house"></i>
                 <span class="nav-text">Inicio</span>
               </a>

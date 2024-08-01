@@ -7,8 +7,8 @@ class gerenteModel extends Model{
         parent::__construct();
     }
 
-    public function agregarAlum($nombre,$sexo,$telefono,$ciudad){
-        $this->_db->prepare("insert into alumno(nombre,sexo,telefono,ciudad)values(:nombre,:sexo,:telefono,:ciudad)")->execute(array('nombre'=>$nombre,'sexo'=>$sexo,'telefono'=>$telefono,'ciudad'=>$ciudad));
+    public function agregarGer($nombre,$sexo,$fecha,$telefono,$cedula,$edad,$usuario,$clave,$direccion,$correo){
+        $this->_db->prepare("insert into gerentes (nombre,fecha_nacimiento,sexo,direccion,telefono,email,edad,cedula,usuario,clave)values(:nombre,:fecha,:sexo,:direccion,:telefono,:correo,:edad,:cedula,:usuario,:clave)")->execute(array('nombre'=>$nombre,'fecha'=>$fecha,'sexo'=>$sexo,'direccion'=>$direccion,'telefono'=>$telefono,'correo'=>$correo,'edad'=>$edad,'cedula'=>$cedula,'usuario'=>$usuario,'clave'=>$clave));
     }
 
     public function editarAlum($id,$nombre,$sexo,$telefono,$ciudad){

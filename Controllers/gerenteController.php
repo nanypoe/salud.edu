@@ -22,8 +22,6 @@
                     <td>'.$fila[$i]['direccion'].'</td>
                     <td>'.$fila[$i]['telefono'].'</td>
                     <td>'.$fila[$i]['email'].'</td>
-                    <td>'.$fila[$i]['contacto_emergencia'].'</td>
-                    <td>'.$fila[$i]['telefono_emergencia'].'</td>
                     <td>'.$fila[$i]['edad'].'</td>
                     <td>'.$fila[$i]['cedula'].'</td>
                     <td>'.$fila[$i]['usuario'].'</td>
@@ -49,10 +47,10 @@
             
         }
 
-        public function agregarAlumno(){
-            $this->_alum->agregarAlum($this->getTexto('nombre'),$this->getTexto('sexo'),$this->getTexto('telefono'),$this->getTexto('ciudad'));
+        public function agregarGerente(){
+            $this->_geren->agregarGer($this->getTexto('nombre'),$this->getTexto('sexo'),$this->getTexto('fecha'),$this->getTexto('telefono'),$this->getTexto('cedula'),$this->getTexto('edad'),$this->getTexto('usuario'),$this->getTexto('clave'),$this->getTexto('direccion'),$this->getTexto('correo'));
 
-            echo $this->verAlumnos();
+            echo $this->verGerente();
 
         }
 
