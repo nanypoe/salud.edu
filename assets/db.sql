@@ -1,7 +1,6 @@
 CREATE DATABASE GymBro;
 USE GymBro;
 
-hola
 
 -- Tabla de credenciales
 CREATE TABLE credenciales (
@@ -20,8 +19,6 @@ CREATE TABLE gerentes (
     direccion VARCHAR(255) NOT NULL,
     telefono VARCHAR(20) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    contacto_emergencia VARCHAR(255) NOT NULL,
-    telefono_emergencia VARCHAR(20) NOT NULL,
     edad INT NOT NULL,
     cedula VARCHAR(20) NOT NULL,
     usuario VARCHAR(255),
