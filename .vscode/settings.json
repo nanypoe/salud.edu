@@ -6,7 +6,12 @@
     "sync.quietSync": true,
     "cSpell.words": [
         "Datos",
+        "direccion",
+        "imagen",
+        "latitud",
+        "longitud",
         "NOMBRE",
-        "plantilla"
+        "plantilla",
+        "telefono"
     ]
 }
