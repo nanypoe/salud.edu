@@ -325,7 +325,7 @@
                     <!-- User Account -->
                     <li class="dropdown user-menu ">
                         <button class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <img src="images/user/user-xs-01.jpg" class="user-image rounded-circle" alt="User Image" />
+                            <img src="<?=PLANTILLA?>images/user/user.png" class="user-image rounded-circle" alt="User Image" />
                             <span class="d-none d-lg-inline-block">John Doe</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right mr-2">
