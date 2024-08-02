@@ -43,34 +43,28 @@
                 <span class="nav-text">Gerentes</span>
               </a>
             </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
-                <i class="fa-solid  fa-dumbbell"></i>
-                <span class="nav-text">Gimnasios</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
-                <i class="fa-solid  fa-mug-hot"></i>
-                <span class="nav-text">Clientes</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
-                <i class="fa-solid  fa-dollar-sign"></i>
-                <span class="nav-text">Facturación</span>
-              </a>
-            </li>
-
+            
             <li class="">
               <a class="sidenav-item-link" href="<?=BASE_URL?>gimnasio">
               <i class="fa-solid fa-dumbbell"></i>
                 <span class="nav-text">Gimnasios</span>
               </a>
             </li>
+            
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>clientes">
+                <i class="fa-solid  fa-mug-hot"></i>
+                <span class="nav-text">Clientes</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>facturacion">
+                <i class="fa-solid  fa-dollar-sign"></i>
+                <span class="nav-text">Facturación</span>
+              </a>
+            </li>
+
 
 
 
