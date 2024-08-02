@@ -22,8 +22,7 @@
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="/index.html">
-            <img src="images/logo.png" alt="Mono">
-            <span class="brand-name">GYMBRO</span>
+            <span class="brand-name">GYM <img src="<?=PLANTILLA?>images/logo.png" alt="Logo" style="width: 84px; height:84px;"> BRO</span>
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
@@ -31,17 +30,38 @@
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
-            <li class="active">
+            <li class="">
               <a class="sidenav-item-link" href="<?=BASE_URL?>index">
                 <i class="fa-solid  fa-house"></i>
                 <span class="nav-text">Inicio</span>
               </a>
             </li>
 
-            <li class="">
+            <li class="active">
               <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
                 <i class="fa-solid  fa-people-roof"></i>
-                <span class="nav-text">Gerente</span>
+                <span class="nav-text">Gerentes</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
+                <i class="fa-solid  fa-dumbbell"></i>
+                <span class="nav-text">Gimnasios</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
+                <i class="fa-solid  fa-mug-hot"></i>
+                <span class="nav-text">Clientes</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
+                <i class="fa-solid  fa-dollar-sign"></i>
+                <span class="nav-text">Facturación</span>
               </a>
             </li>
 
@@ -58,7 +78,7 @@
             <li>
               <a class="sidenav-item-link" href="analytics.html">
                 <i class="mdi mdi-chart-line"></i>
-                <span class="nav-text">Analytics Dashboard</span>
+                <span class="nav-text">Análisis de Progreso</span>
               </a>
             </li>
 
@@ -67,7 +87,7 @@
 
 
             <li class="section-title">
-              Apps
+              Aplicaciones
             </li>
 
 
@@ -77,7 +97,7 @@
             <li>
               <a class="sidenav-item-link" href="chat.html">
                 <i class="mdi mdi-wechat"></i>
-                <span class="nav-text">Chat</span>
+                <span class="nav-text">Mensajes</span>
               </a>
             </li>
 
@@ -88,7 +108,7 @@
             <li>
               <a class="sidenav-item-link" href="contacts.html">
                 <i class="mdi mdi-phone"></i>
-                <span class="nav-text">Contacts</span>
+                <span class="nav-text">Contactos</span>
               </a>
             </li>
 
@@ -99,7 +119,7 @@
             <li>
               <a class="sidenav-item-link" href="team.html">
                 <i class="mdi mdi-account-group"></i>
-                <span class="nav-text">Team</span>
+                <span class="nav-text">Equipo</span>
               </a>
             </li>
 
@@ -110,7 +130,7 @@
             <li>
               <a class="sidenav-item-link" href="calendar.html">
                 <i class="mdi mdi-calendar-check"></i>
-                <span class="nav-text">Calendar</span>
+                <span class="nav-text">Calendario</span>
               </a>
             </li>
 
@@ -122,7 +142,7 @@
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
                 aria-expanded="false" aria-controls="email">
                 <i class="mdi mdi-email"></i>
-                <span class="nav-text">email</span> <b class="caret"></b>
+                <span class="nav-text">Correo Electrónico</span> <b class="caret"></b>
               </a>
               <ul class="collapse" id="email" data-parent="#sidebar-menu">
                 <div class="sub-menu">

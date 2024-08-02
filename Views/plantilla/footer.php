@@ -2,7 +2,7 @@
 <footer class="footer mt-auto">
     <div class="copyright bg-white">
         <p>
-            &copy; <span id="copy-year"></span> Copyright derechos resevados GYMBRO
+            &copy; <span id="copy-year"></span> Copyright - Todos los Derechos Reservados - GymBro
         </p>
     </div>
     <script>
