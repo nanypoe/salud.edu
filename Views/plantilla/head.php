@@ -22,6 +22,7 @@
 
   <!--DataTables-->
   <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" />
+  <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-2.1.3/af-2.7.0/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/datatables.min.css" rel="stylesheet">
 
   <!--jVectorMap-->
   <link href="<?= PLANTILLA ?>plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
