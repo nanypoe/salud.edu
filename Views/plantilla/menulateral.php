@@ -30,14 +30,14 @@
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
-            <li class="">
+            <li class="active">
               <a class="sidenav-item-link" href="<?=BASE_URL?>index">
                 <i class="fa-solid  fa-house"></i>
                 <span class="nav-text">Inicio</span>
               </a>
             </li>
 
-            <li class="active">
+            <li class="">
               <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
                 <i class="fa-solid  fa-people-roof"></i>
                 <span class="nav-text">Gerentes</span>
@@ -45,7 +45,7 @@
             </li>
 
             <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>gimnasio">
                 <i class="fa-solid  fa-dumbbell"></i>
                 <span class="nav-text">Gimnasios</span>
               </a>
