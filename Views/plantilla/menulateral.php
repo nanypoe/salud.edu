@@ -45,6 +45,12 @@
               </a>
             </li>
 
+            <li class="">
+              <a class="sidenav-item-link" href="<?=BASE_URL?>gimnasio">
+              <i class="fa-solid fa-dumbbell"></i>
+                <span class="nav-text">Gimnasios</span>
+              </a>
+            </li>
 
 
 

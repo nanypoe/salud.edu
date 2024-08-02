@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row mt-4">
         <div class="col">
-            <div style="height:350px;width:100%" id="map"></div>
+            <div style="height:500px;width:100%" id="map"></div>
         </div>
     </div>
 </div>
@@ -12,8 +12,18 @@
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    attribution: '&copy;gymbroapp'
     }).addTo(map);
+
+
+    let ubicaciones=JSON.parse('<?= $this->datos ?>');
+    console.log(ubicaciones);
+
+    for(i=0;i<ubicaciones.length;i++){
+        L.marker([ubicaciones[i]['latitud'], ubicaciones[i]['longitud']]).addTo(map)
+        .bindPopup('<div id="card" class="card shadow mb-4"><div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Gimnasio '+[ubicaciones[i]['nombre']]+'</h6></div><div class="card-body">Dirección: '+[ubicaciones[i]['direccion']]+'<br> <hr> Latitud: '+[ubicaciones[i]['latitud']]+' <br> <hr> Longitud: '+[ubicaciones[i]['longitud']]+'  <br><hr>Hora Abre: '+[ubicaciones[i]['hora_apertura']]+' <br> <hr> Hora cierra: '+[ubicaciones[i]['hora_cierre']]+'  <br><hr> <img class="rounded mx-auto d-block" style="height:80px"; src="<?=PLANTILLA?>images/'+[ubicaciones[i]['imagen']]+'"> <br>  </div></div>');
+        
+    }
 
 
 </script>
