@@ -69,9 +69,9 @@ body {
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #8a909d;
+  color: var(--dark);
   text-align: left;
-  background-color: #f0f1f5;
+  background-color: var(--white);
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -164,12 +164,12 @@ sup {
 }
 
 a {
-  color: #9e6de0;
+  color: var(--info);
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #742ed3;
+  color: var(--info-dark);
   text-decoration: underline;
 }
 
@@ -508,7 +508,7 @@ mark,
 
 code {
   font-size: 100%;
-  color: #9e6de0;
+  color: var(--info);
   word-wrap: break-word;
 }
 a > code {
@@ -2486,8 +2486,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #9e6de0;
-  border-color: #9e6de0;
+  background-color: #007bff;
 }
 .btn-primary:hover {
   color: #ffffff;
@@ -13349,7 +13348,7 @@ label {
   display: flex;
   flex-direction: column;
   transform: translateX(-250px);
-  background-color: #1d1f26;
+  background-color: #000;
   top: 0;
   bottom: 0;
   background-attachment: fixed;
@@ -13409,7 +13408,7 @@ label {
   position: relative;
   z-index: 10;
   color: #ffffff;
-  background-color: rgba(158, 109, 224, 0.4);
+  background-color: #17a2b8;
 }
 .sidebar .sidebar-inner .section-title {
   padding: 1.25rem 1.56rem 1rem;
@@ -14099,7 +14098,7 @@ label {
 /* Sidebar Footer Content*/
 .sidebar-footer-content {
   width: 250px;
-  background-color: #9e6de0;
+  background-color: #17a2b8;
 }
 .sidebar-footer-content ul li {
   width: 50%;

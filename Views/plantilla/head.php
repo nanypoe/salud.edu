@@ -52,5 +52,5 @@
   <link id="main-css-href" rel="stylesheet" href="<?= PLANTILLA ?>css/style.css" />
 
   <!-- FAVICON -->
-  <link href="<?= PLANTILLA ?>images/favicon.png" rel="shortcut icon" />
+  <link href="<?= PLANTILLA ?>images/favicon1.png" rel="shortcut icon" style="width:32px; height: 32px"/>
 </head>

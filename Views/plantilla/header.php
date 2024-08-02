@@ -11,7 +11,7 @@
                 <span class="sr-only">Toggle navigation</span>
             </button>
 
-            <span class="page-title">dashboard</span>
+            <span class="page-title">Panel</span>
 
             <div class="navbar-right ">
 
@@ -85,7 +85,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <a href="user-profile.html">
-                                                    <span class="title mb-0">John Doe</span>
+                                                    <span class="title mb-0">Administrador</span>
                                                     <span class="discribe">Extremity sweetness difficult behaviour he
                                                         of. On disposal of as landlord horrible. Afraid at highly months
                                                         do things on at.</span>
@@ -326,7 +326,7 @@
                     <li class="dropdown user-menu ">
                         <button class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                             <img src="<?=PLANTILLA?>images/user/user.png" class="user-image rounded-circle" alt="User Image" />
-                            <span class="d-none d-lg-inline-block">John Doe</span>
+                            <span class="d-none d-lg-inline-block">Administrador</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right mr-2">
                             <li>
