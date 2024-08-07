@@ -12,5 +12,3 @@ require_once APP_PATH . 'Model.php';
 require_once APP_PATH . 'View.php';
 $rutas = new Rutas();
 $rutas->run();
-
-?>

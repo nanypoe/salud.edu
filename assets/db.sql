@@ -25,8 +25,8 @@ CREATE TABLE gerentes (
     clave VARCHAR(255)
 )ENGINE=InnoDB;
 
--- Tabla de local
-CREATE TABLE local (
+-- Tabla de gimnasios
+CREATE TABLE gimnasios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     direccion TEXT NOT NULL,

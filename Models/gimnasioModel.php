@@ -16,15 +16,11 @@ class gimnasioModel extends Model{
     }
 
     public function obteneDuexo(){
-        return $this->_db->query("select *from gerentes")->fetchAll();
+        return $this->_db->query("SELECT * FROM gerentes")->fetchAll();
     }
 
     public function obtenerGym(){
-        return $this->_db->query("select *from local")->fetchAll();
-    }
-
-    public function borrarAlum($id){
-        $this->_db->prepare('delete from alumno where id=:id')->execute(array('id'=>$id));
+        return $this->_db->query("SELECT * FROM gimnasios;")->fetchAll();
     }
 
 
