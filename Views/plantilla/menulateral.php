@@ -22,7 +22,8 @@
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="/index.html">
-            <span class="brand-name">GYM <img src="<?=PLANTILLA?>images/logo.png" alt="Logo" style="width: 84px; height:84px;"> BRO</span>
+            <span class="brand-name">GYM <img src="<?= PLANTILLA ?>images/logo.png" alt="Logo"
+                style="width: 84px; height:84px;"> BRO</span>
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
@@ -31,59 +32,25 @@
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
             <li class="active">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>index">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
                 <i class="fa-solid  fa-house"></i>
                 <span class="nav-text">Inicio</span>
               </a>
             </li>
 
             <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>gerente">
                 <i class="fa-solid  fa-people-roof"></i>
                 <span class="nav-text">Gerentes</span>
               </a>
             </li>
 
             <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gimnasio">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>gimnasio">
                 <i class="fa-solid  fa-dumbbell"></i>
                 <span class="nav-text">Gimnasios</span>
               </a>
             </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
-                <i class="fa-solid  fa-mug-hot"></i>
-                <span class="nav-text">Clientes</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gerente">
-                <i class="fa-solid  fa-dollar-sign"></i>
-                <span class="nav-text">Facturación</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?=BASE_URL?>gimnasio">
-              <i class="fa-solid fa-dumbbell"></i>
-                <span class="nav-text">Gimnasios</span>
-              </a>
-            </li>
-
-
-
-
-            <li>
-              <a class="sidenav-item-link" href="analytics.html">
-                <i class="mdi mdi-chart-line"></i>
-                <span class="nav-text">Análisis de Progreso</span>
-              </a>
-            </li>
-
-
-
 
 
             <li class="section-title">

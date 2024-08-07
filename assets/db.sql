@@ -52,5 +52,5 @@ CREATE TABLE eventos (
     hora_inicio TIME NOT NULL,
     hora_termina TIME NOT NULL,
     local_id INT,
-    FOREIGN KEY (local_id) REFERENCES local(local_id)
+    FOREIGN KEY (local_id) REFERENCES local(id)
 )ENGINE=InnoDB;

@@ -134,9 +134,7 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <!--Bootstrap-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+<script src="<?=PLANTILLA?>plugins/bootstrap/js/bootstrap.js"></script>
 
 <!--SimpleBar-->
 <script src="<?= PLANTILLA ?>plugins/simplebar/simplebar.min.js"></script>
@@ -148,10 +146,7 @@
 <script src="<?= PLANTILLA ?>plugins/apexcharts/apexcharts.js"></script>
 
 <!--DataTables-->
-<script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-2.1.3/af-2.7.0/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/datatables.min.js"></script>
+<script src="<?=PLANTILLA?>plugins/DataTables/datatables.min.js"></script>
 
 <!--jVectorMap-->
 <script src="<?= PLANTILLA ?>plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
