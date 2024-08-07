@@ -1,13 +1,9 @@
 <body class="navbar-fixed sidebar-fixed" id="body">
   <div id="toaster"></div>
-
-
   <!-- ====================================
     ——— WRAPPER
     ===================================== -->
   <div class="wrapper">
-
-
     <!-- ====================================
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
@@ -15,7 +11,7 @@
       <div id="sidebar" class="sidebar sidebar-with-footer">
         <!-- Aplication Brand -->
         <div class="app-brand">
-          <a href="/index.html">
+          <a href="index.php">
             <span class="brand-name">GYM <img src="<?= PLANTILLA ?>images/logo.png" alt="Logo"
                 style="width: 84px; height:84px;"> BRO</span>
           </a>
@@ -51,42 +47,26 @@
               Aplicaciones
             </li>
 
-
-
-
-
             <li>
-              <a class="sidenav-item-link" href="chat.html">
+              <a class="sidenav-item-link" href="<?=PLANTILLA?>templates/chat.html">
                 <i class="mdi mdi-wechat"></i>
                 <span class="nav-text">Mensajes</span>
               </a>
             </li>
 
-
-
-
-
             <li>
-              <a class="sidenav-item-link" href="contacts.html">
+              <a class="sidenav-item-link" href="<?=PLANTILLA?>templates/contacts.html">
                 <i class="mdi mdi-phone"></i>
                 <span class="nav-text">Contactos</span>
               </a>
             </li>
 
-
-
-
-
             <li>
-              <a class="sidenav-item-link" href="team.html">
+              <a class="sidenav-item-link" href="<?=PLANTILLA?>templates/team.html">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Equipo</span>
               </a>
             </li>
-
-
-
-
 
             <li>
               <a class="sidenav-item-link" href="calendar.html">
@@ -94,10 +74,6 @@
                 <span class="nav-text">Calendario</span>
               </a>
             </li>
-
-
-
-
 
             <li class="has-sub">
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
@@ -108,57 +84,31 @@
               <ul class="collapse" id="email" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="email-inbox.html">
                       <span class="nav-text">Email Inbox</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="email-details.html">
                       <span class="nav-text">Email Details</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="email-compose.html">
                       <span class="nav-text">Email Compose</span>
-
                     </a>
                   </li>
-
-
-
-
                 </div>
               </ul>
             </li>
 
 
-
-
-
             <li class="section-title">
               UI Elements
             </li>
-
-
-
-
 
             <li class="has-sub">
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
@@ -169,42 +119,23 @@
               <ul class="collapse" id="ui-elements" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="alert.html">
                       <span class="nav-text">Alert</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="badge.html">
                       <span class="nav-text">Badge</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="breadcrumb.html">
                       <span class="nav-text">Breadcrumb</span>
-
                     </a>
                   </li>
-
-
-
-
 
                   <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#buttons"
@@ -238,140 +169,71 @@
                     </ul>
                   </li>
 
-
-
-
-
                   <li>
                     <a class="sidenav-item-link" href="card.html">
                       <span class="nav-text">Card</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="carousel.html">
                       <span class="nav-text">Carousel</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="collapse.html">
                       <span class="nav-text">Collapse</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="editor.html">
                       <span class="nav-text">Editor</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="list-group.html">
                       <span class="nav-text">List Group</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="modal.html">
                       <span class="nav-text">Modal</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="pagination.html">
                       <span class="nav-text">Pagination</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="popover-tooltip.html">
                       <span class="nav-text">Popover & Tooltip</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="progress-bar.html">
                       <span class="nav-text">Progress Bar</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="spinner.html">
                       <span class="nav-text">Spinner</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="switches.html">
                       <span class="nav-text">Switches</span>
-
                     </a>
                   </li>
-
-
-
-
 
                   <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#tables"
@@ -388,37 +250,21 @@
                         <li>
                           <a href="data-tables.html">Data Tables</a>
                         </li>
-
                       </div>
                     </ul>
                   </li>
 
-
-
-
-
                   <li>
                     <a class="sidenav-item-link" href="tab.html">
                       <span class="nav-text">Tab</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="toaster.html">
                       <span class="nav-text">Toaster</span>
-
                     </a>
                   </li>
-
-
-
-
 
                   <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#icons"
@@ -439,9 +285,6 @@
                       </div>
                     </ul>
                   </li>
-
-
-
 
                   <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#forms"
@@ -475,9 +318,6 @@
                     </ul>
                   </li>
 
-
-
-
                   <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#maps"
                       aria-expanded="false" aria-controls="maps">
@@ -498,9 +338,6 @@
                     </ul>
                   </li>
 
-
-
-
                   <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#widgets"
                       aria-expanded="false" aria-controls="widgets">
@@ -520,15 +357,9 @@
                       </div>
                     </ul>
                   </li>
-
-
-
                 </div>
               </ul>
             </li>
-
-
-
 
 
             <li class="has-sub">
@@ -540,33 +371,20 @@
               <ul class="collapse" id="charts" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="apex-charts.html">
                       <span class="nav-text">Apex Charts</span>
-
                     </a>
                   </li>
-
-
-
 
                 </div>
               </ul>
             </li>
 
 
-
-
-
             <li class="section-title">
               Pages
             </li>
-
-
-
-
 
             <li class="has-sub">
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#users"
@@ -577,96 +395,50 @@
               <ul class="collapse" id="users" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="user-profile.html">
                       <span class="nav-text">User Profile</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="user-activities.html">
                       <span class="nav-text">User Activities</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="user-profile-settings.html">
                       <span class="nav-text">User Profile Settings</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="user-account-settings.html">
                       <span class="nav-text">User Account Settings</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="user-planing-settings.html">
                       <span class="nav-text">User Planing Settings</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="user-billing.html">
                       <span class="nav-text">User billing</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="user-notify-settings.html">
                       <span class="nav-text">User Notify Settings</span>
-
                     </a>
                   </li>
-
-
-
-
                 </div>
               </ul>
             </li>
-
-
-
 
 
             <li class="has-sub">
@@ -678,48 +450,26 @@
               <ul class="collapse" id="authentication" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="sign-in.html">
                       <span class="nav-text">Sign In</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="sign-up.html">
                       <span class="nav-text">Sign Up</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="reset-password.html">
                       <span class="nav-text">Reset Password</span>
-
                     </a>
                   </li>
-
-
-
-
                 </div>
               </ul>
             </li>
-
-
-
 
 
             <li class="has-sub">
@@ -731,69 +481,36 @@
               <ul class="collapse" id="other-page" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="invoice.html">
                       <span class="nav-text">Invoice</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="404.html">
                       <span class="nav-text">404 page</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="page-comingsoon.html">
                       <span class="nav-text">Coming Soon</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="page-maintenance.html">
                       <span class="nav-text">Maintenance</span>
-
                     </a>
                   </li>
-
-
-
-
                 </div>
               </ul>
             </li>
 
-
-
-
-
             <li class="section-title">
               Documentation
             </li>
-
-
-
-
 
             <li>
               <a class="sidenav-item-link" href="getting-started.html">
@@ -801,9 +518,6 @@
                 <span class="nav-text">Getting Started</span>
               </a>
             </li>
-
-
-
 
 
             <li class="has-sub">
@@ -815,51 +529,29 @@
               <ul class="collapse" id="customization" data-parent="#sidebar-menu">
                 <div class="sub-menu">
 
-
-
                   <li>
                     <a class="sidenav-item-link" href="navbar-customization.html">
                       <span class="nav-text">Navbar</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="sidebar-customization.html">
                       <span class="nav-text">Sidebar</span>
-
                     </a>
                   </li>
-
-
-
-
-
 
                   <li>
                     <a class="sidenav-item-link" href="styling.html">
                       <span class="nav-text">Styling</span>
-
                     </a>
                   </li>
-
-
-
-
                 </div>
               </ul>
             </li>
-
-
-
           </ul>
-
         </div>
+
 
         <div class="sidebar-footer">
           <div class="sidebar-footer-content">

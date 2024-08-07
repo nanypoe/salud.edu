@@ -22,8 +22,6 @@ class indexController extends Controller
 
     public function index()
     {
-        $this->_view->datos = $this->obtenerUbicaciones();
-        $this->_view->renderizar("index");
+        $this->_view->renderizar('index');
+        }
     }
-
-}
