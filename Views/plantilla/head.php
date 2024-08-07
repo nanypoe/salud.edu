@@ -16,11 +16,8 @@
   <!--Bootstrap 5.3-->
   <link href="<?=PLANTILLA?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!--nProgress-->
-  <link href="<?= PLANTILLA ?>plugins/nprogress/nprogress.css" rel="stylesheet" />
-
   <!--DataTables-->
-  <link href="<?=PLANTILLA?>plugins/DataTables/datatables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.3/af-2.7.0/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/cr-2.0.3/fc-5.0.1/fh-4.0.1/r-3.0.2/datatables.min.css" rel="stylesheet">
 
   <!--jVectorMap-->
   <link href="<?= PLANTILLA ?>plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
