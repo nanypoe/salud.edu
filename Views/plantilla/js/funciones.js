@@ -25,26 +25,21 @@ $(function(){
 
     /* Funcion para enviar los datos de los gerentes*/
 
-    $('#formAgregarGerente').submit(function(e){
+    $('#formAgregarEscuela').submit(function(e){
         e.preventDefault();
-        let nombre=$('#nombre').val();
-        let sexo=$('#sexo').val();
-        let fecha=$('#fechaNacio').val();
-        let telefono=$('#telefono').val();
-        let cedula=$('#cedula').val();
-        let edad=$('#edad').val();
-        let usuario=$('#usuario').val();
-        let clave=$('#clave').val();
-        let direccion=$('#direccion').val();
-        let correo=$('#correo').val();
+        let nombreEscuela=$('#nombreEscuela').val();
+        let direccionEscuela=$('#direccionEscuela').val();
+        let telefonoEscuela=$('#telefonoEscuela').val();
+        let latitudEscuela=$('#latitudEscuela').val();
+        let longitudEscuela=$('#longitudEscuela').val();
         
         $.ajax({
-            url:'gerente/agregarGerente/',
+            url:'escuela/agregarEscuela/',
             type:'post',
-            data:{'nombre':nombre,'sexo':sexo,'fecha':fecha,'telefono':telefono,'cedula':cedula,'edad':edad,'usuario':usuario,'clave':clave,'direccion':direccion,'correo':correo},
+            data:{'nombreEscuela':nombreEscuela,'direccionEscuela':direccionEscuela,'telefonoEscuela':telefonoEscuela,'latitudEscuela':latitudEscuela,'longitudEscuela':longitudEscuela},
             success:function(respuesta){
-                $('#modalAgregarGerente').modal('hide');
-                $('#formAgregarGerente')[0].reset();
+                $('#modalAgregarEscuela').modal('hide');
+                $('#formAgregarEscuela')[0].reset();
                 $('#table').DataTable().destroy();
                 $('#table tbody').html(respuesta);
                 $('#table').DataTable({
@@ -63,7 +58,7 @@ $(function(){
                 });
                 Swal.fire({
                     title: "Agregado!",
-                    text: "El registro a sido Agregado de forma correcta.",
+                    text: "El registro he sido registrado de forma correcta.",
                     icon: "success"
                 });
             }

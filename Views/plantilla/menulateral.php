@@ -29,7 +29,7 @@
             </li>
 
             <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>escuelas">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>escuela">
                 <i class="fa-solid  fa-school"></i>
                 <span class="nav-text">Escuela</span>
               </a>

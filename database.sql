@@ -7,7 +7,6 @@ CREATE TABLE Escuelas (
     nombre VARCHAR(255) NOT NULL,
     direccion VARCHAR(255),
     telefono VARCHAR(50),
-    email VARCHAR(100),
     longitud DOUBLE,
     latitud DOUBLE
 );
@@ -23,3 +22,4 @@ CREATE TABLE maestros (
     perfil VARCHAR(100),
     FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
 );
+
