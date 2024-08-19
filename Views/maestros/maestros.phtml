@@ -52,67 +52,44 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formAgregarGerente" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formAgregarMaestros" enctype="multipart/form-data">
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Nombre Completo Gerente</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
+                            <label for="" class="form-label">Escuela Labora</label>
+                            <select class="form-select" name="" id="">
+                                
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Sexo</label>
-                            <select class="form-select" name="sexo" id="sexo">
-                                <option value="0">Seleccione una opcion</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" id="fechaNacio" name="fechaNacio">
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Nombres Maestro</label>
+                            <input type="text" class="form-control" id="nombre" >
                         </div>
 
-                        
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefono" name="telefono">
-                        </div>
-
-                        
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Edad</label>
-                            <input type="number" class="form-control" id="edad" name="edad">
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Apellidos Maestro</label>
+                            <input type="text" class="form-control" id="apellido">
                         </div>
 
                         <div class="mb-3 col-lg-12">
                             <label for="" class="form-label">Correo Electronico</label>
-                            <input type="text" class="form-control" id="correo" name="correo">
+                            <input type="email" class="form-control" id="correo">
                         </div>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Cedula de identidad</label>
-                            <input type="text" class="form-control" id="cedula" name="cedula">
-                        </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Nombre de Usuario</label>
-                            <input type="text" class="form-control" id="usuario" name="usuario">
+                            <label for="" class="form-label">Telefono</label>
+                            <input type="tel" class="form-control" id="telefono">
                         </div>
+
+                        
 
                         <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Clave</label>
-                            <input type="password" class="form-control" id="clave" name="clave">
+                            <label for="" class="form-label">Perfil</label>
+                            <input type="text" class="form-control" id="perfil">
                         </div>
 
-
-
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Direccion</label>
-                            <textarea type="text" class="form-control" id="direccion" name="direccion"></textarea>
-                        </div>
+                        
 
 
                        
@@ -122,7 +99,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
             </div>
             </form>
             </div>
