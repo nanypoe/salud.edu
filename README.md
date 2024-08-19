@@ -1,0 +1,5 @@
+El proyecto consiste en desarrollar una aplicación web destinada a monitorear la salud y condición física de los estudiantes de primaria y secundaria en Nicaragua. Esta plataforma permitirá a escuelas, maestros, estudiantes, servidores de salud y entidades gubernamentales acceder a información crucial para la prevención y promoción de la salud, mejorando así el bienestar físico de los estudiantes.
+
+Entre las funcionalidades principales, la aplicación incluirá perfiles de salud estudiantil, seguimiento de asistencia y participación en actividades físicas, planes de ejercicio personalizados, informes de progreso interactivos, herramientas de compromiso como reservas de lugares deportivos y notificaciones, integración con entidades de salud pública a través de una API, y un chatbot de ayuda orientado a estudiantes y padres.
+
+La aplicación será desarrollada utilizando tecnologías como HTML, CSS con Bootstrap, JavaScript con jQuery, PHP, DataTables y Leaflet para mapas, enfocándose en la escalabilidad y en futuras mejoras para apoyar la salud estudiantil a nivel nacional.
