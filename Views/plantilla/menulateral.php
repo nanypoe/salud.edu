@@ -29,6 +29,13 @@
             </li>
 
             <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>escuelas">
+                <i class="fa-solid  fa-school"></i>
+                <span class="nav-text">Escuela</span>
+              </a>
+            </li>
+
+            <li class="">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>gerente">
                 <i class="fa-solid  fa-people-roof"></i>
                 <span class="nav-text">Gerentes</span>
