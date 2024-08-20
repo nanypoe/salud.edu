@@ -40,12 +40,12 @@
             /* mandando a la vista los datos de las escuelas */
             $fila=$this->_maes->obtenerEscuela();
             $datos='<option value="0"> Seleccione una escuela</option>';
-            for($i=0;$i<count($fila2);$i++){
-                $datos.='<option value="'.$fila2[$i]['id'].'">'.$fila2[$i]['nombre'].'</option>';
+            for($i=0;$i<count($fila);$i++){
+                $datos.='<option value="'.$fila[$i]['id_escuela'].'">'.$fila[$i]['nombre'].'</option>';
             }
 
-            $this->_view->escuelas=$datos;
-
+            $this->_view->escuelas=$datos; 
+ 
 
             $this->_view->tabla=$this->verMaestro();
             $this->_view->renderizar('maestros');
