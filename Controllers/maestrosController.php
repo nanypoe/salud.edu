@@ -15,7 +15,7 @@
                 $datos=json_encode($fila[$i]);
                 $tabla.='
                 <tr>
-                    <td>'.$fila[$i]['id'].'</td>
+                    <td>'.$fila[$i]['id_maestros'].'</td>
                     <td>'.$fila[$i]['nombre'].'</td>
                     <td>'.$fila[$i]['apellido'].'</td>
                     <td>'.$fila[$i]['email'].'</td>
@@ -24,8 +24,8 @@
                     
 
                     <td>
-                    <button data-Maestro=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalEditarMaestro" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarAlumno"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
-        <button data-id='.$fila[$i]['id'].' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarAlumno"><i class="fa-solid fa-trash"></i> Borrar</button> 
+                    <button data-Maestro=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalActualizarMaestro" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarAlumno"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
+        <button data-id='.$fila[$i]['id_maestros'].' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarAlumno"><i class="fa-solid fa-trash"></i> Borrar</button> 
 
                     </td>
                 </tr>
@@ -55,7 +55,7 @@
         public function agregarMaestros(){
             $this->_maes->agregarMaes($this->getTexto('nombre'),$this->getTexto('apellido'),$this->getTexto('correo'),$this->getTexto('telefono'),$this->getTexto('perfil'),$this->getTexto('id'));
 
-            echo $this->obtenerMaestro();
+            echo $this->verMaestro();
 
         }
 
