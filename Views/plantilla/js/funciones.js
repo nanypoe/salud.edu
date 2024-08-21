@@ -184,5 +184,56 @@ $(function(){
     });
 
 
+     /*------- Funciones para Alumnos------------ */
+
+    /* Funcion para enviar los datos de los Alumnos*/
+
+    $('#formAgregarAlumno').submit(function(e){
+        e.preventDefault();
+        let idEscuela=$('#id').val();
+        let nombre=$('#nombre').val();
+        let apellido=$('#apellido').val();
+        let fecha=$('#fecha').val();
+        let genero=$('#genero').val();
+        let direccion=$('#direccion').val();
+        let correo=$('#correo').val();
+        let telefono=$('#telefono').val();
+        let telefonoT=$('#telefonoT').val();
+        let nombreTutor=$('#nombreT').val();
+
+        
+        $.ajax({
+            url:'estudiante/agregarAlumno/',
+            type:'post',
+            data:{'id':idEscuela,'nombre':nombre,'apellido':apellido,'fecha':fecha,'genero':genero,'direccion':direccion,'correo':correo,'telefono':telefono,'telefono':telefono,'telefonoT':telefonoT,'nombreT':nombreTutor},
+            success:function(respuesta){
+                $('#modalAgregarMaestro').modal('hide');
+                $('#formAgregarMaestros')[0].reset();
+                $('#table').DataTable().destroy();
+                $('#table tbody').html(respuesta);
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'print'
+                    ],
+                    language:{
+                        "sSearch":"Buscar",
+                        "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "zeroRecords":"No se encuentraron coincidencias",
+                        "infoEmpty":"Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered":"(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive:true 
+                });
+                Swal.fire({
+                    title: "Agregado!",
+                    text: "El registro a sido Agregado de forma correcta.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+
+
 
 });

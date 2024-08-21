@@ -17,14 +17,19 @@
                 <tr>
                     <td>'.$fila[$i]['id_maestros'].'</td>
                     <td>'.$fila[$i]['nombre'].' '.$fila[$i]['apellido'].'</td> 
-                    <td>'.$fila[$i]['email'].'</td>
+                    <td>'.$fila[$i]['fecha_nacimiento'].'</td>
+                    <td>'.$fila[$i]['genero'].'</td>
+                    <td>'.$fila[$i]['direccion'].'</td>
                     <td>'.$fila[$i]['telefono'].'</td>
-                    <td>'.$fila[$i]['perfil'].'</td>
+                    <td>'.$fila[$i]['email'].'</td>
+                    <td>'.$fila[$i]['nombre_tutor'].'</td>
+                    <td>'.$fila[$i]['telefono_tutor'].'</td>
+                    <td>'.$fila[$i]['direccion'].'</td>
+                    <td>'.$fila[$i]['nombre_escuela'].'</td>
 
 
 
 
-                    
                     <td>
                     <button data-Alumno=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalActualizarMaestro" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarAlumno"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
         <button data-id='.$fila[$i]['id_maestros'].' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarAlumno"><i class="fa-solid fa-trash"></i> Borrar</button> 
@@ -50,7 +55,7 @@
  
 
             $this->_view->tabla=$this->verAlumno();
-            $this->_view->renderizar('maestros');
+            $this->_view->renderizar('estudiante');
             
         }
 

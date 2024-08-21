@@ -1,6 +1,6 @@
 <?php
 
-class maestrosModel extends Model{
+class estudianteModel extends Model{
 
     function __construct()
     {
@@ -15,8 +15,10 @@ class maestrosModel extends Model{
         $this->_db->prepare("update alumno set nombre=:nombre,sexo=:sexo,telefono=:telefono,ciudad=:ciudad where id=:id")->execute(array('nombre'=>$nombre,'sexo'=>$sexo,'telefono'=>$telefono,'ciudad'=>$ciudad,'id'=>$id));
     }
 
-    public function obtenerMaestro(){
-        return $this->_db->query("select *from maestros")->fetchAll();
+    public function obtenerAlumno(){
+        return $this->_db->query("select esc.nombre as nombre_escuela,est.id_estudiante,est.nombre, est.apellido,est.fecha_nacimiento,est.genero,est.direccion,est.telefono,
+        est.email,est.nombre_tutor,est.telefono_tutor from estudiante as est inner join escuelas as
+        esc on esc.id_escuela=est.id_escuela;")->fetchAll();
     }
 
     public function obtenerEscuela(){
