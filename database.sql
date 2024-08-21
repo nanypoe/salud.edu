@@ -23,3 +23,19 @@ CREATE TABLE maestros (
     FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
 );
 
+-- Tabla estudiante
+CREATE table estudiante (
+	id_estudiante INT primary key AUTO_INCREMENT,
+    id_escuela INT,
+    nombre VARCHAR(255),
+    apellido VARCHAR(255),
+    fecha_nacimiento DATE,
+    genero ENUM('Masculino', 'Femenino', 'Otro'),
+    direccion VARCHAR(255),
+    telefono VARCHAR(50),
+    email VARCHAR(100),
+    nombre_tutor VARCHAR(255),
+    telefono_tutor VARCHAR(50),
+	FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela)
+);
+    

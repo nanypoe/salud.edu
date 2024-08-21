@@ -43,6 +43,13 @@
             </li>
 
             <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>alumnos">
+              <i class="fa-solid fa-graduation-cap"></i>
+                <span class="nav-text">Alumnos</span>
+              </a>
+            </li>
+
+            <li class="">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>gerente">
                 <i class="fa-solid  fa-people-roof"></i>
                 <span class="nav-text">Gerentes</span>
