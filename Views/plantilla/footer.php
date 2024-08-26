@@ -127,7 +127,7 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <!--Bootstrap-->
-<script src="<?=PLANTILLA?>plugins/bootstrap/js/bootstrap.js"></script>
+<script src="<?= PLANTILLA ?>plugins/bootstrap/js/bootstrap.js"></script>
 
 <!--SimpleBar-->
 <script src="<?= PLANTILLA ?>plugins/simplebar/simplebar.min.js"></script>
@@ -141,7 +141,8 @@
 <!--DataTables-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.3/af-2.7.0/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/cr-2.0.3/fc-5.0.1/fh-4.0.1/r-3.0.2/datatables.min.js"></script>
+<script
+    src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.3/af-2.7.0/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/cr-2.0.3/fc-5.0.1/fh-4.0.1/r-3.0.2/datatables.min.js"></script>
 
 <!--jVectorMap-->
 <script src="<?= PLANTILLA ?>plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
@@ -180,6 +181,15 @@
 <script src="<?= PLANTILLA ?>js/chart.js"></script>
 <script src="<?= PLANTILLA ?>js/map.js"></script>
 <script src="<?= PLANTILLA ?>js/custom.js"></script>
+
+<!--Sweet Alert2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!--Complexify-->
+<script src="<?= PLANTILLA ?>plugins/complexify/jquery.complexify.js"></script>
+
+<!--Select2-->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!--Funciones JS-->
 <script src="<?= PLANTILLA ?>js/funciones.js"></script>
