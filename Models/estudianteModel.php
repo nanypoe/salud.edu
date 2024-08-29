@@ -16,8 +16,8 @@ class estudianteModel extends Model{
     }
 
     public function obtenerAlumno(){
-        return $this->_db->query("select esc.nombre as nombre_escuela,est.id_estudiante,est.nombre, est.apellido,est.fecha_nacimiento,est.genero,est.direccion,est.telefono,
-        est.email,est.nombre_tutor,est.telefono_tutor from estudiante as est inner join escuelas as
+        return $this->_db->query("select esc.nombre as nombre_escuela,est.id_estudiante,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,est.fecha_nacimiento,est.sexo,est.direccion,est.telefono,
+        est.email,est.nombre_tutor,est.telefono_tutor from estudiantes as est inner join escuelas as
         esc on esc.id_escuela=est.id_escuela;")->fetchAll();
     }
 

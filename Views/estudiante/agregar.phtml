@@ -1,0 +1,103 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="card text-center" style="width:80% !important;">
+                <div class="card-header" >
+                    Registro de Estudiantes
+                </div>
+                <div class="row m-auto">
+                    <form class="row" method="post" id="formAgregarAlumno" enctype="multipart/form-data">
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Escuela Asiste</label>
+                            <select class="form-select" name="" id="id">
+                                <?= $this->escuelas ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Primer Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Primer Apellido</label>
+                            <input type="text" class="form-control" id="apellido">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Segundo Apellido</label>
+                            <input type="text" class="form-control" id="apellido">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fecha">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Edad</label>
+                            <input type="text" class="form-control" id="apellido">
+                        </div>
+
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Genero</label>
+                            <select name="" class="form-select" id="genero">
+                                <option value="0">SELECCIONE UNA OPCIÓN</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Telefono Alumno</label>
+                            <input type="tel" class="form-control" id="telefono">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Dirección Reside</label>
+                            <textarea class="form-control" name="" id="direccion"></textarea>
+                        </div>
+
+
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Correo Electronico</label>
+                            <input type="email" class="form-control" id="correo">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Nombre Tutor</label>
+                            <input type="text" class="form-control" id="nombreTutor">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Telefono Tutor</label>
+                            <input type="tel" class="form-control" id="telefonoTutor">
+                        </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    <div class="row justify-content-end">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i>
+                                Guardar
+                                Cambios</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

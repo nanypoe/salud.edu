@@ -59,6 +59,12 @@
             
         }
 
+        public function agregar()
+        {
+            $this->_view->renderizar('agregar');
+            
+        }
+
         public function agregarAlumno(){
             $this->_estu->agregarMaes($this->getTexto('nombre'),$this->getTexto('apellido'),$this->getTexto('correo'),$this->getTexto('telefono'),$this->getTexto('perfil'),$this->getTexto('id'));
 

@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarAlumno" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Alumno</button>
+            <a href="<?= BASE_URL ?>estudiante/agregar" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Alumno</a>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
                         <th>Nombre Tutor</th>
                         <th>Telefono Tutor</th>
                         <th>Escuela</th>
-                        
+                         
 
 
                         <th>Acción</th>
@@ -51,7 +51,7 @@
 <!-- Modal agregar Maestro -->
 
     <div class="modal fade" id="modalAgregarAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Alumno</h1>
@@ -68,13 +68,23 @@
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Nombres Alumno</label>
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Primer Nombre</label>
                             <input type="text" class="form-control" id="nombre" >
                         </div>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Apellidos Alumno</label>
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="nombre" >
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Primer Apellido</label>
+                            <input type="text" class="form-control" id="apellido">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Segundo Apellido</label>
                             <input type="text" class="form-control" id="apellido">
                         </div>
 
@@ -84,12 +94,23 @@
                         </div>
 
                         <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Edad</label>
+                            <input type="text" class="form-control" id="apellido">
+                        </div>
+
+
+                        <div class="mb-3 col-lg-6">
                             <label for="" class="form-label">Genero</label>
                             <select name="" class="form-select" id="genero">
                                 <option value="0">SELECCIONE UNA OPCIÓN</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="femenino">Femenino</option>
                             </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="" class="form-label">Telefono Alumno</label>
+                            <input type="tel" class="form-control" id="telefono">
                         </div>
 
                         <div class="mb-3 col-lg-12">
@@ -104,22 +125,14 @@
                             <input type="email" class="form-control" id="correo">
                         </div>
 
-
                         <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Telefono Alumno</label>
-                            <input type="tel" class="form-control" id="telefono">
+                            <label for="" class="form-label">Nombre Tutor</label>
+                            <input type="text" class="form-control" id="nombreTutor">
                         </div>
 
                         <div class="mb-3 col-lg-6">
                             <label for="" class="form-label">Telefono Tutor</label>
                             <input type="tel" class="form-control" id="telefonoTutor">
-                        </div>
-
-                        
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Nombre Tutor</label>
-                            <input type="text" class="form-control" id="nombreTutor">
                         </div>
 
                         
