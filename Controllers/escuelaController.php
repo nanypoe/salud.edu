@@ -35,7 +35,7 @@
 
         public function index()
         {
-            $this->_view->tabla=$this->verEscuela();
+            $this->_view->tabla=$this->verEscuela(); 
             $this->_view->renderizar('escuela');
             
         }

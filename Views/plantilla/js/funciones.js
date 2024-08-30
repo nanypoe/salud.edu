@@ -26,10 +26,10 @@ $(function () {
 
 
     /*====================================
-    ================GERENTES==============
+    ================ESCUELAS==============
     ======================================*/
 
-    /*===== Funcion para enviar los datos de los GERENTES=====*/
+    /*===== Funcion para enviar los datos de las ESCUELAS =====*/
     $('#formAgregarEscuela').submit(function (e) {
         e.preventDefault();
         let nombreEscuela = $('#nombreEscuela').val();
@@ -69,68 +69,6 @@ $(function () {
             }
         });
     });
-
-
-    /*========================================
-        ================GIMNASIOS=============
-        ======================================*/
-
-    /*===== Funcion para agregar GIMNASIOS =====*/
-
-    $("#formAgregarGym").on("submit", function (e) {
-        var extension = $("#imagen").val().split('.').pop().toLowerCase();;
-        console.log(extension);
-        if (extension != '') {
-            if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-                alert("Invalid Image File");
-                $('#imagen').val('');
-                return false;
-            }
-        }
-        e.preventDefault();
-        $.ajax({
-            url: 'gimnasio/agregarGym/',
-            type: 'post',
-            data: new FormData(this),
-            contentType: false,
-            processData: false,
-            success: function (respuesta) {
-                $('#modalAgregarGym').modal('hide');
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                $('#table').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ],
-                    responsive: true, rowReorder: {
-                        selector: 'td:nth-child(2)'
-                    },
-                    "language": {
-                        "sSearch": "Buscar",
-                        "lengthMenu": "Mostrar MENU registros",
-                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "zeroRecords": "No se encuentran resultados",
-                        "info": "Mostrando registros del START al END de un TOTAL de registros",
-                        "oPaginate": {
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        }
-                    }
-                });
-                $('#formAgregarGym')[0].reset();
-                Swal.fire(
-                    'Se registro el evento con exito',
-                    'en el sistema',
-                    'success'
-                )
-            }
-            , error: function () {
-                console.log('Error');
-            }
-        });
-    });
-
 
     /*====================================
     ================MAESTROS==============
@@ -211,9 +149,9 @@ $(function () {
                     icon: "success"
                 });
             },
-            error:function () {
+            error: function () {
                 console.log('Error');
-              }
+            }
         });
     });
 
@@ -257,7 +195,6 @@ $(function () {
         let condicionMedica = $('#condicionMedica').val();
         let descripcionMedica = $('#descripcionMedica').val();
         let medicacion = $('#medicacion').val();
-        let = $('#').val();
         $.ajax({
             url: '../salud/agregarDatosSalud/',
             type: 'POST',
