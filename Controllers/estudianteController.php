@@ -44,14 +44,7 @@
 
         public function index()
         {
-            /* mandando a la vista los datos de las escuelas */
-            $fila=$this->_estu->obtenerEscuela();
-            $datos='<option value="0"> Seleccione una escuela</option>';
-            for($i=0;$i<count($fila);$i++){
-                $datos.='<option value="'.$fila[$i]['id_escuela'].'">'.$fila[$i]['nombre'].'</option>';
-            }
-
-            $this->_view->escuelas=$datos; 
+            
  
 
             $this->_view->tabla=$this->verAlumno();
@@ -61,6 +54,14 @@
 
         public function agregar()
         {
+            /* mandando a la vista los datos de las escuelas */
+            $fila=$this->_estu->obtenerEscuela();
+            $datos='<option value="0"> Seleccione una escuela</option>';
+            for($i=0;$i<count($fila);$i++){
+                $datos.='<option value="'.$fila[$i]['id_escuela'].'">'.$fila[$i]['nombre'].'</option>';
+            } 
+
+            $this->_view->escuelas=$datos; 
             $this->_view->renderizar('agregar');
             
         }
@@ -72,7 +73,7 @@
                 {
                  $extension = explode('.', $_FILES['imagenEstudiante']['name']);
                  $new_name = rand() . '.' . $extension[1];
-                 $destination = './Views/plantilla/assets/img/' . $new_name;
+                 $destination = './Views/plantilla/images/' . $new_name;
                  move_uploaded_file($_FILES['imagenEstudiante']['tmp_name'], $destination);
                  return $new_name;
                 }

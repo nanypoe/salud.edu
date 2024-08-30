@@ -31,13 +31,13 @@ CREATE table estudiantes (
 	FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela)
 )ENGINE=InnoDB;
 
---Tabla Departamentos
+-- Tabla Departamentos
 CREATE TABLE departamentos (
     id_departamento INT PRIMARY KEY,
     nombre_departamento VARCHAR (255)
 )ENGINE=InnoDB;
 
---Tabla de Municipios
+-- Tabla de Municipios
 CREATE TABLE municipios (
     id_municipios INT PRIMARY KEY,
     id_departamento INT,
@@ -45,7 +45,7 @@ CREATE TABLE municipios (
     FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
 );
 
---Tabla de Perfil de Salud
+-- Tabla de Perfil de Salud
 CREATE TABLE salud_estudiante (
     id_salud INT PRIMARY KEY,
     id_estudiante INT,
@@ -59,7 +59,7 @@ CREATE TABLE salud_estudiante (
     somatotipo VARCHAR (255)
 )ENGINE=InnoDB;
 
---Tabla de Pruebas de Cualidades Físico-motrices
+-- Tabla de Pruebas de Cualidades Físico-motrices
 CREATE TABLE puebras_fisicas (
     id_pruebas INT PRIMARY KEY,
     id_estudiante INT,
