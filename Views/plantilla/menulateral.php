@@ -12,8 +12,7 @@
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="index.php">
-            <span class="brand-name">GYM <img src="<?= PLANTILLA ?>images/logo.png" alt="Logo"
-                style="width: 84px; height:84px;"> BRO</span>
+            <span class="brand-name">SALUD.EDU</span>
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
@@ -46,6 +45,13 @@
               <a class="sidenav-item-link" href="<?= BASE_URL ?>estudiante">
               <i class="fa-solid fa-graduation-cap"></i>
                 <span class="nav-text">Alumnos</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>salud">
+              <i class="fa-solid fa-notes-medical"></i>
+                <span class="nav-text">Perfil de Salud</span>
               </a>
             </li>
 

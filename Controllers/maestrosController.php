@@ -52,10 +52,10 @@
             
         }
 
-        public function agregarMaestros(){
-            $this->_maes->agregarMaes($this->getTexto('nombre'),$this->getTexto('apellido'),$this->getTexto('correo'),$this->getTexto('telefono'),$this->getTexto('perfil'),$this->getTexto('id'));
+        public function agregarDatosSalud(){
+            $this->_sal->agregarMaes($this->getTexto('pesoEstudiante'),$this->getTexto('alturaEstudiante'),$this->getTexto('imc'),$this->getTexto('categoriaPeso'),$this->getTexto('somatotipo'),$this->getTexto('condicionMedica'),$this->getTexto('descripcionMedica'),$this->getTexto('medicacion'));
 
-            echo $this->verMaestro();
+            echo $this->verDatosSalud();
 
         }
 
