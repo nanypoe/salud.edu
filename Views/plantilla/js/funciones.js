@@ -188,24 +188,24 @@ $(function () {
 
     $('#formAgregarAlumno').submit(function (e) {
         e.preventDefault();
-        let extension = $('#imagenEstudiante').val().split('.').pop().toLowerCase();
-        e.preventDefault();
+        let extension = $('#imagen').val().split('.').pop().toLowerCase();
         if (extension != '') {
             if (jQuery.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
-                $('#imagenEstudiante').val('');
+                $('#imagen').val('');
                 alert("Formato de imagen incorrecto");
                 return false;
             }
         }
+        console.log(extension);
         $.ajax({
-            url: 'estudiante/agregarAlumno/',
+            url: '../estudiante/agregarAlumno/',
             type: 'post',
             data: new FormData(this),
             contentType: false,
             processData: false,
-            success: function (data) {
+            success: function (respuesta) {
                 console.log("success");
-                console.log(data);
+                console.log(respuesta);
                 $('#formAgregarAlumno')[0].reset();
                 Swal.fire({
                     title: "Agregado!",
@@ -213,10 +213,9 @@ $(function () {
                     icon: "success"
                 });
             },
-            error: function (data) {
-                console.log("error");
-                console.log(data);
-            }
+            error:function () {
+                console.log('Error');
+              }
         });
     });
 
