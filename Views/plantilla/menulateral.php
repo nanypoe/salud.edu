@@ -69,6 +69,13 @@
               </a>
             </li>
 
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
+                <i class="fa-solid  fa-dumbbell"></i>
+                <span class="nav-text">Departamentos</span>
+              </a>
+            </li>
+
 
             <li class="section-title">
               Aplicaciones

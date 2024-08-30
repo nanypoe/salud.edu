@@ -31,15 +31,14 @@ CREATE table estudiantes (
 	FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela)
 )ENGINE=InnoDB;
 
---Tabla Departamentos
 CREATE TABLE departamentos (
-    id_departamento INT PRIMARY KEY,
+    id_departamento INT PRIMARY KEY AUTO_INCREMENT,
     nombre_departamento VARCHAR (255)
 )ENGINE=InnoDB;
 
---Tabla de Municipios
+
 CREATE TABLE municipios (
-    id_municipios INT PRIMARY KEY,
+    id_municipios INT PRIMARY KEY AUTO_INCREMENT,
     id_departamento INT,
     nombre_municipio VARCHAR (255),
     FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)

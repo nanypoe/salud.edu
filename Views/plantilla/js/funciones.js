@@ -233,6 +233,40 @@ $(function(){
         });
     });
 
-
+    /* Funciones para agregar departamentos*/
+    $('#formAgregarDepartamento').submit(function(e){
+        e.preventDefault();
+        let nombreDepartamento=$('#nombreDepartamento').val();
+        $.ajax({
+            url:'departamento/agregarDepartamento/',
+            type:'post',
+            data:{'nombreDepartamento':nombreDepartamento},
+            success:function(respuesta){
+                $('#modalAgregarDepartamento').modal('hide');
+                $('#formAgregarDepartamento')[0].reset();
+                $('#table').DataTable().destroy();
+                $('#table tbody').html(respuesta);
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'print'
+                    ],
+                    language:{
+                        "sSearch":"Buscar",
+                        "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "zeroRecords":"No se encuentraron coincidencias",
+                        "infoEmpty":"Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered":"(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive:true 
+                });
+                Swal.fire({
+                    title: "Agregado!",
+                    text: "El registro he sido registrado de forma correcta.",
+                    icon: "success"
+                });
+            }
+        });
+    });
 
 });
