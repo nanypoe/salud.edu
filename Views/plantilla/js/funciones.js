@@ -190,22 +190,21 @@ $(function(){
 
     $('#formAgregarAlumno').submit(function(e){
         e.preventDefault();
-        let idEscuela=$('#id').val();
-        let nombre=$('#nombre').val();
-        let apellido=$('#apellido').val();
-        let fecha=$('#fecha').val();
-        let genero=$('#genero').val();
-        let direccion=$('#direccion').val();
-        let correo=$('#correo').val();
-        let telefono=$('#telefono').val();
-        let telefonoT=$('#telefonoT').val();
-        let nombreTutor=$('#nombreT').val();
-
-        
+        let extension=$('#imagenEstudiante').val().split('.').pop().toLowerCase();
+        e.preventDefault();
+        if(extension != ''){
+            if(jQuery.inArray(extension,['png','jpg','jpeg'])==-1 ){
+                $('#imagenEstudiante').val('');
+                alert("Formato de imagen incorrecto");
+                return false;
+            }
+        }
         $.ajax({
             url:'estudiante/agregarAlumno/',
             type:'post',
-            data:{'id':idEscuela,'nombre':nombre,'apellido':apellido,'fecha':fecha,'genero':genero,'direccion':direccion,'correo':correo,'telefono':telefono,'telefono':telefono,'telefonoT':telefonoT,'nombreT':nombreTutor},
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
             success:function(respuesta){
                 $('#modalAgregarMaestro').modal('hide');
                 $('#formAgregarMaestros')[0].reset();

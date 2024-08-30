@@ -66,22 +66,56 @@
         }
 
         public function agregarAlumno(){
-            $this->_estu->agregarMaes($this->getTexto('nombre'),$this->getTexto('apellido'),$this->getTexto('correo'),$this->getTexto('telefono'),$this->getTexto('perfil'),$this->getTexto('id'));
-
+            function upload_image()
+            {
+                if(isset($_FILES["imagenEstudiante"]))
+                {
+                 $extension = explode('.', $_FILES['imagenEstudiante']['name']);
+                 $new_name = rand() . '.' . $extension[1];
+                 $destination = './Views/plantilla/assets/img/' . $new_name;
+                 move_uploaded_file($_FILES['imagenEstudiante']['tmp_name'], $destination);
+                 return $new_name;
+                }
+               }
+               $image = '';
+               if($_FILES["imagenEstudiante"]["name"] != '')
+                 {
+                  $image = upload_image();
+        
+            $this->_estu->insertarEstudiante($this->getTexto('id'), $this->getTexto('pNombre'),$this->getTexto('sNombre'),
+            $this->getTexto('pApellido'),$this->getTexto('sApellido'),
+            $this->getTexto('fecha'),$this->getTexto('edad'),
+            $this->getTexto('sexo'),$this->getTexto('telefonoAlumno'),
+            $this->getTexto('correo'),$this->getTexto('direccion'),$this->getTexto('nombreTutor'),$this->getTexto('telefonoTutor'),$image);
+        
+        
             echo $this->verAlumno();
+              }
+              else{
+           
+                $this->_estu->insertarEstSinImagen($this->getTexto('id'), $this->getTexto('pNombre'),$this->getTexto('sNombre'),
+            $this->getTexto('pApellido'),$this->getTexto('sApellido'),
+            $this->getTexto('fecha'),$this->getTexto('edad'),
+            $this->getTexto('sexo'),$this->getTexto('telefonoAlumno'),
+            $this->getTexto('correo'),$this->getTexto('direccion'),$this->getTexto('nombreTutor'),$this->getTexto('telefonoTutor'));
+        
+            
+                echo $this->verAlumno();
+            }
+
 
         }
 
         public function editarAlumno(){
             $this->_estu->editarAlum($this->getTexto('id'),$this->getTexto('nombre'),$this->getTexto('sexo'),$this->getTexto('telefono'),$this->getTexto('ciudad'));
 
-            echo $this->verAlumnos();
+            echo $this->verAlumno();
 
         }
 
         public function borrarAlumno(){
             $this->_estu->borrarAlum($this->getTexto('id'));
-            echo $this->verAlumnos();
+            echo $this->verAlumno();
         }
 
 
