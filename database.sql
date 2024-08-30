@@ -44,7 +44,7 @@ CREATE TABLE municipios (
     FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
 );
 
---Tabla de Perfil de Salud
+-- Tabla de Perfil de Salud
 CREATE TABLE salud_estudiante (
     id_salud INT PRIMARY KEY,
     id_estudiante INT,
@@ -58,7 +58,7 @@ CREATE TABLE salud_estudiante (
     somatotipo VARCHAR (255)
 )ENGINE=InnoDB;
 
---Tabla de Pruebas de Cualidades Físico-motrices
+-- Tabla de Pruebas de Cualidades Físico-motrices
 CREATE TABLE puebras_fisicas (
     id_pruebas INT PRIMARY KEY,
     id_estudiante INT,

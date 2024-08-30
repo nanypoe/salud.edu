@@ -58,9 +58,9 @@ class saludController extends Controller
 
     public function agregarDatosSalud()
     {
-        $this->_sal->agregarSal($this->getTexto(''), $this->getTexto('apellido'), $this->getTexto('correo'), $this->getTexto('telefono'), $this->getTexto('perfil'), $this->getTexto('id'));
+        $this->_sal->agregarSal($this->getTexto('idEstudiante'), $this->getTexto('pesoEstudiante'), $this->getTexto('alturaEstudiante'), $this->getTexto('imc'), $this->getTexto('categoriaPeso'), $this->getTexto('condicionMedica'), $this->getTexto('descripcionMedica'), $this->getTexto('medicacion'), $this->getTexto('somatotipo'));
 
-        echo $this->verMaestro();
+        echo $this->verDatosSalud();
 
     }
 

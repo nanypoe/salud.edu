@@ -10,20 +10,20 @@
                     <form class="row" method="post" id="formAgregarDatosSalud" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
-                            <label for="Estudiante" class="form-label">Nombre del Estudiante</label>
-                            <select class="form-select" name="Estudiante" id="Estudiante">
+                            <label for="idEstudiante" class="form-label">Nombre del Estudiante</label>
+                            <select class="form-select" name="idEstudiante" id="idEstudiante">
                                 <?= $this->alum ?>
                             </select>
                         </div>
 
                         <div class="mb-3 col-lg-3">
-                            <label for="pesoEstudiante" class="form-label">Peso (Kg)</label>
-                            <input type="number" class="form-control" id="pesoEstudiante" name="pesoEstudiante">
+                            <label for="pesoEstudiante" class="form-label">Peso (Libras)</label>
+                            <input type="text" class="form-control" id="pesoEstudiante" name="pesoEstudiante">
                         </div>
 
                         <div class="mb-3 col-lg-3">
-                            <label for="alturaEstudiante" class="form-label">Altura (cm)</label>
-                            <input type="number" class="form-control" id="alturaEstudiante" name="alturaEstudiante">
+                            <label for="alturaEstudiante" class="form-label">Altura (Centímetros)</label>
+                            <input type="text" class="form-control" id="alturaEstudiante" name="alturaEstudiante">
                         </div>
 
                         <div class="mb-3 col-lg-3">
@@ -37,9 +37,9 @@
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="somatotipo" class="form-label">Estudiante</label>
+                            <label for="somatotipo" class="form-label">Somatotipo</label>
                             <select class="form-select" name="somatotipo" id="somatotipo">
-                                <option value="0">Selecciones Somatotipo del Estudiante</option>
+                                <option value="0">Seleccione el Somatotipo del Estudiante</option>
                                 <option value="Ectomorfo">Ectomorfo</option>
                                 <option value="Mesomorfo">Mesomorfo</option>
                                 <option value="Endomorfo">Endomorfo</option>
@@ -49,7 +49,8 @@
                         <div class="mb-3 col-lg-6">
                             <label for="condicionMedica" class="form-label">Condición Médica</label>
                             <select class="form-select" name="condicionMedica" id="condicionMedica">
-                                <option value="0">Seleccione Condición Médica del Estudiante</option>
+                                <option value="0">Seleccione Condición la Médica del Estudiante</option>
+                                <option value="ninguna">Ninguna</option>
                                 <option value="asma">Asma</option>
                                 <option value="diabetes1">Diabetes Mellitus tipo 1</option>
                                 <option value="diabetes2">Diabetes Mellitus tipo 2</option>
@@ -89,8 +90,8 @@
 
                 <div class="card-footer text-body-secondary">
                     <div class="row justify-content-end">
-                        <div class="col-4">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <div class="col-12">
+                            <a href="<?=BASE_URL?>salud" class="btn btn-secondary"><i class="fa-solid fa-ban"></i> Cancelar</a>
                             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i>
                                 Guardar
                                 cambios</button>

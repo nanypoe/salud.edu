@@ -1,8 +1,10 @@
-/* Inicailizando el doom */
+/*====================================
+================DOM===================
+======================================*/
 
 $(function () {
 
-    /* Ininicializacion de dataTable */
+    /*===== Inicialización de DATATABLES =====*/
     $('#table').DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -21,10 +23,13 @@ $(function () {
         ]
     });
 
-    /*------- Funciones para Gerentes------------ */
 
-    /* Funcion para enviar los datos de los gerentes*/
 
+    /*====================================
+    ================GERENTES==============
+    ======================================*/
+
+    /*===== Funcion para enviar los datos de los GERENTES=====*/
     $('#formAgregarEscuela').submit(function (e) {
         e.preventDefault();
         let nombreEscuela = $('#nombreEscuela').val();
@@ -66,8 +71,11 @@ $(function () {
     });
 
 
+    /*========================================
+        ================GIMNASIOS=============
+        ======================================*/
 
-    /* Funcion para agregar gym */
+    /*===== Funcion para agregar GIMNASIOS =====*/
 
     $("#formAgregarGym").on("submit", function (e) {
         var extension = $("#imagen").val().split('.').pop().toLowerCase();;
@@ -87,7 +95,6 @@ $(function () {
             contentType: false,
             processData: false,
             success: function (respuesta) {
-
                 $('#modalAgregarGym').modal('hide');
                 $("#table").DataTable().destroy();
                 $("#table tbody").html(respuesta);
@@ -110,35 +117,26 @@ $(function () {
                             "sPrevious": "Anterior"
                         }
                     }
-
                 });
-
                 $('#formAgregarGym')[0].reset();
-
                 Swal.fire(
                     'Se registro el evento con exito',
                     'en el sistema',
                     'success'
                 )
-
-
             }
             , error: function () {
                 console.log('Error');
             }
-
-
-
         });
-
-
-
     });
 
 
-    /*------- Funciones para Maestros------------ */
+    /*====================================
+    ================MAESTROS==============
+    ======================================*/
 
-    /* Funcion para enviar los datos de los Maestros*/
+    /* Funcion para enviar los datos de los MAESTROS*/
 
     $('#formAgregarMaestros').submit(function (e) {
         e.preventDefault();
@@ -148,7 +146,6 @@ $(function () {
         let correo = $('#correo').val();
         let telefono = $('#telefono').val();
         let perfil = $('#perfil').val();
-
         $.ajax({
             url: 'maestros/agregarMaestros/',
             type: 'post',
@@ -182,10 +179,11 @@ $(function () {
     });
 
 
-    /*------- Funciones para Alumnos------------ */
+    /*====================================
+    ================ESTUDIANTES==============
+    ======================================*/
 
-    /* Funcion para enviar los datos de los Alumnos*/
-
+    /* Función para enviar los datos de los ESTUDIANTES*/
     $('#formAgregarAlumno').submit(function (e) {
         e.preventDefault();
         let extension = $('#imagenEstudiante').val().split('.').pop().toLowerCase();
@@ -220,15 +218,78 @@ $(function () {
         });
     });
 
-    /* Funciones para agregar departamentos*/
-    $('#formAgregarDepartamento').submit(function(e){
+
+    /*=========================================
+        ==========DATOS DE SALUD ESTUDIANTIL===
+        ======================================*/
+
+    /*Función para Calcular IMC y categoría de peso*/
+    $("#alturaEstudiante, #pesoEstudiante").on("keyup", function () {
+        if ($('#alturaEstudiante').val() != "" && $('#pesoEstudiante').val() != "") {
+            let peso = parseFloat($('#pesoEstudiante').val() / 2.205);
+            let altura = parseFloat($('#alturaEstudiante').val() / 100);
+            let imc = parseFloat((peso) / (altura * altura)).toFixed(2);
+            $('#imc').val(imc);
+            if (imc <= 18.5) {
+                $('#categoriaPeso').val("Desnutrición");
+            } else if (imc > 18.5 && imc <= 24.9) {
+                $('#categoriaPeso').val("Peso normal");
+            } else if (imc > 25 && imc <= 29.9) {
+                $('#categoriaPeso').val("Sobrepeso");
+            } else if (imc > 30) {
+                $('#categoriaPeso').val("Obesidad");
+            }
+        } else {
+            $("#imc").val("");
+            $("#categoriaPeso").val("");
+        }
+    });
+
+
+    /*Envío de DATOS DE SALUD ESTUDIANTIL al BackEnd */
+    $('#formAgregarDatosSalud').submit(function (e) {
         e.preventDefault();
-        let nombreDepartamento=$('#nombreDepartamento').val();
+        let idEstudiante = $('#idEstudiante').val();
+        let pesoEstudiante = $('#pesoEstudiante').val();
+        let alturaEstudiante = $('#alturaEstudiante').val();
+        let imc = $('#imc').val();
+        let categoriaPeso = $('#categoriaPeso').val();
+        let somatotipo = $('#somatotipo').val();
+        let condicionMedica = $('#condicionMedica').val();
+        let descripcionMedica = $('#descripcionMedica').val();
+        let medicacion = $('#medicacion').val();
+        let = $('#').val();
         $.ajax({
-            url:'departamento/agregarDepartamento/',
-            type:'post',
-            data:{'nombreDepartamento':nombreDepartamento},
-            success:function(respuesta){
+            url: '../salud/agregarDatosSalud/',
+            type: 'POST',
+            data: {
+                'idEstudiante': idEstudiante, 'pesoEstudiante': pesoEstudiante, 'alturaEstudiante': alturaEstudiante, 'imc': imc, 'categoriaPeso': categoriaPeso, 'somatotipo': somatotipo, 'condicionMedica': condicionMedica, 'descripcionMedica': descripcionMedica, 'medicacion': medicacion
+            },
+            success: function () {
+                $('#formAgregarAlumno')[0].reset();
+                Swal.fire({
+                    title: "Agregado!",
+                    text: "El registro ha sido Agregado de forma correcta.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+
+
+    /*====================================
+        ==============DEPARTAMENTOS==============
+        ======================================*/
+
+    /*Funciones para apartado DEPARTAMENTOS*/
+    $('#formAgregarDepartamento').submit(function (e) {
+        e.preventDefault();
+        let nombreDepartamento = $('#nombreDepartamento').val();
+        $.ajax({
+            url: 'departamento/agregarDepartamento/',
+            type: 'post',
+            data: { 'nombreDepartamento': nombreDepartamento },
+            success: function (respuesta) {
                 $('#modalAgregarDepartamento').modal('hide');
                 $('#formAgregarDepartamento')[0].reset();
                 $('#table').DataTable().destroy();
@@ -238,14 +299,14 @@ $(function () {
                     buttons: [
                         'copy', 'excel', 'pdf', 'print'
                     ],
-                    language:{
-                        "sSearch":"Buscar",
-                        "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "zeroRecords":"No se encuentraron coincidencias",
-                        "infoEmpty":"Mostrando 0 a 0 de 0 registros",
-                        "infoFiltered":"(filtrado de un total de _MAX_ registros)",
+                    language: {
+                        "sSearch": "Buscar",
+                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "zeroRecords": "No se encuentraron coincidencias",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     },
-                    responsive:true 
+                    responsive: true
                 });
                 Swal.fire({
                     title: "Agregado!",
