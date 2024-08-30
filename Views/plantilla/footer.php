@@ -2,7 +2,7 @@
 <footer class="footer mt-auto">
     <div class="copyright bg-white">
         <p>
-            &copy; <span id="copy-year"></span> Copyright - Todos los Derechos Reservados - GymBro
+            &copy; <span id="copy-year"></span> Copyright - Todos los Derechos Reservados - Salud.Edu
         </p>
     </div>
     <script>

@@ -6,7 +6,7 @@ class saludController extends Controller
     function __construct()
     {
         parent::__construct();
-        $this->_sal = $this->loadModel('salud');
+        $this->_sal = $this->loadModel('salud');  
     }
 
     public function verDatosSalud()
@@ -62,6 +62,10 @@ class saludController extends Controller
 
         echo $this->verMaestro();
 
+    }
+
+    public function agregar(){
+        $this -> _view->renderizar('agregar');
     }
 
     public function editarAlumno()
