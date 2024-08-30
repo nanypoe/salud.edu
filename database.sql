@@ -27,6 +27,7 @@ CREATE table estudiantes (
     email VARCHAR(100),
     nombre_tutor VARCHAR(255),
     telefono_tutor VARCHAR(50),
+    imagen VARCHAR (15),
 	FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela)
 )ENGINE=InnoDB;
 

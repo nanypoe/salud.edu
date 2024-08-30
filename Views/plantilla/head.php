@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GymBro: ¡tu gimnasio, tu progreso, nuestra solución!</title>
+  <title>Salud.Edu</title>
+
+  <!-- FAVICON -->
+  <link href="<?= PLANTILLA ?>images/logo1.png" rel="shortcut icon" style="width:32px; height: 32px" />
 
   <!--Google Fonts-->
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
@@ -49,7 +52,4 @@
 
   <!-- MONO CSS -->
   <link id="main-css-href" rel="stylesheet" href="<?= PLANTILLA ?>css/style.css" />
-
-  <!-- FAVICON -->
-  <link href="<?= PLANTILLA ?>images/favicon1.png" rel="shortcut icon" style="width:32px; height: 32px" />
 </head>
