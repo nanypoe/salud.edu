@@ -20,7 +20,7 @@ class escuelaModel extends Model
 
     public function obtenerEscuela()
     {
-        return $this->_db->query("SELECT * FROM Escuelas")->fetchAll();
+        return $this->_db->query("SELECT * FROM estudiante")->fetchAll();
     }
 
     public function borrarEscuela($id_escuela)

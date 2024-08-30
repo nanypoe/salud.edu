@@ -1,7 +1,7 @@
 <?php
 class estudianteController extends Controller
 {
-    private $_estu;
+    private $_estu; 
 
     function __construct()
     {
@@ -17,21 +17,23 @@ class estudianteController extends Controller
             $datos = json_encode($fila[$i]);
             $tabla .= '
                 <tr>
-                    <td>' . $fila[$i]['id_maestros'] . '</td>
-                    <td>' . $fila[$i]['nombre'] . ' ' . $fila[$i]['apellido'] . '</td> 
-                    <td>' . $fila[$i]['fecha_nacimiento'] . '</td>
-                    <td>' . $fila[$i]['genero'] . '</td>
-                    <td>' . $fila[$i]['direccion'] . '</td>
-                    <td>' . $fila[$i]['telefono'] . '</td>
-                    <td>' . $fila[$i]['email'] . '</td>
-                    <td>' . $fila[$i]['nombre_tutor'] . '</td>
-                    <td>' . $fila[$i]['telefono_tutor'] . '</td>
-                    <td>' . $fila[$i]['direccion'] . '</td>
-                    <td>' . $fila[$i]['nombre_escuela'] . '</td>
+                    <td>'.$fila[$i]['id_estudiante'].'</td>
+                    <td>'.$fila[$i]['primer_nombre'].' '.$fila[$i]['segundo_nombre'].' '.$fila[$i]['primer_apellido'].' '.$fila[$i]['segundo_apellido'].'</td> 
+                    <td>'.$fila[$i]['edad'].'</td>
+                    <td>'.$fila[$i]['fecha_nacimiento'].'</td>
+                    <td>'.$fila[$i]['sexo'].'</td>
+                    <td>'.$fila[$i]['direccion'].'</td>
+                    <td>'.$fila[$i]['telefono'].'</td>
+                    <td>'.$fila[$i]['email'].'</td>
+                    <td>'.$fila[$i]['nombre_tutor'].'</td>
+                    <td>'.$fila[$i]['telefono_tutor'].'</td>
+                    <td>'.$fila[$i]['nombre_escuela'].'</td>
+
+                    <td><img src=Views/plantilla/images/'.$fila[$i]['imagen'].' class="img-thumbnail" width="50" height="40"></td>
 
                     <td>
                     <button data-Alumno=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalActualizarMaestro" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarAlumno"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
-        <button data-id=' . $fila[$i]['id_maestros'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarAlumno"><i class="fa-solid fa-trash"></i> Borrar</button>
+        <button data-id=' . $fila[$i]['id_estudiante'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarAlumno"><i class="fa-solid fa-trash"></i> Borrar</button>
                     </td>
                 </tr>
                 ';
@@ -63,16 +65,16 @@ class estudianteController extends Controller
     {
         function upload_image()
         {
-            if (isset($_FILES["imagenEstudiante"])) {
-                $extension = explode('.', $_FILES['imagenEstudiante']['name']);
+            if (isset($_FILES["imagen"])) {
+                $extension = explode('.', $_FILES['imagen']['name']);
                 $new_name = rand() . '.' . $extension[1];
                 $destination = './Views/plantilla/images/' . $new_name;
-                move_uploaded_file($_FILES['imagenEstudiante']['tmp_name'], $destination);
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $destination);
                 return $new_name;
             }
         }
         $imagen = '';
-        if ($_FILES["imagenEstudiante"]["name"] != '') {
+        if ($_FILES["imagen"]["name"] != '') {
             $imagen = upload_image();
 
             $this->_estu->insertarEstudiante(
@@ -84,14 +86,14 @@ class estudianteController extends Controller
                 $this->getTexto('edad'),
                 $this->getTexto('fecha'),
                 $this->getTexto('sexo'),
+                $this->getTexto('direccion'),
                 $this->getTexto('telefonoAlumno'),
                 $this->getTexto('correo'),
-                $this->getTexto('direccion'),
                 $this->getTexto('nombreTutor'),
                 $this->getTexto('telefonoTutor'),
                 $imagen
             );
-            echo $this->verAlumno();
+            echo "datos agregados";
         } else {
             $this->_estu->insertarEstSinImagen(
                 $this->getTexto('id'),

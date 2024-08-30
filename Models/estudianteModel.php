@@ -8,20 +8,20 @@ class estudianteModel extends Model
         parent::__construct();
     }
 
-    public function insertarEstudiante($id, $pNombre, $sNombre, $pApellido, $sApellido, $edad, $fecha, $sexo, $telefonoAlumno, $correo, $direccion, $nombreTutor, $telefonoTutor, $imagen)
+    public function insertarEstudiante($id, $pNombre, $sNombre, $pApellido, $sApellido, $edad, $fecha, $sexo,$direccion, $telefonoAlumno, $correo, $nombreTutor, $telefonoTutor, $imagen)
     {
-        $this->_db->prepare('INSERT INTO estudiantes (id_escuela, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion, telefono, email, nombre_tutor, telefono_tutor, imagen) VALUES (:id, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :fecha, :sexo, :telefonoAlumno, :correo, :direccion, :nombreTutor,:telefonoTutor, :imagen);')->execute(array(
+        $this->_db->prepare('INSERT INTO estudiantes (id_escuela, primer_nombre, segundo_nombre, primer_apellido,segundo_apellido,edad,fecha_nacimiento,sexo,direccion,telefono,email, nombre_tutor, telefono_tutor, imagen) VALUES (:id, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :fecha, :sexo, :direccion, :telefonoAlumno,:correo,:nombreTutor,:telefonoTutor,:imagen);')->execute(array(
             'id' => $id,
             'pNombre' => $pNombre,
             'sNombre' => $sNombre,
             'pApellido' => $pApellido,
             'sApellido' => $sApellido,
-            'fecha' => $edad,
-            'edad' => $fecha,
+            'edad' => $edad,
+            'fecha' => $fecha,
             'sexo' => $sexo,
-            'telefonoAlumno' => $telefonoAlumno,
-            'correo' => $correo,
             'direccion' => $direccion,
+            'telefonoAlumno' => $telefonoAlumno,
+            'correo' => $correo, 
             'nombreTutor' => $nombreTutor,
             'telefonoTutor' => $telefonoTutor,
             'imagen' => $imagen
@@ -30,29 +30,29 @@ class estudianteModel extends Model
 
     public function insertarEstSinImagen($id, $pNombre, $sNombre, $pApellido, $sApellido, $fecha, $edad, $sexo, $telefonoAlumno, $correo, $direccion, $nombreTutor, $telefonoTutor)
     {
-        $this->_db->prepare('INSERT INTO estudiantes (id_escuela, primer_nombre,segundo_nombre, primer_apellido, segundo_apellido, edad, fecha, sexo,  direccion, telefono, email, nombre_tutor, telefono_tutor) VALUES (:id, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :fecha, :sexo, :telefonoAlumno, :correo, :direccion, :nombreTutor, :telefonoTutor);')->execute(array(
+        $this->_db->prepare('INSERT INTO estudiantes (id_escuela, primer_nombre, segundo_nombre, primer_apellido,segundo_apellido,edad,fecha_nacimiento,sexo,direccion,telefono,email, nombre_tutor, telefono_tutor) VALUES (:id, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :fecha, :sexo, :direccion, :telefonoAlumno,:correo,:nombreTutor,:telefonoTutor);')->execute(array(
             'id' => $id,
             'pNombre' => $pNombre,
             'sNombre' => $sNombre,
             'pApellido' => $pApellido,
             'sApellido' => $sApellido,
-            'fecha' => $edad,
-            'edad' => $fecha,
+            'edad' => $edad,
+            'fecha' => $fecha,
             'sexo' => $sexo,
+            'direccion' => $direccion,
             'telefonoAlumno' => $telefonoAlumno,
             'correo' => $correo,
-            'direccion' => $direccion,
             'nombreTutor' => $nombreTutor,
-            'telefonoTutor' => $telefonoTutor
+            'telefonoTutor' => $telefonoTutor,
         ));
     }
 
     public function obtenerAlumno()
     {
-        return $this->_db->query("select esc.nombre as nombre_escuela,est.id_estudiante,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,est.fecha_nacimiento,est.sexo,est.direccion,est.telefono,
+        return $this->_db->query("select esc.nombre as nombre_escuela,est.id_estudiante,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,edad,imagen,est.fecha_nacimiento,est.sexo,est.direccion,est.telefono,
         est.email,est.nombre_tutor,est.telefono_tutor from estudiantes as est inner join escuelas as
         esc on esc.id_escuela=est.id_escuela;")->fetchAll();
-    }
+    } 
 
     public function obtenerEscuela()
     {
