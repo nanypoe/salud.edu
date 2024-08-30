@@ -1,0 +1,110 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="card" style="width:80% !important;">
+                <div class="card-header mb-3">
+                    Registro de Datos de Salud del Estudiante
+                </div>
+                <div class="row m-auto">
+
+                    <form class="row" method="post" id="formAgregarDatosSalud" enctype="multipart/form-data">
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="Estudiante" class="form-label">Nombre del Estudiante</label>
+                            <select class="form-select" name="Estudiante" id="Estudiante">
+                                <?= $this->alum ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="pesoEstudiante" class="form-label">Peso (Kg)</label>
+                            <input type="number" class="form-control" id="pesoEstudiante" name="pesoEstudiante">
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="alturaEstudiante" class="form-label">Altura (cm)</label>
+                            <input type="number" class="form-control" id="alturaEstudiante" name="alturaEstudiante">
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="imc" class="form-label">Índice de Masa Corporal</label>
+                            <input type="number" class="form-control" id="imc" name="imc" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="categoriaPeso" class="form-label">Categoría de Peso</label>
+                            <input type="text" class="form-control" id="categoriaPeso" name="categoriaPeso" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="somatotipo" class="form-label">Estudiante</label>
+                            <select class="form-select" name="somatotipo" id="somatotipo">
+                                <option value="0">Selecciones Somatotipo del Estudiante</option>
+                                <option value="Ectomorfo">Ectomorfo</option>
+                                <option value="Mesomorfo">Mesomorfo</option>
+                                <option value="Endomorfo">Endomorfo</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="condicionMedica" class="form-label">Condición Médica</label>
+                            <select class="form-select" name="condicionMedica" id="condicionMedica">
+                                <option value="0">Seleccione Condición Médica del Estudiante</option>
+                                <option value="asma">Asma</option>
+                                <option value="diabetes1">Diabetes Mellitus tipo 1</option>
+                                <option value="diabetes2">Diabetes Mellitus tipo 2</option>
+                                <option value="alegiaAlimentos">Alergias alimentarias</option>
+                                <option value="alergiaMedicamentos">Alergias a alergiaMedicamentos</option>
+                                <option value="hipertension">Hipertensión arterial</option>
+                                <option value="obesidad">Obesidad</option>
+                                <option value="autismo">Trastorno del Espectro Autista</option>
+                                <option value="tdah">Trastorno de Déficit de Atención e Hiperactividad</option>
+                                <option value="epilepsia">Epilepsia</option>
+                                <option value="vision">Problemas visuales</option>
+                                <option value="audicion">Problemas auditivos</option>
+                                <option value="sueño">Trastornos del sueño</option>
+                                <option value="cardiovasculares">Enfermedades Cardiovasculares Congénitas</option>
+                                <option value="discapacidad">Discapacidades Físicas</option>
+                                <option value="respiratorias">Enfermedades Respiratorias Crónicas</option>
+                                <option value="tiroide">Trastornos de la tiroides</option>
+                                <option value="anemia">Anemia</option>
+                                <option value="gastrointestinal">Problemas Gastrointestinales</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="descripcionMedica" class="form-label">Describir condición médica</label>
+                            <textarea class="form-control" name="descripcionMedica" id="descripcionMedica"
+                                placeholder="Más detalles sobre la condición médica del estudiante"></textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="medicacion" class="form-label">Medicación</label>
+                            <textarea class="form-control" name="medicacion" id="medicacion"
+                                placeholder="Detalles sobre la medicación del estudiante"></textarea>
+                        </div>
+                </div>
+
+
+                <div class="card-footer text-body-secondary">
+                    <div class="row justify-content-end">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i>
+                                Guardar
+                                cambios</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

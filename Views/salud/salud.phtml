@@ -7,9 +7,8 @@
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarDatosSalud" data-bs-toggle="modal"
-                class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Datos de Salud
-                Estudiantil</button>
+            <a href="<?= BASE_URL ?>salud/agregar" class="btn btn-primary float-right"><i
+                    class="fas fa-solid fa-plus"></i> Agregar Datos de Salud</a>
         </div>
     </div>
 
@@ -39,106 +38,6 @@
     </div>
 
 </div>
-
-<!-- Modal agregar Maestro -->
-
-<div class="modal fade" id="modalAgregarDatosSalud" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Datos de Salud del Estudiante</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <form class="row" method="post" id="formAgregarDatosSalud" enctype="multipart/form-data">
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="Estudiante" class="form-label">Estudiante</label>
-                            <select class="form-select" name="Estudiante" id="Estudiante">
-                                <?= $this->alum ?>
-                            </select>
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="pesoEstudiante" class="form-label">Peso</label>
-                            <input type="number" class="form-control" id="pesoEstudiante" name="pesoEstudiante">
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="alturaEstudiante" class="form-label">Altura</label>
-                            <input type="number" class="form-control" id="alturaEstudiante" name="alturaEstudiante">
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="imc" class="form-label">Índice de Masa Corporal (IMC)</label>
-                            <input type="number" class="form-control" id="imc" name="imc" disabled>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="categoriaPeso" class="form-label">Categoría de Peso</label>
-                            <input type="number" class="form-control" id="categoriaPeso" name="categoriaPeso" disabled>
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="somatotipo" class="form-label">Estudiante</label>
-                            <select class="form-select" name="somatotipo" id="somatotipo">
-                                <option value="Ectomorfo">Ectomorfo</option>
-                                <option value="Mesomorfo">Mesomorfo</option>
-                                <option value="Endomorfo">Endomorfo</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="condicionMedica" class="form-label">Condición Médica</label>
-                            <select class="form-select" name="condicionMedica" id="condicionMedica">
-                                <option value="asma">Asma</option>
-                                <option value="diabetes1">Diabetes Mellitus tipo 1</option>
-                                <option value="diabetes2">Diabetes Mellitus tipo 2</option>
-                                <option value="alegiaAlimentos">Alergias alimentarias</option>
-                                <option value="alergiaMedicamentos">Alergias a alergiaMedicamentos</option>
-                                <option value="hipertension">Hipertensión arterial</option>
-                                <option value="obesidad">Obesidad</option>
-                                <option value="autismo">Trastorno del Espectro Autista</option>
-                                <option value="tdah">Trastorno de Déficit de Atención e Hiperactividad</option>
-                                <option value="epilepsia">Epilepsia</option>
-                                <option value="vision">Problemas visuales</option>
-                                <option value="audicion">Problemas auditivos</option>
-                                <option value="sueño">Trastornos del sueño</option>
-                                <option value="cardiovasculares">Enfermedades Cardiovasculares Congénitas</option>
-                                <option value="discapacidad">Discapacidades Físicas</option>
-                                <option value="respiratorias">Enfermedades Respiratorias Crónicas</option>
-                                <option value="tiroide">Trastornos de la tiroides</option>
-                                <option value="anemia">Anemia</option>
-                                <option value="gastrointestinal">Problemas Gastrointestinales</option>
-                                <option value="otros">Otros</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="descripcionMedica" class="form-label">Descripción de la condición médica</label>
-                            <textarea name="descripcionMedica" id="descripcionMedica"
-                                placeholder="Más detalles sobre la condición médica del estudiante"></textarea>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="medicacion" class="form-label">Medicación</label>
-                            <textarea name="medicacion" id="medicacion"
-                                placeholder="Más detalles sobre la condición médica del estudiante"></textarea>
-                        </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar
-                    cambios</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 
 <!-- Modal Actualizar Maestro -->
 
