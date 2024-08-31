@@ -195,14 +195,18 @@ $(function () {
         let condicionMedica = $('#condicionMedica').val();
         let descripcionMedica = $('#descripcionMedica').val();
         let medicacion = $('#medicacion').val();
+        $('#imc').prop('disabled', false);
+        $('#categoriaPeso').prop('disabled', false);
         $.ajax({
             url: '../salud/agregarDatosSalud/',
-            type: 'POST',
+            type: 'post',
             data: {
                 'idEstudiante': idEstudiante, 'pesoEstudiante': pesoEstudiante, 'alturaEstudiante': alturaEstudiante, 'imc': imc, 'categoriaPeso': categoriaPeso, 'somatotipo': somatotipo, 'condicionMedica': condicionMedica, 'descripcionMedica': descripcionMedica, 'medicacion': medicacion
             },
             success: function () {
-                $('#formAgregarAlumno')[0].reset();
+                $('#formAgregarDatosSalud')[0].reset();
+                $('#imc').prop('disabled', true);
+                $('#categoriaPeso').prop('disabled', true);
                 Swal.fire({
                     title: "Agregado!",
                     text: "El registro ha sido Agregado de forma correcta.",

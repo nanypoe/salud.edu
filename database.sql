@@ -46,7 +46,7 @@ CREATE TABLE municipios (
 
 -- Tabla de Perfil de Salud
 CREATE TABLE salud_estudiante (
-    id_salud INT PRIMARY KEY,
+    id_salud INT PRIMARY KEY AUTO_INCREMENT,
     id_estudiante INT,
     peso FLOAT,
     altura FLOAT,
@@ -60,7 +60,7 @@ CREATE TABLE salud_estudiante (
 
 -- Tabla de Pruebas de Cualidades Físico-motrices
 CREATE TABLE puebras_fisicas (
-    id_pruebas INT PRIMARY KEY,
+    id_pruebas INT PRIMARY KEY AUTO_INCREMENT,
     id_estudiante INT,
     tipo_prueba VARCHAR (255),
     resultado VARCHAR (255),
