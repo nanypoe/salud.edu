@@ -203,7 +203,8 @@ $(function () {
             data: {
                 'idEstudiante': idEstudiante, 'pesoEstudiante': pesoEstudiante, 'alturaEstudiante': alturaEstudiante, 'imc': imc, 'categoriaPeso': categoriaPeso, 'somatotipo': somatotipo, 'condicionMedica': condicionMedica, 'descripcionMedica': descripcionMedica, 'medicacion': medicacion
             },
-            success: function () {
+            success: function (respuesta) {
+                console.log(respuesta);
                 $('#formAgregarDatosSalud')[0].reset();
                 $('#imc').prop('disabled', true);
                 $('#categoriaPeso').prop('disabled', true);
