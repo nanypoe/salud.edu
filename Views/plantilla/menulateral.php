@@ -56,26 +56,18 @@
             </li>
 
             <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>gerente">
-                <i class="fa-solid  fa-people-roof"></i>
-                <span class="nav-text">Gerentes</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>gimnasio">
-                <i class="fa-solid  fa-dumbbell"></i>
-                <span class="nav-text">Gimnasios</span>
-              </a>
-            </li>
-
-            <li class="">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
-                <i class="fa-solid  fa-dumbbell"></i>
+                <i class="fa-solid  fa-location-dot"></i>
                 <span class="nav-text">Departamentos</span>
               </a>
             </li>
 
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>municipio">
+                <i class="fa-solid  fa-location-pin"></i>
+                <span class="nav-text">Municipios</span>
+              </a>
+            </li>
 
             <li class="section-title">
               Aplicaciones

@@ -11,7 +11,7 @@ CREATE TABLE escuelas (
     latitud DOUBLE
 )ENGINE=InnoDB;
 
--- Tabla Estudiantes
+-- Tabla ESTUDIANTES
 CREATE table estudiantes (
 	id_estudiante INT PRIMARY KEY AUTO_INCREMENT,
     id_escuela INT,
@@ -31,20 +31,21 @@ CREATE table estudiantes (
 	FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela)
 )ENGINE=InnoDB;
 
+-- Tabla DEPARTAMENTOS
 CREATE TABLE departamentos (
     id_departamento INT PRIMARY KEY AUTO_INCREMENT,
     nombre_departamento VARCHAR (255)
 )ENGINE=InnoDB;
 
-
+-- Tabla MUNICIPIOS
 CREATE TABLE municipios (
-    id_municipios INT PRIMARY KEY AUTO_INCREMENT,
+    id_municipio INT PRIMARY KEY AUTO_INCREMENT,
     id_departamento INT,
     nombre_municipio VARCHAR (255),
     FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
 );
 
--- Tabla de Perfil de Salud
+-- Tabla DATOS DE SALUD del estudiante
 CREATE TABLE salud_estudiante (
     id_salud INT PRIMARY KEY AUTO_INCREMENT,
     id_estudiante INT,
@@ -58,7 +59,7 @@ CREATE TABLE salud_estudiante (
     somatotipo VARCHAR (255)
 )ENGINE=InnoDB;
 
--- Tabla de Pruebas de Cualidades Físico-motrices
+-- Tabla de PRUEBAS FÍSICO-MOTRICES
 CREATE TABLE puebras_fisicas (
     id_pruebas INT PRIMARY KEY AUTO_INCREMENT,
     id_estudiante INT,
@@ -69,15 +70,14 @@ CREATE TABLE puebras_fisicas (
     fecha_prueba DATE
 )ENGINE=InnoDB;
 
--- -- Tabla MAESTROS
--- CREATE TABLE maestros (
---     id_maestros INT AUTO_INCREMENT PRIMARY KEY,
---     id_escuela INT,
---     nombre VARCHAR(255) NOT NULL,
---     apellido VARCHAR(255) NOT NULL,
---     email VARCHAR(100),
---     telefono VARCHAR(50),
---     perfil VARCHAR(100),
---     FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
--- );
-
+-- Tabla MAESTROS
+CREATE TABLE maestros (
+id_maestro INT AUTO_INCREMENT PRIMARY KEY,
+id_escuela INT,
+nombre VARCHAR(255) NOT NULL,
+apellido VARCHAR(255) NOT NULL,
+email VARCHAR(100),
+telefono VARCHAR(50),
+materia_imparte VARCHAR(100),
+FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
+);
