@@ -81,3 +81,23 @@ telefono VARCHAR(50),
 perfil VARCHAR(100),
 FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
 );
+
+
+CREATE TABLE materia(
+id_materia int primary key auto_increment,
+id_grupo int,
+id_maestro int,
+nombre_materia varchar(45),
+foreign key (id_grupo) references grupos (id_grupo),
+foreign key (id_maestro) references grupos (id_grupo)
+)engine=innodb;
+
+
+create table grupos(
+id_grupo int auto_increment primary key,
+grado int,
+seccion varchar(45),
+turno varchar(45),
+modalidad varchar(45),
+lectivo int
+)engine=InnoDB;
