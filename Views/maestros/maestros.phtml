@@ -16,27 +16,21 @@
             <table id="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>ID Maestro</th>
                         <th>Nombre</th>
-                        <th>email</th>
-                        <th>Telefono</th>
-           
-                        <th>Perfil</th>
-                        <th>Acción</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Materia que imparte</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead> 
                 <tbody>
                     <?= $this->tabla ?>
                 </tbody>
-
             </table>
         </div>
     </div>
-
-
-
-
-
 
 </div>
 
@@ -52,9 +46,9 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formAgregarMaestros" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formAgregarMaestro" enctype="multipart/form-data">
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Escuela Labora</label>
+                            <label for="" class="form-label">Escuela en la que labora</label>
                             <select class="form-select" name="" id="id"> 
                                 
                                 <?=$this->escuelas?>
