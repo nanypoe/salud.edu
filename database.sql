@@ -70,19 +70,17 @@ CREATE TABLE puebras_fisicas (
     fecha_prueba DATE
 )ENGINE=InnoDB;
 
--- Tabla MAESTROS
-CREATE TABLE maestros (
-id_maestro INT AUTO_INCREMENT PRIMARY KEY,
-id_escuela INT,
-nombre VARCHAR(255) NOT NULL,
-apellido VARCHAR(255) NOT NULL,
-email VARCHAR(100),
-telefono VARCHAR(50),
-perfil VARCHAR(100),
-FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
-);
+-- Tabla GRUPOS
+create table grupos(
+id_grupo int auto_increment primary key,
+grado int,
+seccion varchar(45),
+turno varchar(45),
+modalidad varchar(45),
+lectivo int
+)engine=InnoDB;
 
-
+-- Tabla MATERIA
 CREATE TABLE materia(
 id_materia int primary key auto_increment,
 id_grupo int,
@@ -92,12 +90,15 @@ foreign key (id_grupo) references grupos (id_grupo),
 foreign key (id_maestro) references grupos (id_grupo)
 )engine=innodb;
 
-
-create table grupos(
-id_grupo int auto_increment primary key,
-grado int,
-seccion varchar(45),
-turno varchar(45),
-modalidad varchar(45),
-lectivo int
-)engine=InnoDB;
+-- Tabla MAESTROS
+CREATE TABLE maestros (
+id_maestro INT AUTO_INCREMENT PRIMARY KEY,
+id_escuela INT,
+id_materia INT,
+nombre VARCHAR(255) NOT NULL,
+apellido VARCHAR(255) NOT NULL,
+email VARCHAR(100),
+telefono VARCHAR(50),
+FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE,
+FOREIGN KEY (id_materia) REFERENCES materia (id_materia) ON DELETE CASCADE
+)ENGINE=InnoDB;
