@@ -78,6 +78,6 @@ nombre VARCHAR(255) NOT NULL,
 apellido VARCHAR(255) NOT NULL,
 email VARCHAR(100),
 telefono VARCHAR(50),
-materia_imparte VARCHAR(100),
+perfil VARCHAR(100),
 FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE
 );
