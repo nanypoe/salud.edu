@@ -69,6 +69,13 @@
               </a>
             </li>
 
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
+                <i class="fa-solid  fa-location-pin"></i>
+                <span class="nav-text">Grupo</span>
+              </a>
+            </li>
+
             <li class="section-title">
               Aplicaciones
             </li>

@@ -1,0 +1,168 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+        <center><strong>Registro y Listado de Gerentes de los Grupo</strong></center>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button data-bs-target="#modalAgregarGrupo" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Grupo</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Grado</th>
+                        <th>Seccion</th>
+                        <th>Turno</th>
+                        <th>Modalidad</th>
+                        <th>Lectivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?= $this->tabla ?>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL: Agregar Grado-->
+    <div class="modal fade" id="modalAgregarGrupo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Grado</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formAgregarGrupo" enctype="multipart/form-data">
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Grado</label>
+                        <select class="form-select" name="" id="grado">
+                            <option value="">Seleccione una opción</option>
+                            <option value="primero">Primero</option>
+                            <option value="segundo">Segundo</option>
+                            <option value="tercero">Tercero</option>
+                            <option value="cuarto">Cuarto</option>
+                            <option value="quinto">Quinto</option>
+                            <option value="sexto">Sexto</option>
+                            <option value="septimo">Septimo</option>
+                            <option value="octavo">Octavo</option>
+                            <option value="noveno">Noveno</option>
+                            <option value="decimo">Decimo</option>
+                            <option value="undecimo">Undecimo</option>
+                        </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">Seccion</label>
+                            <select class="form-select" name="" id="seccion">
+                                <option value="">Seleccione una opción</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                                <option value="c">C</option>
+                                <option value="d">D</option>
+                                <option value="e">E</option>
+                                <option value="f">F</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="telefonoEscuela" class="form-label">Turno</label>
+                            <select class="form-select" name="" id="Turno">
+                                <option value="">Seleccione una opción</option>
+                                <option value="matutino">Matutino</option>
+                                <option value="vespertino">Vespertino</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="longitudEscuela" class="form-label">Modalidad</label>
+                            <select class="form-select" name="" id="modalidad">
+                                <option value="">Seleccione una opción</option>
+                                <option value="matutino">Matutino</option>
+                                <option value="sabatino">Sabatino</option>
+                                <option value="dominical">Dominical</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="latitudEscuela" class="form-label">Año lectivo</label>
+                            <input type="number" class="form-control" id="axo">
+                        </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar Escuela</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--MODAL: Actualizar Escuela-->
+
+    <div class="modal fade" id="modalEditarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Escuela</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formEditarAlumno" enctype="multipart/form-data">
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="idEscuela" class="form-label">ID Escuela</label>
+                            <input type="text" class="form-control" id="idEscuela" name="idEscuela">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="nombreEscuelaUp" class="form-label">Nombre de la Escuela</label>
+                            <input type="text" class="form-control" id="nombreEscuelaUp" name="nombreEscuelaUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="direccionEscuelaUp" class="form-label">Dirección</label>
+                            <textarea name="direccionEscuelaUp" id="direccionEscuelaUp" class="form-control">Introduzca la dirección de la escuela</textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="telefonoEscuelaUp" class="form-label">Telefono</label>
+                            <input type="tel" class="form-control" id="telefonoEscuelaUp" name="telefonoEscuelaUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="longitudEscuelaUp" class="form-label">Longitud</label>
+                            <input type="tel" class="form-control" id="longitudEscuelaUp" name="longitudEscuelaUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="latitudEscuelaUp" class="form-label">Latitud</label>
+                            <input type="tel" class="form-control" id="latitudEscuelaUp" name="latitudEscuelaUp">
+                        </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
