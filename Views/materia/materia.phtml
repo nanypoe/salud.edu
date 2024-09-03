@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-        <center><strong>Registro y Listado de Gerentes de Escuelas</strong></center>
+        <center><strong>Registro y Listado de Grupos</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarGrupos" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Escuela</button>
+            <button data-bs-target="#modalAgregarMateria" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Grupo</button>
         </div>
     </div>
 
@@ -17,8 +17,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Grado</th>
-                        <th>Seccion</th>
+                        <th>id_Grupo</th>
+                        <th>id_Grupo</th>
                         <th>Turno</th>
                         <th>modalidad</th>
                         <th>lectivo</th>
@@ -36,38 +36,44 @@
 
 
 <!--MODAL: Agregar Escuela-->
-    <div class="modal fade" id="modalAgregarGrupos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAgregarMateria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Escuela</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Grupo</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <form class="row" method="post" id="formAgregarEscuela" enctype="multipart/form-data">
                         <div class="mb-3 col-lg-12">
-                            <label for="nombreEscuela" class="form-label">Nombre de la Escuela</label>
+                            <label for="nombreEscuela" class="form-label">Grado</label>
                             <input type="text" class="form-control" id="nombreEscuela" name="nombreEscuela">
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="direccionEscuela" class="form-label">Dirección</label>
-                            <textarea name="direccionEscuela" id="direccionEscuela" class="form-control">Introduzca la dirección de la escuela</textarea>
+                            <label for="" class="form-label">ID Grupo</label>
+                            <select class="form-select" name="" id="id"> 
+                                
+                                <?=$this->grupo?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="" class="form-label">ID Maestro</label>
+                            <select class="form-select" name="" id="id"> 
+                                
+                                <?=$this->maestro?>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="telefonoEscuela" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefonoEscuela" name="telefonoEscuela">
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="longitudEscuela" class="form-label">Longitud</label>
+                            <label for="longitudEscuela" class="form-label">Modalidad</label>
                             <input type="tel" class="form-control" id="longitudEscuela" name="longitudEscuela">
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="latitudEscuela" class="form-label">Latitud</label>
+                            <label for="latitudEscuela" class="form-label">lectivo</label>
                             <input type="tel" class="form-control" id="latitudEscuela" name="latitudEscuela">
                         </div>
 

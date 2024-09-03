@@ -69,6 +69,13 @@
               </a>
             </li>
 
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>materia">
+              <i class="fa-solid fa-book"></i>
+                <span class="nav-text">Materia</span>
+              </a>
+            </li>
+
             <li class="section-title">
               Aplicaciones
             </li>
