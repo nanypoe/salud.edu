@@ -69,6 +69,19 @@
               </a>
             </li>
 
+            <li class="">
+<<<<<<< HEAD
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
+                <i class="fa-solid  fa-location-pin"></i>
+                <span class="nav-text">Grupo</span>
+=======
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>materia">
+              <i class="fa-solid fa-book"></i>
+                <span class="nav-text">Materia</span>
+>>>>>>> 30f73554bb75bc63315bc30efc4de925205073f7
+              </a>
+            </li>
+
             <li class="section-title">
               Aplicaciones
             </li>

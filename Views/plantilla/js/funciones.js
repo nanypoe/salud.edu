@@ -257,5 +257,50 @@ $(function () {
             }
         });
     });
+    
+    /*====================================
+    ================GRUPOS==============
+    ======================================*/
+
+    /*===== Funcion para enviar los datos de las GRUPOS =====*/
+    $('#formAgregarGrupo').submit(function (e) {
+        e.preventDefault();
+        let gradoGrupo = $('#gradoGrupo').val();
+        let seccionGrupo = $('#seccionGrupo').val();
+        let turnoGrupo = $('#turnoGrupo').val();
+        let modalidadGrupo = $('#modalidadGrupo').val();
+        let axoGrupo = $('#axoGrupo').val();
+
+        $.ajax({
+            url: 'grupo/agregarGrupo/',
+            type: 'post',
+            data: { 'gradoGrupo': gradoGrupo, 'seccionGrupo': seccionGrupo, 'turnoGrupo': turnoGrupo, 'modalidadGrupo':  modalidadGrupo, 'axoGrupo': axoGrupo },
+            success: function (respuesta) {
+                $('#modalAgregarGrupo').modal('hide');
+                $('#formAgregarGrupo')[0].reset();
+                $('#table').DataTable().destroy();
+                $('#table tbody').html(respuesta);
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'print'
+                    ],
+                    language: {
+                        "sSearch": "Buscar",
+                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "zeroRecords": "No se encuentraron coincidencias",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive: true
+                });
+                Swal.fire({
+                    title: "Agregado!",
+                    text: "El registro he sido registrado de forma correcta.",
+                    icon: "success"
+                });
+            }
+        });
+    });
 
 });

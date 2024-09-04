@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-        <center><strong>Registro y Listado de Gerentes de Escuelas</strong></center>
+        <center><strong>Registro y Listado de Gerentes de los Grupo</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarGrupos" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Escuela</button>
+            <button data-bs-target="#modalAgregarGrupo" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Grupo</button>
         </div>
     </div>
 
@@ -20,8 +20,8 @@
                         <th>Grado</th>
                         <th>Seccion</th>
                         <th>Turno</th>
-                        <th>modalidad</th>
-                        <th>lectivo</th>
+                        <th>Modalidad</th>
+                        <th>Lectivo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -35,40 +35,70 @@
 </div>
 
 
-<!--MODAL: Agregar Escuela-->
-    <div class="modal fade" id="modalAgregarGrupos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--MODAL: Agregar Grado-->
+    <div class="modal fade" id="modalAgregarGrupo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Escuela</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Grado</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formAgregarEscuela" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formAgregarGrupo" enctype="multipart/form-data">
                         <div class="mb-3 col-lg-12">
-                            <label for="nombreEscuela" class="form-label">Nombre de la Escuela</label>
-                            <input type="text" class="form-control" id="nombreEscuela" name="nombreEscuela">
+                            <label for="" class="form-label">Grado</label>
+                        <select class="form-select" name="" id="grado">
+                            <option value="">Seleccione una opción</option>
+                            <option value="primero">Primero</option>
+                            <option value="segundo">Segundo</option>
+                            <option value="tercero">Tercero</option>
+                            <option value="cuarto">Cuarto</option>
+                            <option value="quinto">Quinto</option>
+                            <option value="sexto">Sexto</option>
+                            <option value="septimo">Septimo</option>
+                            <option value="octavo">Octavo</option>
+                            <option value="noveno">Noveno</option>
+                            <option value="decimo">Decimo</option>
+                            <option value="undecimo">Undecimo</option>
+                        </select>
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="direccionEscuela" class="form-label">Dirección</label>
-                            <textarea name="direccionEscuela" id="direccionEscuela" class="form-control">Introduzca la dirección de la escuela</textarea>
+                            <label for="" class="form-label">Seccion</label>
+                            <select class="form-select" name="" id="seccion">
+                                <option value="">Seleccione una opción</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                                <option value="c">C</option>
+                                <option value="d">D</option>
+                                <option value="e">E</option>
+                                <option value="f">F</option>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="telefonoEscuela" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefonoEscuela" name="telefonoEscuela">
+                            <label for="telefonoEscuela" class="form-label">Turno</label>
+                            <select class="form-select" name="" id="Turno">
+                                <option value="">Seleccione una opción</option>
+                                <option value="matutino">Matutino</option>
+                                <option value="vespertino">Vespertino</option>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="longitudEscuela" class="form-label">Longitud</label>
-                            <input type="tel" class="form-control" id="longitudEscuela" name="longitudEscuela">
+                            <label for="longitudEscuela" class="form-label">Modalidad</label>
+                            <select class="form-select" name="" id="modalidad">
+                                <option value="">Seleccione una opción</option>
+                                <option value="matutino">Matutino</option>
+                                <option value="sabatino">Sabatino</option>
+                                <option value="dominical">Dominical</option>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-lg-6">
-                            <label for="latitudEscuela" class="form-label">Latitud</label>
-                            <input type="tel" class="form-control" id="latitudEscuela" name="latitudEscuela">
+                            <label for="latitudEscuela" class="form-label">Año lectivo</label>
+                            <input type="number" class="form-control" id="axo">
                         </div>
 
                 </div>
