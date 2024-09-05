@@ -20,39 +20,8 @@
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
-            <li class="active">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
-                <i class="fa-solid  fa-house"></i>
-                <span class="nav-text">Inicio</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>escuela">
-                <i class="fa-solid  fa-school"></i>
-                <span class="nav-text">Escuela</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>maestros">
-              <i class="fa-solid fa-chalkboard-user"></i>
-                <span class="nav-text">Maestros</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>estudiante">
-              <i class="fa-solid fa-graduation-cap"></i>
-                <span class="nav-text">Alumnos</span>
-              </a>
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>salud">
-              <i class="fa-solid fa-notes-medical"></i>
-                <span class="nav-text">Perfil de Salud</span>
-              </a>
+            <li class="section-title">
+              Tablas y registro
             </li>
 
             <li class="">
@@ -69,16 +38,49 @@
               </a>
             </li>
 
+            <li class="active">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
+                <i class="fa-solid  fa-house"></i>
+                <span class="nav-text">Inicio</span>
+              </a>
+            </li>
+
             <li class="">
-<<<<<<< HEAD
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>escuela">
+                <i class="fa-solid  fa-school"></i>
+                <span class="nav-text">Escuela</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>maestros">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span class="nav-text">Maestros</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>estudiante">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="nav-text">Alumnos</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>salud">
+                <i class="fa-solid fa-notes-medical"></i>
+                <span class="nav-text">Perfil de Salud</span>
+              </a>
+            </li>
+
+
+
+            
+
+            <li class="">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
                 <i class="fa-solid  fa-location-pin"></i>
                 <span class="nav-text">Grupo</span>
-=======
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>materia">
-              <i class="fa-solid fa-book"></i>
-                <span class="nav-text">Materia</span>
->>>>>>> 30f73554bb75bc63315bc30efc4de925205073f7
               </a>
             </li>
 
@@ -87,21 +89,21 @@
             </li>
 
             <li>
-              <a class="sidenav-item-link" href="<?=PLANTILLA?>templates/chat.html">
+              <a class="sidenav-item-link" href="<?= PLANTILLA ?>templates/chat.html">
                 <i class="mdi mdi-wechat"></i>
                 <span class="nav-text">Mensajes</span>
               </a>
             </li>
 
             <li>
-              <a class="sidenav-item-link" href="<?=PLANTILLA?>templates/contacts.html">
+              <a class="sidenav-item-link" href="<?= PLANTILLA ?>templates/contacts.html">
                 <i class="mdi mdi-phone"></i>
                 <span class="nav-text">Contactos</span>
               </a>
             </li>
 
             <li>
-              <a class="sidenav-item-link" href="<?=PLANTILLA?>templates/team.html">
+              <a class="sidenav-item-link" href="<?= PLANTILLA ?>templates/team.html">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Equipo</span>
               </a>
