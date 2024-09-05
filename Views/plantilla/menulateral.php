@@ -78,6 +78,17 @@
             
 
             <li class="">
+<<<<<<< Updated upstream
+=======
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>pruebaFisica">
+                <i class="fa-solid  fa-location-pin"></i>
+                <span class="nav-text">Prueba Fisica</span>
+              </a>
+            </li>
+
+            <li class="">
+<<<<<<< HEAD
+>>>>>>> Stashed changes
               <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
                 <i class="fa-solid  fa-location-pin"></i>
                 <span class="nav-text">Grupo</span>

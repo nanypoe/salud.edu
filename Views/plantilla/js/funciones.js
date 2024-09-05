@@ -326,6 +326,7 @@ $(function () {
         let axoGrupo = $("#axoGrupo").val();
 
         $.ajax({
+<<<<<<< Updated upstream
             url: "grupo/agregarGrupo/",
             type: "post",
             data: {
@@ -335,6 +336,11 @@ $(function () {
                 modalidadGrupo: modalidadGrupo,
                 axoGrupo: axoGrupo,
             },
+=======
+            url: 'grupo/agregarGrupo/',
+            type: 'post',
+            data: {  'gradoGrupo': gradoGrupo, 'seccionGrupo': seccionGrupo, 'turnoGrupo': turnoGrupo, 'modalidadGrupo':  modalidadGrupo, 'axoGrupo': axoGrupo },
+>>>>>>> Stashed changes
             success: function (respuesta) {
                 $("#modalAgregarGrupo").modal("hide");
                 $("#formAgregarGrupo")[0].reset();
@@ -360,4 +366,55 @@ $(function () {
             },
         });
     });
+<<<<<<< Updated upstream
 });
+=======
+
+    /*====================================
+    ================PRUEBAS FISICA==============
+    ======================================*/
+
+    /*===== Funcion para enviar los datos de las PRUEBAS FISICAS =====*/
+    $('#formAgregarPrueba').submit(function (e) {
+        e.preventDefault();
+        let idEstudiante = $('#idEstudiante').val();
+        let tipoPrueba = $('#tipoPrueba').val();
+        let resultadoPrueba = $('#resultadoPrueba').val();
+        let unidadPrueba = $('#unidadPrueba').val();
+        let observacionPrueba = $('#observacionPrueba').val();
+        let axo = $('#axo').val();
+
+        $.ajax({
+            url: 'pruebaFisica/agregarPrueba/',
+            type: 'post',
+            data: { 'idEstudiante': idEstudiante, 'tipoPrueba': tipoPrueba, 'resultadoPrueba': resultadoPrueba, 'unidadPrueba': unidadPrueba, 'observacionPrueba': observacionPrueba, 'axo': axo },
+            success: function (respuesta) {
+                $('#modalAgregarPrueba').modal('hide');
+                $('#formAgregarPrueba')[0].reset();
+                $('#table').DataTable().destroy();
+                $('#table tbody').html(respuesta);
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'print'
+                    ],
+                    language: {
+                        "sSearch": "Buscar",
+                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "zeroRecords": "No se encuentraron coincidencias",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive: true
+                });
+                Swal.fire({
+                    title: "Agregado!",
+                    text: "El registro he sido registrado de forma correcta.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+
+});
+>>>>>>> Stashed changes
