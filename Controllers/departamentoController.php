@@ -41,7 +41,7 @@ class departamentoController extends Controller
     /*Función para AGREGAR nuevos DEPARTAMENTOS*/
     public function agregarDepartamento()
     {
-        $this->_depart->agregarDep($this->getTexto('nombreDepartamento'));
+        $this->_depart->prepare($this->getTexto('nombreDpto'));
         echo $this->verDepartamento();
     }
 
@@ -54,7 +54,7 @@ class departamentoController extends Controller
 
     public function borrarDepartamento()
     {
-        $this->_escue->borrarDepart($this->getTexto('id_departamento'));
+        $this->_depart->borrarDepart($this->getTexto('id_departamento'));
         echo $this->verDepartamento();
     }
 

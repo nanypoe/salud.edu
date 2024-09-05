@@ -1,22 +1,48 @@
-/*====================================
-================DOM===================
-======================================*/
-
 $(function () {
+    /*====================================
+    ================FUNCIONES GLOBALES====
+    ======================================*/
+
     /*===== Inicialización de DATATABLES =====*/
-    $("#table").DataTable({
-        dom: "Bfrtip",
-        buttons: ["copy", "excel", "pdf", "print"],
-        language: {
-            sSearch: "Buscar",
-            info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            zeroRecords: "No se encuentraron coincidencias",
-            infoEmpty: "Mostrando 0 a 0 de 0 registros",
-            infoFiltered: "(filtrado de un total de _MAX_ registros)",
-        },
-        responsive: true,
-        columnDefs: [{ className: "dt-center", targets: "_all" }],
-    });
+    function inicializarDataTable() {
+        $("#table").DataTable({
+            dom: "Bfrtip",
+            buttons: ["copy", "excel", "pdf", "print"],
+            language: {
+                sSearch: "Buscar",
+                info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                zeroRecords: "No se encuentraron coincidencias",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(filtrado de un total de _MAX_ registros)",
+            },
+            responsive: true
+        });
+    }
+    inicializarDataTable();
+
+    /*Reinicialización de MODAL: recibe como parámetros el id del Modal y el id del Form*/
+
+    function reinicializarModal(modal, form) {
+        $(modal).modal("hide");
+        $(form)[0].reset();
+        $("#table").DataTable().destroy();
+        inicializarDataTable();
+    }
+
+    /*Repuesta que recibe el tbody */
+    function respuesta(respuesta) {
+        $("#table tbody").html(respuesta);
+    }
+
+    /*ALERTA de REGISTRO AGREGADO */
+    function alertaAgregado() {
+        Swal.fire({
+            title: "¡Agregado!",
+            text: "Se ha agregado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+
 
     /*====================================
              ==============DEPARTAMENTOS==============
@@ -25,33 +51,17 @@ $(function () {
     /*AGREGAR Departamentos*/
     $("#formAgregarDepartamento").submit(function (e) {
         e.preventDefault();
-        let nombreDepartamento = $("#nombreDepartamento").val();
+        let nombreDpto = $("#nombreDpto").val();
         $.ajax({
             url: "departamento/agregarDepartamento/",
             type: "post",
-            data: { nombreDepartamento: nombreDepartamento },
+            data: { nombreDpto: nombreDpto },
             success: function (respuesta) {
-                $("#modalAgregarDepartamento").modal("hide");
-                $("#formAgregarDepartamento")[0].reset();
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                $("#table").DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true,
-                });
-                Swal.fire({
-                    title: "¡Agregado!",
-                    text: "Se ha agregado el registro de forma correcta",
-                    icon: "success",
-                });
+                reinicializarModal(
+                    "#modalAgregarDepartamento",
+                    "#formAgregarDepartamento");
+                respuesta();
+                alertaAgregado();
             },
         });
     });
@@ -65,7 +75,7 @@ $(function () {
         $("#idDpto").val(datos["id_departamento"]);
     });
 
-    /*ENVIAR al Backend datos de DEPARTAMENTOS*/
+    /*ENVIAR al Backend datos de DEPARTAMENTOS editados*/
     $('#formEditarDepartamento').submit(function (e) {
         let idDpto = $('#idDpto').val().prop("disabled", false);
         let nombreDpto = $('nombreDpto').val();
@@ -77,7 +87,7 @@ $(function () {
                 'idDpto': idDpto, 'nombreDpto': nombreDpto
             },
             success: function (respuesta) {
-                $('#modalEditarDepartamento').moda('hide');
+                $('#modalEditarDepartamento').modal('hide');
                 $('#table').DataTable().destroy();
                 $('#table tbody').html(respuesta);
                 $('#table').DataTable({
@@ -107,9 +117,9 @@ $(function () {
       ================MUNICIPIOS==============
       ======================================*/
 
-      /*====================================
-      ================AÑO LECTIVO==============
-      ======================================*/
+    /*====================================
+    ================AÑO LECTIVO==============
+    ======================================*/
 
     /*====================================
       ================ESCUELAS==============
@@ -164,10 +174,10 @@ $(function () {
       ================GRADOS==============
       ======================================*/
 
-      /*====================================
-      ================GRUPOS==============
-      ======================================*/
-      /*===== Funcion para enviar los datos de las GRUPOS =====*/
+    /*====================================
+    ================GRUPOS==============
+    ======================================*/
+    /*===== Funcion para enviar los datos de las GRUPOS =====*/
     $("#formAgregarGrupo").submit(function (e) {
         e.preventDefault();
         let gradoGrupo = $("#gradoGrupo").val();
@@ -212,9 +222,9 @@ $(function () {
         });
     });
 
-       /*====================================
-      ================ESTUDIANTES==============
-      ======================================*/
+    /*====================================
+   ================ESTUDIANTES==============
+   ======================================*/
 
     /* Función para enviar los datos de los ESTUDIANTES*/
     $("#formAgregarAlumno").submit(function (e) {
@@ -250,9 +260,9 @@ $(function () {
         });
     });
 
-/*=========================================
-          ==========DATOS DE SALUD ESTUDIANTIL===
-          ======================================*/
+    /*=========================================
+              ==========DATOS DE SALUD ESTUDIANTIL===
+              ======================================*/
 
     /*Función para Calcular IMC y categoría de peso*/
     $("#alturaEstudiante, #pesoEstudiante").on("keyup", function () {
@@ -373,51 +383,51 @@ $(function () {
         });
     });
 
-       
+
 
     /*====================================
       ================MATERIA==============
       ======================================*/
-/*AGREGAR Departamentos*/
-$("#formAgregarMateria").submit(function (e) {
-    e.preventDefault();
-    let grupos = $("#grupos").val();
-    let Maestro = $("#maestro").val();
-    let Materia = $("#materia").val();
+    /*AGREGAR Departamentos*/
+    $("#formAgregarMateria").submit(function (e) {
+        e.preventDefault();
+        let grupos = $("#grupos").val();
+        let Maestro = $("#maestro").val();
+        let Materia = $("#materia").val();
 
-    $.ajax({
-        url: "departamento/agregarDepartamento/",
-        type: "post",
-        data: { nombreDepartamento: nombreDepartamento },
-        success: function (respuesta) {
-            $("#modalAgregarDepartamento").modal("hide");
-            $("#formAgregarDepartamento")[0].reset();
-            $("#table").DataTable().destroy();
-            $("#table tbody").html(respuesta);
-            $("#table").DataTable({
-                dom: "Bfrtip",
-                buttons: ["copy", "excel", "pdf", "print"],
-                language: {
-                    sSearch: "Buscar",
-                    info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    zeroRecords: "No se encuentraron coincidencias",
-                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                    infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                },
-                responsive: true,
-            });
-            Swal.fire({
-                title: "¡Agregado!",
-                text: "Se ha agregado el registro de forma correcta",
-                icon: "success",
-            });
-        },
+        $.ajax({
+            url: "departamento/agregarDepartamento/",
+            type: "post",
+            data: { nombreDepartamento: nombreDepartamento },
+            success: function (respuesta) {
+                $("#modalAgregarDepartamento").modal("hide");
+                $("#formAgregarDepartamento")[0].reset();
+                $("#table").DataTable().destroy();
+                $("#table tbody").html(respuesta);
+                $("#table").DataTable({
+                    dom: "Bfrtip",
+                    buttons: ["copy", "excel", "pdf", "print"],
+                    language: {
+                        sSearch: "Buscar",
+                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        zeroRecords: "No se encuentraron coincidencias",
+                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive: true,
+                });
+                Swal.fire({
+                    title: "¡Agregado!",
+                    text: "Se ha agregado el registro de forma correcta",
+                    icon: "success",
+                });
+            },
+        });
     });
-});
 
-      /*====================================
-      ==PRUEBAS FÍSICO-MOTRICES==============
-      ======================================*/
+    /*====================================
+    ==PRUEBAS FÍSICO-MOTRICES==============
+    ======================================*/
 
-    
+
 });

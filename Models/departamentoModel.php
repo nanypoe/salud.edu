@@ -15,9 +15,9 @@ class departamentoModel extends Model
     }
 
     /*Función para AGREGAR Departamento*/
-    public function agregarDepartamento($nombre)
+    public function agregarDepartamento($nombreDpto)
     {
-        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombre);")->execute(array('nombre' => $nombre));
+        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombreDpto);")->execute(array('nombreDpto' => $nombreDpto));
     }
 
     /*Función para EDITAR Departamento */
