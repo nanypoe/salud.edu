@@ -104,6 +104,14 @@ $(function () {
     /*ELIMINAR Departamento*/
 
     /*====================================
+      ================MUNICIPIOS==============
+      ======================================*/
+
+      /*====================================
+      ================AÑO LECTIVO==============
+      ======================================*/
+
+    /*====================================
       ================ESCUELAS==============
       ======================================*/
 
@@ -153,33 +161,34 @@ $(function () {
     });
 
     /*====================================
-      ================MAESTROS==============
+      ================GRADOS==============
       ======================================*/
 
-    /* Funcion para enviar los datos de los MAESTROS*/
-
-    $("#formAgregarMaestros").submit(function (e) {
+      /*====================================
+      ================GRUPOS==============
+      ======================================*/
+      /*===== Funcion para enviar los datos de las GRUPOS =====*/
+    $("#formAgregarGrupo").submit(function (e) {
         e.preventDefault();
-        let idEscuela = $("#id").val();
-        let nombre = $("#nombre").val();
-        let apellido = $("#apellido").val();
-        let correo = $("#correo").val();
-        let telefono = $("#telefono").val();
-        let perfil = $("#perfil").val();
+        let gradoGrupo = $("#gradoGrupo").val();
+        let seccionGrupo = $("#seccionGrupo").val();
+        let turnoGrupo = $("#turnoGrupo").val();
+        let modalidadGrupo = $("#modalidadGrupo").val();
+        let axoGrupo = $("#axoGrupo").val();
+
         $.ajax({
-            url: "maestros/agregarMaestros/",
+            url: "grupo/agregarGrupo/",
             type: "post",
             data: {
-                id: idEscuela,
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                telefono: telefono,
-                perfil: perfil,
+                gradoGrupo: gradoGrupo,
+                seccionGrupo: seccionGrupo,
+                turnoGrupo: turnoGrupo,
+                modalidadGrupo: modalidadGrupo,
+                axoGrupo: axoGrupo,
             },
             success: function (respuesta) {
-                $("#modalAgregarMaestro").modal("hide");
-                $("#formAgregarMaestros")[0].reset();
+                $("#modalAgregarGrupo").modal("hide");
+                $("#formAgregarGrupo")[0].reset();
                 $("#table").DataTable().destroy();
                 $("#table tbody").html(respuesta);
                 $("#table").DataTable({
@@ -196,14 +205,14 @@ $(function () {
                 });
                 Swal.fire({
                     title: "Agregado!",
-                    text: "El registro a sido Agregado de forma correcta.",
+                    text: "El registro he sido registrado de forma correcta.",
                     icon: "success",
                 });
             },
         });
     });
 
-    /*====================================
+       /*====================================
       ================ESTUDIANTES==============
       ======================================*/
 
@@ -241,7 +250,7 @@ $(function () {
         });
     });
 
-    /*=========================================
+/*=========================================
           ==========DATOS DE SALUD ESTUDIANTIL===
           ======================================*/
 
@@ -312,32 +321,35 @@ $(function () {
         });
     });
 
+
     /*====================================
-      ================GRUPOS==============
+      ================MAESTROS==============
       ======================================*/
 
-    /*===== Funcion para enviar los datos de las GRUPOS =====*/
-    $("#formAgregarGrupo").submit(function (e) {
-        e.preventDefault();
-        let gradoGrupo = $("#gradoGrupo").val();
-        let seccionGrupo = $("#seccionGrupo").val();
-        let turnoGrupo = $("#turnoGrupo").val();
-        let modalidadGrupo = $("#modalidadGrupo").val();
-        let axoGrupo = $("#axoGrupo").val();
+    /* Funcion para enviar los datos de los MAESTROS*/
 
+    $("#formAgregarMaestros").submit(function (e) {
+        e.preventDefault();
+        let idEscuela = $("#id").val();
+        let nombre = $("#nombre").val();
+        let apellido = $("#apellido").val();
+        let correo = $("#correo").val();
+        let telefono = $("#telefono").val();
+        let perfil = $("#perfil").val();
         $.ajax({
-            url: "grupo/agregarGrupo/",
+            url: "maestros/agregarMaestros/",
             type: "post",
             data: {
-                gradoGrupo: gradoGrupo,
-                seccionGrupo: seccionGrupo,
-                turnoGrupo: turnoGrupo,
-                modalidadGrupo: modalidadGrupo,
-                axoGrupo: axoGrupo,
+                id: idEscuela,
+                nombre: nombre,
+                apellido: apellido,
+                correo: correo,
+                telefono: telefono,
+                perfil: perfil,
             },
             success: function (respuesta) {
-                $("#modalAgregarGrupo").modal("hide");
-                $("#formAgregarGrupo")[0].reset();
+                $("#modalAgregarMaestro").modal("hide");
+                $("#formAgregarMaestros")[0].reset();
                 $("#table").DataTable().destroy();
                 $("#table tbody").html(respuesta);
                 $("#table").DataTable({
@@ -354,10 +366,58 @@ $(function () {
                 });
                 Swal.fire({
                     title: "Agregado!",
-                    text: "El registro he sido registrado de forma correcta.",
+                    text: "El registro a sido Agregado de forma correcta.",
                     icon: "success",
                 });
             },
         });
     });
+
+       
+
+    /*====================================
+      ================MATERIA==============
+      ======================================*/
+/*AGREGAR Departamentos*/
+$("#formAgregarMateria").submit(function (e) {
+    e.preventDefault();
+    let grupos = $("#grupos").val();
+    let Maestro = $("#maestro").val();
+    let Materia = $("#materia").val();
+
+    $.ajax({
+        url: "departamento/agregarDepartamento/",
+        type: "post",
+        data: { nombreDepartamento: nombreDepartamento },
+        success: function (respuesta) {
+            $("#modalAgregarDepartamento").modal("hide");
+            $("#formAgregarDepartamento")[0].reset();
+            $("#table").DataTable().destroy();
+            $("#table tbody").html(respuesta);
+            $("#table").DataTable({
+                dom: "Bfrtip",
+                buttons: ["copy", "excel", "pdf", "print"],
+                language: {
+                    sSearch: "Buscar",
+                    info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    zeroRecords: "No se encuentraron coincidencias",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                },
+                responsive: true,
+            });
+            Swal.fire({
+                title: "¡Agregado!",
+                text: "Se ha agregado el registro de forma correcta",
+                icon: "success",
+            });
+        },
+    });
+});
+
+      /*====================================
+      ==PRUEBAS FÍSICO-MOTRICES==============
+      ======================================*/
+
+    
 });
