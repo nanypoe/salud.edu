@@ -22,23 +22,36 @@ $(function () {
 
     /*Reinicialización de MODAL: recibe como parámetros el id del Modal y el id del Form*/
 
-    function reinicializarModal(modal, form) {
+    function modalFormRespuesta(modal, form, respuesta) {
         $(modal).modal("hide");
         $(form)[0].reset();
         $("#table").DataTable().destroy();
+        $("#table tbody").html(respuesta);
         inicializarDataTable();
     }
 
-    /*Repuesta que recibe el tbody */
-    function respuesta(respuesta) {
-        $("#table tbody").html(respuesta);
-    }
-
-    /*ALERTA de REGISTRO AGREGADO */
+    /*ALERTAS*/
+    /*Alerta de de Registro AGREGADO */
     function alertaAgregado() {
         Swal.fire({
             title: "¡Agregado!",
             text: "Se ha agregado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+    /*Alerta de de Registro MODIFICADO */
+    function alertaModificado() {
+        Swal.fire({
+            title: "¡Modificado!",
+            text: "Se ha modificado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+    /*Alerta de de Registro ELIMINADO */
+    function alertaEliminado() {
+        Swal.fire({
+            title: "¡Eliminado!",
+            text: "Se ha eliminado el registro de forma correcta",
             icon: "success",
         });
     }
@@ -57,56 +70,40 @@ $(function () {
             type: "post",
             data: { nombreDpto: nombreDpto },
             success: function (respuesta) {
-                reinicializarModal(
+                modalFormRespuesta(
                     "#modalAgregarDepartamento",
-                    "#formAgregarDepartamento");
-                respuesta();
+                    "#formAgregarDepartamento", respuesta);
                 alertaAgregado();
             },
         });
     });
 
     /*EDITAR Departamentos*/
-
     /*CARGAR los datos de DEPARTAMENTOS al modal EDITAR*/
     $(".tablaDepartamentos").on("click", ".btnEditarDepartamento", function () {
         let datos = JSON.parse($(this).attr("data-departamentos"));
-        $("#nombreDpto").val(datos["nombre_departamento"]);
+        $("#nombreDptoUp").val(datos["nombre_departamento"]);
         $("#idDpto").val(datos["id_departamento"]);
     });
 
     /*ENVIAR al Backend datos de DEPARTAMENTOS editados*/
     $('#formEditarDepartamento').submit(function (e) {
-        let idDpto = $('#idDpto').val().prop("disabled", false);
-        let nombreDpto = $('nombreDpto').val();
+        $('#idDpto').prop("disabled", false);
+        let idDpto = $('#idDpto').val();
+        let nombreDptoUp = $('#nombreDptoUp').val();
         e.preventDefault();
         $.ajax({
             url: 'departamento/editarDepartamento/',
             type: "POST",
             data: {
-                'idDpto': idDpto, 'nombreDpto': nombreDpto
+                idDpto: idDpto, nombreDptoUp: nombreDptoUp
             },
             success: function (respuesta) {
-                $('#modalEditarDepartamento').modal('hide');
-                $('#table').DataTable().destroy();
-                $('#table tbody').html(respuesta);
-                $('#table').DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true
-                });
-                Swal.fire({
-                    title: "¡Actualizado!",
-                    text: "Se ha actualizado el registro de manera correcta",
-                    icon: "success"
-                });
+                modalFormRespuesta(
+                    "#modalEditarDepartamento",
+                    "#formEditarDepartamento", respuesta
+                );
+                alertaModificado();
             }
         });
     });

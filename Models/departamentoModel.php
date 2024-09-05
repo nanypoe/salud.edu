@@ -21,9 +21,9 @@ class departamentoModel extends Model
     }
 
     /*Función para EDITAR Departamento */
-    public function editarDepartamento($nombreDpto, $idDpto)
+    public function editarDepartamento ($nombreDptoUp, $idDpto)
     {
-        $this->_db->prepare("UPDATE departamentos set nombre=:nombreDpto where id_departamento=:idDpto")->execute(array('nombreDpto'=>$nombreDpto, 'idDpto'=>$idDpto));
+        $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp'=>$nombreDptoUp, 'idDpto'=>$idDpto));
     }
 
     
