@@ -1,22 +1,61 @@
-/*====================================
-================DOM===================
-======================================*/
-
 $(function () {
+    /*====================================
+    ================FUNCIONES GLOBALES====
+    ======================================*/
+
     /*===== Inicialización de DATATABLES =====*/
-    $("#table").DataTable({
-        dom: "Bfrtip",
-        buttons: ["copy", "excel", "pdf", "print"],
-        language: {
-            sSearch: "Buscar",
-            info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            zeroRecords: "No se encuentraron coincidencias",
-            infoEmpty: "Mostrando 0 a 0 de 0 registros",
-            infoFiltered: "(filtrado de un total de _MAX_ registros)",
-        },
-        responsive: true,
-        columnDefs: [{ className: "dt-center", targets: "_all" }],
-    });
+    function inicializarDataTable() {
+        $("#table").DataTable({
+            dom: "Bfrtip",
+            buttons: ["copy", "excel", "pdf", "print"],
+            language: {
+                sSearch: "Buscar",
+                info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                zeroRecords: "No se encuentraron coincidencias",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(filtrado de un total de _MAX_ registros)",
+            },
+            responsive: true
+        });
+    }
+    inicializarDataTable();
+
+    /*Reinicialización de MODAL: recibe como parámetros el id del Modal y el id del Form*/
+
+    function modalFormRespuesta(modal, form, respuesta) {
+        $(modal).modal("hide");
+        $(form)[0].reset();
+        $("#table").DataTable().destroy();
+        $("#table tbody").html(respuesta);
+        inicializarDataTable();
+    }
+
+    /*ALERTAS*/
+    /*Alerta de de Registro AGREGADO */
+    function alertaAgregado() {
+        Swal.fire({
+            title: "¡Agregado!",
+            text: "Se ha agregado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+    /*Alerta de de Registro MODIFICADO */
+    function alertaModificado() {
+        Swal.fire({
+            title: "¡Modificado!",
+            text: "Se ha modificado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+    /*Alerta de de Registro ELIMINADO */
+    function alertaEliminado() {
+        Swal.fire({
+            title: "¡Eliminado!",
+            text: "Se ha eliminado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+
 
     /*====================================
              ==============DEPARTAMENTOS==============
@@ -25,83 +64,59 @@ $(function () {
     /*AGREGAR Departamentos*/
     $("#formAgregarDepartamento").submit(function (e) {
         e.preventDefault();
-        let nombreDepartamento = $("#nombreDepartamento").val();
+        let nombreDpto = $("#nombreDpto").val();
         $.ajax({
             url: "departamento/agregarDepartamento/",
             type: "post",
-            data: { nombreDepartamento: nombreDepartamento },
+            data: { nombreDpto: nombreDpto },
             success: function (respuesta) {
-                $("#modalAgregarDepartamento").modal("hide");
-                $("#formAgregarDepartamento")[0].reset();
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                $("#table").DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true,
-                });
-                Swal.fire({
-                    title: "¡Agregado!",
-                    text: "Se ha agregado el registro de forma correcta",
-                    icon: "success",
-                });
+                modalFormRespuesta(
+                    "#modalAgregarDepartamento",
+                    "#formAgregarDepartamento", respuesta);
+                alertaAgregado();
             },
         });
     });
 
     /*EDITAR Departamentos*/
-
     /*CARGAR los datos de DEPARTAMENTOS al modal EDITAR*/
     $(".tablaDepartamentos").on("click", ".btnEditarDepartamento", function () {
         let datos = JSON.parse($(this).attr("data-departamentos"));
-        $("#nombreDpto").val(datos["nombre_departamento"]);
+        $("#nombreDptoUp").val(datos["nombre_departamento"]);
         $("#idDpto").val(datos["id_departamento"]);
     });
 
-    /*ENVIAR al Backend datos de DEPARTAMENTOS*/
+    /*ENVIAR al Backend datos de DEPARTAMENTOS editados*/
     $('#formEditarDepartamento').submit(function (e) {
-        let idDpto = $('#idDpto').val().prop("disabled", false);
-        let nombreDpto = $('nombreDpto').val();
+        $('#idDpto').prop("disabled", false);
+        let idDpto = $('#idDpto').val();
+        let nombreDptoUp = $('#nombreDptoUp').val();
         e.preventDefault();
         $.ajax({
             url: 'departamento/editarDepartamento/',
             type: "POST",
             data: {
-                'idDpto': idDpto, 'nombreDpto': nombreDpto
+                idDpto: idDpto, nombreDptoUp: nombreDptoUp
             },
             success: function (respuesta) {
-                $('#modalEditarDepartamento').moda('hide');
-                $('#table').DataTable().destroy();
-                $('#table tbody').html(respuesta);
-                $('#table').DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true
-                });
-                Swal.fire({
-                    title: "¡Actualizado!",
-                    text: "Se ha actualizado el registro de manera correcta",
-                    icon: "success"
-                });
+                modalFormRespuesta(
+                    "#modalEditarDepartamento",
+                    "#formEditarDepartamento", respuesta
+                );
+                alertaModificado();
             }
         });
     });
 
     /*ELIMINAR Departamento*/
+
+    /*====================================
+      ================MUNICIPIOS==============
+      ======================================*/
+
+    /*====================================
+    ================AÑO LECTIVO==============
+    ======================================*/
 
     /*====================================
       ================ESCUELAS==============
@@ -153,33 +168,34 @@ $(function () {
     });
 
     /*====================================
-      ================MAESTROS==============
+      ================GRADOS==============
       ======================================*/
 
-    /* Funcion para enviar los datos de los MAESTROS*/
-
-    $("#formAgregarMaestros").submit(function (e) {
+    /*====================================
+    ================GRUPOS==============
+    ======================================*/
+    /*===== Funcion para enviar los datos de las GRUPOS =====*/
+    $("#formAgregarGrupo").submit(function (e) {
         e.preventDefault();
-        let idEscuela = $("#id").val();
-        let nombre = $("#nombre").val();
-        let apellido = $("#apellido").val();
-        let correo = $("#correo").val();
-        let telefono = $("#telefono").val();
-        let perfil = $("#perfil").val();
+        let gradoGrupo = $("#gradoGrupo").val();
+        let seccionGrupo = $("#seccionGrupo").val();
+        let turnoGrupo = $("#turnoGrupo").val();
+        let modalidadGrupo = $("#modalidadGrupo").val();
+        let axoGrupo = $("#axoGrupo").val();
+
         $.ajax({
-            url: "maestros/agregarMaestros/",
+            url: "grupo/agregarGrupo/",
             type: "post",
             data: {
-                id: idEscuela,
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                telefono: telefono,
-                perfil: perfil,
+                gradoGrupo: gradoGrupo,
+                seccionGrupo: seccionGrupo,
+                turnoGrupo: turnoGrupo,
+                modalidadGrupo: modalidadGrupo,
+                axoGrupo: axoGrupo,
             },
             success: function (respuesta) {
-                $("#modalAgregarMaestro").modal("hide");
-                $("#formAgregarMaestros")[0].reset();
+                $("#modalAgregarGrupo").modal("hide");
+                $("#formAgregarGrupo")[0].reset();
                 $("#table").DataTable().destroy();
                 $("#table tbody").html(respuesta);
                 $("#table").DataTable({
@@ -196,7 +212,7 @@ $(function () {
                 });
                 Swal.fire({
                     title: "Agregado!",
-                    text: "El registro a sido Agregado de forma correcta.",
+                    text: "El registro he sido registrado de forma correcta.",
                     icon: "success",
                 });
             },
@@ -204,8 +220,8 @@ $(function () {
     });
 
     /*====================================
-      ================ESTUDIANTES==============
-      ======================================*/
+   ================ESTUDIANTES==============
+   ======================================*/
 
     /* Función para enviar los datos de los ESTUDIANTES*/
     $("#formAgregarAlumno").submit(function (e) {
@@ -242,8 +258,8 @@ $(function () {
     });
 
     /*=========================================
-          ==========DATOS DE SALUD ESTUDIANTIL===
-          ======================================*/
+              ==========DATOS DE SALUD ESTUDIANTIL===
+              ======================================*/
 
     /*Función para Calcular IMC y categoría de peso*/
     $("#alturaEstudiante, #pesoEstudiante").on("keyup", function () {
@@ -312,32 +328,35 @@ $(function () {
         });
     });
 
+
     /*====================================
-      ================GRUPOS==============
+      ================MAESTROS==============
       ======================================*/
 
-    /*===== Funcion para enviar los datos de las GRUPOS =====*/
-    $("#formAgregarGrupo").submit(function (e) {
-        e.preventDefault();
-        let gradoGrupo = $("#gradoGrupo").val();
-        let seccionGrupo = $("#seccionGrupo").val();
-        let turnoGrupo = $("#turnoGrupo").val();
-        let modalidadGrupo = $("#modalidadGrupo").val();
-        let axoGrupo = $("#axoGrupo").val();
+    /* Funcion para enviar los datos de los MAESTROS*/
 
+    $("#formAgregarMaestros").submit(function (e) {
+        e.preventDefault();
+        let idEscuela = $("#id").val();
+        let nombre = $("#nombre").val();
+        let apellido = $("#apellido").val();
+        let correo = $("#correo").val();
+        let telefono = $("#telefono").val();
+        let perfil = $("#perfil").val();
         $.ajax({
-            url: "grupo/agregarGrupo/",
+            url: "maestros/agregarMaestros/",
             type: "post",
             data: {
-                gradoGrupo: gradoGrupo,
-                seccionGrupo: seccionGrupo,
-                turnoGrupo: turnoGrupo,
-                modalidadGrupo: modalidadGrupo,
-                axoGrupo: axoGrupo,
+                id: idEscuela,
+                nombre: nombre,
+                apellido: apellido,
+                correo: correo,
+                telefono: telefono,
+                perfil: perfil,
             },
             success: function (respuesta) {
-                $("#modalAgregarGrupo").modal("hide");
-                $("#formAgregarGrupo")[0].reset();
+                $("#modalAgregarMaestro").modal("hide");
+                $("#formAgregarMaestros")[0].reset();
                 $("#table").DataTable().destroy();
                 $("#table tbody").html(respuesta);
                 $("#table").DataTable({
@@ -354,10 +373,58 @@ $(function () {
                 });
                 Swal.fire({
                     title: "Agregado!",
-                    text: "El registro he sido registrado de forma correcta.",
+                    text: "El registro a sido Agregado de forma correcta.",
                     icon: "success",
                 });
             },
         });
     });
+
+
+
+    /*====================================
+      ================MATERIA==============
+      ======================================*/
+    /*AGREGAR Departamentos*/
+    $("#formAgregarMateria").submit(function (e) {
+        e.preventDefault();
+        let grupos = $("#grupos").val();
+        let Maestro = $("#maestro").val();
+        let Materia = $("#materia").val();
+
+        $.ajax({
+            url: "departamento/agregarDepartamento/",
+            type: "post",
+            data: { nombreDepartamento: nombreDepartamento },
+            success: function (respuesta) {
+                $("#modalAgregarDepartamento").modal("hide");
+                $("#formAgregarDepartamento")[0].reset();
+                $("#table").DataTable().destroy();
+                $("#table tbody").html(respuesta);
+                $("#table").DataTable({
+                    dom: "Bfrtip",
+                    buttons: ["copy", "excel", "pdf", "print"],
+                    language: {
+                        sSearch: "Buscar",
+                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        zeroRecords: "No se encuentraron coincidencias",
+                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                    },
+                    responsive: true,
+                });
+                Swal.fire({
+                    title: "¡Agregado!",
+                    text: "Se ha agregado el registro de forma correcta",
+                    icon: "success",
+                });
+            },
+        });
+    });
+
+    /*====================================
+    ==PRUEBAS FÍSICO-MOTRICES==============
+    ======================================*/
+
+
 });

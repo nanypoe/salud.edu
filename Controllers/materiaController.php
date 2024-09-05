@@ -6,15 +6,16 @@
         {
             parent::__construct();
             $this->_mater=$this->loadModel('materia');
-        } 
+        }
 
+/*Función para RENDERIZAR la Vista REGISTRO Y LISTADO DE MATERIAS*/
         public function index()
         {
             $this->_view->tabla=$this->vermateria();
             $this->_view->renderizar('materia');
-            
         }
 
+        /*Función para VISUALIZAR las MATERIAS en la DataTable*/
         public function verMateria(){
             $fila=$this->_mater->obtenerMateria();
             $tabla='';
@@ -22,16 +23,14 @@
                 $datos=json_encode($fila[$i]);
                 $tabla.='
                 <tr>
-                    <td>'.$fila[$i][''].'</td>
-                    <td>'.$fila[$i][''].'</td>
-                    <td>'.$fila[$i][''].'</td>
-                    <td>'.$fila[$i][''].'</td>
-                    <td>'.$fila[$i][''].'</td>
-                    <td>'.$fila[$i][''].'</td>
+                    <td>'.$fila[$i]['id_materia'].'</td>
+                    <td>'.$fila[$i]['nombre_grupo'].'</td>
+                    <td>'.$fila[$i]['maestros.nombre'].' '.$fila[$i]['apellido'].'</td>
+                    <td>'.$fila[$i]['nombre_materia'].'</td>
+                    
                     <td>
-                    <button data-grupos=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalEditarMateria" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarEscuela"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
-        <button data-id='.$fila[$i]['id_escuela'].' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarEscuela"><i class="fa-solid fa-trash"></i> Borrar</button> 
-
+                    <button data-materias=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalEditarMateria" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarMateria"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
+                    <button data-id='.$fila[$i]['id_materia'].' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarMateria"><i class="fa-solid fa-trash"></i> Borrar</button> 
                     </td>
                 </tr>
                 ';

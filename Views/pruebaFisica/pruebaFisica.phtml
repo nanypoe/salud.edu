@@ -1,25 +1,27 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-        <center><strong>Registro y Listado de Materias</strong></center>
+        <center><strong>Registro y Listado de Gerentes de Escuelas</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarMateria" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Materia</button>
+            <button data-bs-target="#modalAgregarPrueba" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Prueba Fisica</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <table id="table" class="tablaMateria">
+            <table id="table">
                 <thead>
                     <tr>
-                        <th>ID Materia</th>
-                        <th>Grupo</th>
-                        <th>Maestro</th>
-                        <th>Materia</th>                      
+                        <th>ID</th>
+                        <th>Tipo </th>
+                        <th>Resultado</th>
+                        <th>Unidad de medida</th>
+                        <th>Observaciones</th>
+                        <th>Fecha</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -33,52 +35,56 @@
 </div>
 
 
-<!--Modal AGREGAR Materias-->
-    <div class="modal fade" id="modalAgregarMateria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--MODAL: Agregar Prueba Fisica-->
+    <div class="modal fade" id="modalAgregarPrueba" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Materia</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Prueba Fisica</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formAgregarMateria" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formAgregarPrueba" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
-                            <label for="grupos" class="form-label">Grupos</label>
-                            <select class="form-select" name="grupos" id="grupos"> 
-                                <?=$this->grupo?>
+                            <label for="" class="form-label">Prueba Fisica Asiste</label>
+                            <select class="form-select" name="id" id="id">
+                                <?= $this->estudiantes ?>
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="maestro" class="form-label">Maestro</label>
-                            <select class="form-select" name="maestro" id="maestro"> 
-                                <?=$this->maestro?>
-                            </select>
-                        </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="materia" class="form-label">Materia</label>
-                            <select class="form-select" name="materia" id="materia"> 
-                                <option value="0">Seleccione una opción</option>
-                                <option value="matematica">Matemáticas</option>
-                                <option value="Lengua y literatura">Lengua y literatura</option>
-                                <option value="Ciencias Sociales">Ciencias Sociales</option>
-                                <option value="Ciencias Naturales">Ciencias Naturales</option>
-                                <option value="Creciendo en valores">Creciendo en valores</option>
-                                <option value="Talleres de Arte y Cultura">Talleres de Arte y Cultura</option>
-                                <option value="Educación Física">Educación Física</option>
-                                <option value="A E P">A E P</option>
-                                <option value="Educación Física">Educación Física</option>
-                            </select>
-</div>
+                            <label for="tipoPrueba" class="form-label">Tipo de prueba</label>
+                            <input type="text" class="form-control" id="tipoPrueba" name="tipoPrueba">
+                        </div>
+                        
+                        <div class="mb-3 col-lg-12">
+                            <label for="resultadoPrueba" class="form-label">Resultado</label>
+                            <textarea name="resultadoPrueba" id="resultadoPrueba" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="unidadPrueba" class="form-label">Unidad</label>
+                            <textarea name="unidadPrueba" id="unidadPrueba" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="observacionPrueba" class="form-label">Observaciones</label>
+                            <input type="tel" class="form-control" id="observacionPrueba" name="observacionPrueba">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="axo" class="form-label">Fecha</label>
+                            <input type="time" class="form-control" id="axo" name="axo">
+                        </div>
+
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar materia</button>
+                <button type="submit" class="btn btn-primary">Guardar Escuela</button>
             </div>
             </form>
             </div>
