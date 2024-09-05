@@ -19,7 +19,7 @@ CREATE TABLE municipios (
     id_departamento INT,
     nombre_municipio VARCHAR (255),
     FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento) ON DELETE CASCADE
-);
+)ENGINE=InnoDB;
 
 -- Tabla ESCUELAS
 CREATE TABLE escuelas (
@@ -31,8 +31,8 @@ CREATE TABLE escuelas (
     telefono VARCHAR(50),
     longitud DOUBLE,
     latitud DOUBLE,
-    FOREIGN KEY (id_municipio) REFERENCES municipios (id_municipio) ON DELETE CASCADE,
-    FOREIGN KEY (id_lectivo) REFERENCES axo_lectivo (id_lectivo) ON DELETE CASCADE
+    FOREIGN KEY (id_lectivo) REFERENCES axo_lectivo (id_lectivo) ON DELETE CASCADE,
+    FOREIGN KEY (id_municipio) REFERENCES municipios (id_municipio) ON DELETE CASCADE    
 )ENGINE=InnoDB;
 
 -- Tabla GRADOS
@@ -47,7 +47,7 @@ CREATE TABLE grupos (
 id_grupo INT AUTO_INCREMENT PRIMARY KEY,
 id_grado INT,
 nombre_grupo varchar(1),
-modalidad ENUM ("Matutino", "Vespertino", "Nocturno", "Sabatino", "Dominical"),
+modalidad ENUM ("Matutino", "Vespertino", "Nocturno", "Sabatino", "Dominical")
 )engine=InnoDB;
 
 
@@ -111,7 +111,7 @@ FOREIGN KEY (id_materia) REFERENCES materia (id_materia) ON DELETE CASCADE
 
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
 CREATE TABLE puebras_fisicas (
-    id_pruebas INT PRIMARY KEY AUTO_INCREMENT,
+    id_prueba INT PRIMARY KEY AUTO_INCREMENT,
     id_estudiante INT,
     tipo_prueba VARCHAR (255),
     resultado VARCHAR (255),
