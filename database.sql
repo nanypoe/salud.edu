@@ -147,9 +147,6 @@ DELIMITER ;
 
 -- Call ingresarGrados("", "Primer grado");
 
--- Consulta para agregar todos los GRADOS
- INSERT INTO grados (nombre_departamento) VALUES ("Primer grado"), ("Segundo grado"), ("Tercer grado"), ("Cuarto grado"), ("Quinto grado"), ("Sexto grado"), ("Séptimo Grado"), ("Octavo grado"), ("Noveno grado"), ("Décimo grado"), ("Undécimo grado");
-
 -- Consulta para agregar todos los DEPARTAMENTOS
  INSERT INTO departamentos (nombre_departamento) VALUES ("Madriz"), ("Nueva Segovia"), ("Estelí"), ("Jinotega"), ("Matagalpa"), ("Managua"), 
  ("León"), ("Chinandega"), ("Masaya"), ("Carazo"), ("Granada"), ("Rivas"), ("Boaco"), ("Chontales"), ("Río San Juan"), ("Costa Caribe Norte"), ("Costa Caribe Sur");

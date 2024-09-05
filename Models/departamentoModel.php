@@ -8,20 +8,25 @@ class departamentoModel extends Model
         parent::__construct();
     }
 
-    public function agregarDep($nombre)
-    {
-        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombre);")->execute(array('nombre' => $nombre));
-    }
-
-    public function editarDep($nombre,$id_departamento)
-    {
-        $this->_db->prepare("UPDATE departamento set nombre=:nombre where id_departamento=:idDepartamento")->execute(array('nombre_departamento' => $nombre));
-    }
-
+    /*Función para OBTENER datos de DEPARTAMENTOS para la Vista*/
     public function obtenerDepartamento()
     {
         return $this->_db->query("SELECT * FROM departamentos")->fetchAll();
     }
+
+    /*Función para AGREGAR Departamento*/
+    public function agregarDepartamento($nombre)
+    {
+        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombre);")->execute(array('nombre' => $nombre));
+    }
+
+    /*Función para EDITAR Departamento */
+    public function editarDepartamento($nombreDpto, $idDpto)
+    {
+        $this->_db->prepare("UPDATE departamentos set nombre=:nombreDpto where id_departamento=:idDpto")->execute(array('nombreDpto'=>$nombreDpto, 'idDpto'=>$idDpto));
+    }
+
+    
 
     public function borrarEscuela($id_escuela)
     {
