@@ -35,6 +35,13 @@
               Registro de Datos y Tablas
             </li>
 
+            <li class="menuLectivo">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>lectivo">
+                <i class="fa-solid  fa-location-dot"></i>
+                <span class="nav-text">Lectivo</span>
+              </a>
+            </li>
+
             <li class="menuDepartamentos">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
                 <i class="fa-solid  fa-location-dot"></i>
