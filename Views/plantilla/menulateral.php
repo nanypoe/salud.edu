@@ -90,7 +90,7 @@
 
             <li class="">
 
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>pruebaFisica">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>prueba">
                 <i class="fa-solid  fa-location-pin"></i>
                 <span class="nav-text">Prueba Fisica</span>
               </a>
