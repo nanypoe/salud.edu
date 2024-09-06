@@ -437,42 +437,25 @@ $(function () {
         /*====================================
           ================MATERIA==============
           ======================================*/
-        /*AGREGAR Departamentos*/
-        $("#formAgregarMateria").submit(function (e) {
-            e.preventDefault();
-            let grupos = $("#grupos").val();
-            let Maestro = $("#maestro").val();
-            let Materia = $("#materia").val();
-
-            $.ajax({
-                url: "departamento/agregarDepartamento/",
-                type: "post",
-                data: { nombreDepartamento: nombreDepartamento },
-                success: function (respuesta) {
-                    $("#modalAgregarDepartamento").modal("hide");
-                    $("#formAgregarDepartamento")[0].reset();
-                    $("#table").DataTable().destroy();
-                    $("#table tbody").html(respuesta);
-                    $("#table").DataTable({
-                        dom: "Bfrtip",
-                        buttons: ["copy", "excel", "pdf", "print"],
-                        language: {
-                            sSearch: "Buscar",
-                            info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                            zeroRecords: "No se encuentraron coincidencias",
-                            infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                            infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                        },
-                        responsive: true,
-                    });
-                    Swal.fire({
-                        title: "¡Agregado!",
-                        text: "Se ha agregado el registro de forma correcta",
-                        icon: "success",
-                    });
-                },
-            });
+        /*AGREGAR Materias*/
+       
+    $("#formAgregarMateria").submit(function(e){
+        e.preventDefault();
+        let idGrupo = $("#idGrupo").val();
+        let idMaestro = $("#idMaestro").val();
+        let nombreMateria = $("#nombreMateria").val();
+        $.ajax({
+            url: "materia/agregarMateria/",
+            type: "post",
+            data: { idGrupo:idGrupo, idMaestro:idMaestro, nombreMateria: nombreMateria },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalAgregarMateria",
+                    "#formAgregarMateria", respuesta);
+                alertaAgregado();
+            },
         });
+    });
 
         /*====================================
         ==PRUEBAS FÍSICO-MOTRICES==============
