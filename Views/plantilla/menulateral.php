@@ -20,18 +20,29 @@
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
-            <li class="section-title">
-              Tablas y registro
+          <li class="section-title">
+              Funcionalidades
             </li>
 
             <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>saludEstudiantil">
+                <i class="fa-solid  fa-location-dot"></i>
+                <span class="nav-text">Perfiles de Salud Estudiantil</span>
+              </a>
+            </li>
+
+            <li class="section-title">
+              Registro de Datos y Tablas
+            </li>
+
+            <li class="menuDepartamentos">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
                 <i class="fa-solid  fa-location-dot"></i>
                 <span class="nav-text">Departamentos</span>
               </a>
             </li>
 
-            <li class="">
+            <li class="menuMunicipios">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>municipio">
                 <i class="fa-solid  fa-location-pin"></i>
                 <span class="nav-text">Municipios</span>
@@ -78,8 +89,7 @@
             
 
             <li class="">
-<<<<<<< Updated upstream
-=======
+
               <a class="sidenav-item-link" href="<?= BASE_URL ?>pruebaFisica">
                 <i class="fa-solid  fa-location-pin"></i>
                 <span class="nav-text">Prueba Fisica</span>
@@ -87,8 +97,7 @@
             </li>
 
             <li class="">
-<<<<<<< HEAD
->>>>>>> Stashed changes
+
               <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
                 <i class="fa-solid  fa-location-pin"></i>
                 <span class="nav-text">Grupo</span>
