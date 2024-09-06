@@ -8,30 +8,28 @@ class municipioModel extends Model
         parent::__construct();
     }
 
-    public function obtenerMunicipio()
+    /*Función para OBTENER datos de MUNICIPIOS para la Vista*/
+    public function obtenerDatosMunicipio()
     {
-        return $this->_db->query("SELECT * FROM municipios")->fetchAll();
+        return $this->_db->query("SELECT id_municipio, departamentos.nombre_departamento, nombre_municipio FROM municipios INNER JOIN departamentos ON municipios.id_departamento=departamentos.id_departamento")->fetchAll();
     }
 
-    public function obtenerDepartamento()
+    /*Función para AGREGAR Departamento*/
+    public function agregarDepartamento($nombreDpto)
     {
-        return $this->_db->query("SELECT * FROM departamentos")->fetchAll();
-    }
-    
-    public function agregarMunicipio($idDepartamento, $nombre)
-    {
-        $this->_db->prepare("INSERT INTO municipios (id_departamento, nombre_departamento) VALUES (:idDepartament, :nombre);")->execute(array('idDepartamento' => $idDepartamento, 'nombre' => $nombre));
+        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombreDpto);")->execute(array('nombreDpto' => $nombreDpto));
     }
 
-    /* 
-        public function editarDep($nombre,$id_departamento)
-        {
-            $this->_db->prepare("UPDATE departamento set nombre=:nombre where id_departamento=:idDepartamento")->execute(array('nombre_departamento' => $nombre));
-        }
+    /*Función para EDITAR Departamento */
+    public function editarDepartamento ($nombreDptoUp, $idDpto)
+    {
+        $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp'=>$nombreDptoUp, 'idDpto'=>$idDpto));
+    }
 
-        public function borrarEscuela($id_escuela)
-        {
-            $this->_db->prepare('DELETE FROM Escuelas WHERE id_escuela=:id_escuela')->execute(array('id_escuela' => $id_escuela));
-        } */
+    //Función para BORRAR Departamentos
+    public function borrarDepartamento($idDptoDel)
+    {
+        $this->_db->prepare('DELETE FROM departamentos WHERE id_departamento=:idDptoDel')->execute(array('idDptoDel' => $idDptoDel));
+    }
 }
 ?>
