@@ -42,7 +42,7 @@ class departamentoController extends Controller
     public function agregarDepartamento()
     {
         $nombreDpto = $this->getTexto('nombreDpto');
-        $this -> _depart ->agregarDepartamento($nombreDpto);
+        $this->_depart->agregarDepartamento($nombreDpto);
         echo $this->verDepartamento();
     }
 
@@ -53,18 +53,11 @@ class departamentoController extends Controller
         echo $this->verDepartamento();
     }
 
+    // Función para BORRAR los DEPARTAMENTOS
     public function borrarDepartamento()
     {
-        $this->_depart->borrarDepart($this->getTexto('id_departamento'));
+        $this->_depart->borrarDepartamento($this->getTexto('idDptoDel'));
         echo $this->verDepartamento();
     }
-
-
-
-
-
 }
-
-
-
 ?>

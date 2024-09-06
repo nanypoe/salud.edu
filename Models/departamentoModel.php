@@ -26,11 +26,10 @@ class departamentoModel extends Model
         $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp'=>$nombreDptoUp, 'idDpto'=>$idDpto));
     }
 
-    
-
-    public function borrarEscuela($id_escuela)
+    //Función para BORRAR Departamentos
+    public function borrarDepartamento($idDptoDel)
     {
-        $this->_db->prepare('DELETE FROM Escuelas WHERE id_escuela=:id_escuela')->execute(array('id_escuela' => $id_escuela));
+        $this->_db->prepare('DELETE FROM departamentos WHERE id_departamento=:idDptoDel')->execute(array('idDptoDel' => $idDptoDel));
     }
 }
 ?>
