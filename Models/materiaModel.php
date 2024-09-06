@@ -8,26 +8,28 @@ class materiaModel extends Model
         parent::__construct();
     }
 
-    public function obtenerMateria()
+    /*Función para OBTENER datos de MATERIAS para la Vista*/
+    public function obtenerDatosMateria()
     {
-        return $this->_db->query("SELECT * FROM materia")->fetchAll();
+        return $this->_db->query("SELECT materia.id_materia, nombre_grupo, maestros.nombre, maestros.apellido FROM materia INNER JOIN grupos ON materia.id_grupo=grupos.id_grupo INNER JOIN maestros ON materia.id_maestro=maestros.id_maestro")->fetchAll();
     }
 
-    /* public function agregarEsc($nombre, $direccion, $telefono, $longitud, $latitud)
+    /*Función para AGREGAR Materias*/
+    public function agregarDepartamento($nombreDpto)
     {
-        $this->_db->prepare("INSERT INTO Escuelas (nombre, direccion, telefono, longitud, latitud) VALUES (:nombre, :direccion, :telefono, :longitud, :latitud)")->execute(array('nombre' => $nombre, 'direccion' => $direccion, 'telefono' => $telefono, 'longitud' => $longitud, 'latitud' => $latitud));
+        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombreDpto);")->execute(array('nombreDpto' => $nombreDpto));
     }
 
-    public function editarEscuela($nombre, $direccion, $telefono, $longitud, $latitud, $id_escuela)
+    /*Función para EDITAR Materias */
+    public function editarDepartamento ($nombreDptoUp, $idDpto)
     {
-        $this->_db->prepare("UPDATE Escuelas set nombre=:nombre, direccion=:direccion, telefono=:telefono, longitud=:longitud, latitud=:latitud where id_escuela=:idEscuela")->execute(array('nombre' => $nombre, 'direccion' => $direccion, 'telefono' => $telefono, 'longitud' => $longitud, 'latitud' => $latitud, 'id_escuela' => $id_escuela));
-    } 
-
-    public function borrarEscuela($id_escuela)
-    {
-        $this->_db->prepare('DELETE FROM Escuelas WHERE id_escuela=:id_escuela')->execute(array('id_escuela' => $id_escuela));
+        $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp'=>$nombreDptoUp, 'idDpto'=>$idDpto));
     }
-*/
 
+    //Función para BORRAR Materias
+    public function borrarDepartamento($idDptoDel)
+    {
+        $this->_db->prepare('DELETE FROM departamentos WHERE id_departamento=:idDptoDel')->execute(array('idDptoDel' => $idDptoDel));
+    }
 }
 ?>
