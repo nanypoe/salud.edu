@@ -1,89 +1,28 @@
-<!doctype html>
-
-<title>CodeMirror: JSX mode</title>
-<meta charset="utf-8"/>
-<link rel=stylesheet href="../../doc/docs.css">
-
-<link rel="stylesheet" href="../../lib/codemirror.css">
-<script src="../../lib/codemirror.js"></script>
-<script src="../javascript/javascript.js"></script>
-<script src="../xml/xml.js"></script>
-<script src="jsx.js"></script>
-<style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
-<div id=nav>
-  <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../../doc/logo.png"></a>
-
-  <ul>
-    <li><a href="../../index.html">Home</a>
-    <li><a href="../../doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
-  </ul>
-  <ul>
-    <li><a href="../index.html">Language modes</a>
-    <li><a class=active href="#">JSX</a>
-  </ul>
-</div>
-
-<article>
-<h2>JSX mode</h2>
-
-<div><textarea id="code" name="code">// Code snippets from http://facebook.github.io/react/docs/jsx-in-depth.html
-
-// Rendering HTML tags
-var myDivElement = <div className="foo" />;
-ReactDOM.render(myDivElement, document.getElementById('example'));
-
-// Rendering React components
-var MyComponent = React.createClass({/*...*/});
-var myElement = <MyComponent someProperty={true} />;
-ReactDOM.render(myElement, document.getElementById('example'));
-
-// Namespaced components
-var Form = MyFormComponent;
-
-var App = (
-  <Form>
-    <Form.Row>
-      <Form.Label />
-      <Form.Input />
-    </Form.Row>
-  </Form>
-);
-
-// Attribute JavaScript expressions
-var person = <Person name={window.isLoggedIn ? window.name : ''} />;
-
-// Boolean attributes
-<input type="button" disabled />;
-<input type="button" disabled={true} />;
-
-// Child JavaScript expressions
-var content = <Container>{window.isLoggedIn ? <Nav /> : <Login />}</Container>;
-
-// Comments
-var content = (
-  <Nav>
-    {/* child comment, put {} around */}
-    <Person
-      /* multi
-         line
-         comment */
-      name={window.isLoggedIn ? window.name : ''} // end of line comment
-    />
-  </Nav>
-);
-</textarea></div>
-
-<script>
-var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-  lineNumbers: true,
-  mode: "jsx"
-})
-</script>
-
-<p>JSX Mode for <a href="http://facebook.github.io/react">React</a>'s
-JavaScript syntax extension.</p>
-
-<p><strong>MIME types defined:</strong> <code>text/jsx</code>, <code>text/typescript-jsx</code>.</p>
-
-</article>
+7eac12e02414640e4592a17e1cf154a4f4274</item>
+  <item type="sha256">4e0e290f4bbf973dc979d662a9588d9c12696d6c3b4a43725cced19a9aa23267</item>
+  <item type="sha256">4fc31054ef5696a459ad45eeb86d80788386f3b203eaef2e173ce75e4f9dbca7</item>
+  <item type="sha256">544a4621cba59f3cc2aeb3fe34c2ee4522593377232cd9f78addfe537e988ddc</item>
+  <item type="sha256">5603d4035201a9e6d0e130c561bdb91f44d8f21192c8e2842def4649333757ab</item>
+  <item type="sha256">5748cf3f7a4b5b0a817c4c54ab0bea007a5e4b8149126f6e5dc05971243e57d3</item>
+  <item type="sha256">596cf4cc2bbe87d5f19cca11561a93785b6f0e8fa51989bf7db7619582f25864</item>
+  <item type="sha256">5c2d5246e389b706cc6256b3b39d4c61f2b1a130d827214225b2c6c02502d545</item>
+  <item type="sha256">602eaae3b2b19f55c5311c6966b135f1149f291f7f60fdebf9a1d2c6888ba7f6</item>
+  <item type="sha256">6370fc50942accb90dd36401c8d3bbcbbaf700d01fdcb584a2fe1db1cc36fc0d</item>
+  <item type="sha256">6512e9c33c2553189a5a6b5e8b6ee203d68ccd420682b38dde7c00a986b1b89d</item>
+  <item type="sha256">663b14fc8da39a677bd6d72f73c75869bda6f07715b2284bda61d3d0eb374b56</item>
+  <item type="sha256">68e6adc5f07f213f60aecdacf17b3c8f5e1bf35b354fa3d4ad6a2bd8564b4452</item>
+  <item type="sha256">6908831a67d036aee2c1af5451063b5d981ba1097e8f23c7d4f848543ac48a12</item>
+  <item type="sha256">69f245dc5e505d2876e2f2eec87fa565c707e7c391845fa8989c14acabc2d3f6</item>
+  <item type="sha256">6a5ff8b69ab980dd59a9a27fb960f9d98c80fad02d178db7e043722191357c68</item>
+  <item type="sha256">6cecd25648281442a1be21394c0608ea4807c08fb36fc0ac2c39d74eb07da5ad</item>
+  <item type="sha256">6f35a245e42135a6f6ff15fc9b4058a3600ebcaacdbedddda01baaaaa5022b77</item>
+  <item type="sha256">704f1655ce9127d7aab6d82660b48a127b5f00cadd7282acb03c440f21dae5e2</item>
+  <item type="sha256">73d82b40eadb5aa32f04bd8d7e1f8d85fb792aecae59fbde8d225c74ad642415</item>
+  <item type="sha256">74477253c5356bc4b693867649b8a6dbc81561818d1f475aa4b2767b02d82823</item>
+  <item type="sha256">75af799923369933f9c024c7b3c6c772eae11b63f36b7f0b500b4cc3e4f3a739</item>
+  <item type="sha256">815e7f1fc846529ba84dd43d1c4a02fc572d6c953b2eba3a2b4e7f91e92a252f</item>
+  <item type="sha256">82f2c0bd80c19ea84c1cd52e41832ef26e2cbe0947452e82818b78e9a1a71df1</item>
+  <item type="sha256">83a77adbadf5d6fc5bb2f8dfaa97b49ec573d45b99705d4c9b8d9ea54466acd7</item>
+  <item type="sha256">847af88afebb774fc81009bbc58710efd1b5e0a49b2e0adef13255c3b208c876</item>
+  <item type="sha256">853909af98031c125a351dad804317c323599233e9b14b79ae03f9de572b014e</item>
+  <item ty

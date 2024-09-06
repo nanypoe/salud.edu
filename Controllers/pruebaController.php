@@ -5,7 +5,7 @@
         function __construct()
         {
             parent::__construct();
-            $this->_prue=$this->loadModel('pruebaFisica');
+            $this->_prue=$this->loadModel('prueba');
         } 
 
         public function verPrueba(){
@@ -15,14 +15,14 @@
                 $datos=json_encode($fila[$i]);
                 $tabla.='
                 <tr>
-                    <td>'.$fila[$i]['id_escuela'].'</td>
-                    <td>'.$fila[$i]['nombre'].'</td>
-                    <td>'.$fila[$i]['direccion'].'</td>
-                    <td>'.$fila[$i]['telefono'].'</td>
-                    <td>'.$fila[$i]['longitud'].'</td>
-                    <td>'.$fila[$i]['latitud'].'</td>
+                    <td>'.$fila[$i]['id_prueba'].'</td>
+                    <td>'.$fila[$i]['tipo'].'</td>
+                    <td>'.$fila[$i]['resultado'].'</td>
+                    <td>'.$fila[$i]['unidad'].'</td>
+                    <td>'.$fila[$i]['observacion'].'</td>
+                    <td>'.$fila[$i]['fecha'].'</td>
                     <td>
-                    <button data-escuela=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalEditarEscuela" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarEscuela"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
+                    <button data-puebras_fisicas=\''.$datos.'\'  data-bs-toggle="modal" data-bs-target="#modalEditarEscuela" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarEscuela"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
         <button data-id='.$fila[$i]['id_prueba'].' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarEscuela"><i class="fa-solid fa-trash"></i> Borrar</button> 
 
                     </td>
@@ -40,10 +40,23 @@
             
         }
 
-        public function agregarPrueba(){
-            $this->_escue->agregarEsc($this->getTexto('nombreEscuela'),$this->getTexto('direccionEscuela'),$this->getTexto('telefonoEscuela'),$this->getTexto('longitudEscuela'),$this->getTexto('latitudEscuela'));
+        
+        public function agregarEstudiante(){
+            /*mandando id de estudiante */
+            $fila = $this->_prue->obtenerPrueba();
+            $datos = '<option value="0"> Seleccione el id del estudiante </option>';
+             for ($i = 0; $i < count($fila); $i++) {
+            $datos .= '<option value="' . $fila[$i]['id_estudiante'] . '">' . $fila[$i]['nombre'] . '</option>';
+        }
+        
+        $this->_view->estudiante = $datos;
+        $this->_view->renderizar('agregar');
+        }
 
-            echo $this->verEscuela();
+        public function agregarPrueba(){
+            $this->_prue->agregarPru($this->getTexto('tipoPrueba'),$this->getTexto('resultadoPrueba'),$this->getTexto('unidadPrueba'),$this->getTexto('observacionPrueba'),$this->getTexto('axo'));
+
+            echo $this->verPrueba();
 
         }
 
