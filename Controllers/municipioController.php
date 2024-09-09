@@ -10,9 +10,16 @@ class municipioController extends Controller
     }
 
 
-    /*Función para RENDERIZAR la Vista REGISTRO Y LISTADO DE MUNICIPIOS*/
+    /*Función para RENDERIZAR la Vista REGISTRO Y LISTADO DE MUNICIPIOS y DEPARTAMENTOS*/
     public function index()
     {
+        /*Mandar a la vista DATOS de DEPARTAMENTOS*/
+        $fila = $this->_munic->obtenerDepartamento();
+        $datos = '<option value="0"> Seleccione un Departamento</option>';
+        for ($i = 0; $i < count($fila); $i++) {
+            $datos .= '<option value="' . $fila[$i]['id_departamento'] . '">' . $fila[$i]['nombre_departamento'] . '</option>';
+        }
+        $this->_view->departamento = $datos;
         $this->_view->tabla = $this->verMunicipio();
         $this->_view->renderizar('municipio');
     }
