@@ -554,6 +554,25 @@ $(function () {
     /*====================================
     ==PRUEBAS FÍSICO-MOTRICES==============
     ======================================*/
-
+    $("#formAgregarMateria").submit(function(e){
+        e.preventDefault();
+        let idE = $("#idE").val();
+        let tipoPrueba = $("#tipoPrueba").val();
+        let resultadoPrueba = $("#resultadoPrueba").val();
+        let unidadPrueba = $("#unidadPrueba").val();
+        let observacionPrueba = $("#observacionPrueba").val();
+        let axo = $("#axo").val();
+        $.ajax({
+            url: "prueba/agregarPrueba/",
+            type: "post",
+            data: { idE:idE, tipoPrueba:tipoPrueba, resultadoPrueba: resultadoPrueba, unidadPrueba: unidadPrueba, observacionPrueba: observacionPrueba, axo: axo },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalAgregarPrueba",
+                    "#formAgregarPrueba", respuesta);
+                alertaAgregado();
+            },
+        });
+    });
 
 });

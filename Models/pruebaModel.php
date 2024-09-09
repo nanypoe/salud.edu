@@ -8,9 +8,15 @@ class pruebaModel extends Model
         parent::__construct();
     }
 
-    public function agregarPrueba($tipo, $resultado, $unidad, $observacion, $fecha)
+/*Función para OBTENER datos de PRUEBAS FÍSICAS para la Vista*/
+public function obtenerDatosPruebas()
+{
+    return $this->_db->query("SELECT * FROM pruebas_fisicas INNER JOIN estudiantes ON pruebas_fisicas.id_estudiante=estudiantes.id_estudiante")->fetchAll();
+}
+
+    public function agregarPrueba($idE, $tipo, $resultado, $unidad, $observacion, $fecha)
     {
-        $this->_db->prepare("INSERT INTO puebras_fisicas (id_estudiante,tipo, resultado, unidad, observacion, fecha) VALUES (:id,:tipo, :resultado, :unidad, :observacion, :fecha)")->execute(array('id' => $id,'tipo' => $tipo, 'resultado' => $resultado, 'unidad' => $unidad, 'observacion' => $observacion, 'fecha' => $fecha));
+        $this->_db->prepare("INSERT INTO puebras_fisicas (id_estudiante,tipo, resultado, unidad, observacion, fecha) VALUES (:idE,:tipo, :resultado, :unidad, :observacion, :fecha)")->execute(array('idE' => $idE,'tipo' => $tipo, 'resultado' => $resultado, 'unidad' => $unidad, 'observacion' => $observacion, 'fecha' => $fecha));
     }
 
     public function editarEscuela($nombre, $direccion, $telefono, $longitud, $latitud, $id_escuela)
