@@ -31,6 +31,7 @@ class maestrosController extends Controller
                 </tr>
                 ';
         }
+    }
 
         public function index()
         {
