@@ -47,13 +47,13 @@
             ?>
 
             <li class="section-title">
-              Funcionalidades
+              Información del Estudiante
             </li>
 
             <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>saludEstudiantil">
-                <i class="fa-solid  fa-location-dot"></i>
-                <span class="nav-text">Perfiles de Salud Estudiantil</span>
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>perfil">
+                <i class="fa-regular fa-user"></i>
+                <span class="nav-text">Perfil Estudiantil</span>
               </a>
             </li>
             <?php
