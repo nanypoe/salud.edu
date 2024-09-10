@@ -1,6 +1,14 @@
 CREATE DATABASE saludedu;
 USE saludedu;
 
+-- Tabla USUARIOS
+CREATE TABLE usuarios(
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    usuario VARCHAR (45),
+    clave VARCHAR (255),
+    rol VARCHAR (255)
+)ENGINE=InnoDB;
+
 -- Tabla DEPARTAMENTOS
 CREATE TABLE departamentos (
     id_departamento INT PRIMARY KEY AUTO_INCREMENT,

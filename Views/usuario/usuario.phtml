@@ -1,0 +1,133 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <center><strong>Registro de usuarios y roles</strong></center>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button data-bs-target="#modalAgregarUsuario" data-bs-toggle="modal" class="btn btn-primary float-right"><i
+                    class="fas fa-solid fa-plus"></i> Agregar Usuarios</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table id="table" class="tablaUsuario">
+                <thead>
+                    <tr>
+                        <th>ID Usuario</th>
+                        <th>Nombre de usuario</th>
+                        <th>Clave hash</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?= $this->tabla ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--Modal para AGREGAR Usuarios-->
+<div class="modal fade" id="modalAgregarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formAgregarUsuario" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label for="usuario">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario">
+                            <span id="result"></span>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="clave" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="clave" name="clave">
+                                <span class="input-group-text" id="ocultar"><i class="fa-solid fa-eye"
+                                        onclick="ocultarPass('#clave', this);"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="pass" class="form-label">Repita contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="pass" name="pass">
+                                <span class="input-group-text" id="ocultaspass"><i class="fa-solid fa-eye"
+                                        onclick="ocultarPass('#pass', this);"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progress-bar" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rolUsuario" class="form-label">Rol</label>
+                            <select name="rolUsuario" id="rolUsuario" class="form-select">
+                                <option id="admin" name="admin" value="admin">Administrador
+                                </option>
+                                <option id="docente" name="docente" value="docente">Docente</option>
+                                <option id="estudiante" name="estudiante" value="estudiante">Estudiante</option>
+                            </select>
+                        </div>
+
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar usuario</button>
+            
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para EDITAR DEPARTAMENTOS
+<div class="modal fade" id="modalEditarDepartamento" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Departamento</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formEditarDepartamento" enctype="multipart/form-data">
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="idDpto" class="form-label">ID Departamento</label>
+                            <input type="text" class="form-control" id="idDpto" name="idDpto" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="nombreDptoUp" class="form-label">Nombre del departamento</label>
+                            <input type="text" class="form-control" id="nombreDptoUp" name="nombreDptoUp">
+                        </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div> -->
