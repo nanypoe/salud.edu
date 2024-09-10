@@ -326,7 +326,11 @@
                     <li class="dropdown user-menu ">
                         <button class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                             <img src="<?=PLANTILLA?>images/user/user.png" class="user-image rounded-circle" alt="User Image" />
-                            <span class="d-none d-lg-inline-block">Administrador</span>
+                            <span class="d-none d-lg-inline-block"><?php if(Sessiones::getClave('usuario')){
+                                                        echo Sessiones::getClave('usuario');
+                                                        } else{
+                                                            echo "Iniciar sesión";
+                                                        }?></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right mr-2">
                             <li>
