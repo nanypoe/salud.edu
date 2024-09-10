@@ -1,3 +1,4 @@
+///////////////////DOM//////////////////
 $(function () {
     /*====================================
     ================FUNCIONES GLOBALES====
@@ -78,6 +79,28 @@ $(function () {
             icon: "error",
         });
     }
+
+    /*====================================
+                 ==============USUARIOS==============
+                 ======================================*/
+    /*AGREGAR Usuario*/
+    $("#formAgregarUsuario").submit(function (e) {
+        e.preventDefault();
+        let user = $('#usuario').val();
+        let clave = $('#clave').val();
+        let rol = $('#rolUsuario').val();
+        $.ajax({
+            url: "usuario/agregarUsuario",
+            type: "post",
+            data: {user:user, clave:clave, rol:rol},
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalAgregarUsuario",
+                    "#formAgregarUsuario", respuesta);
+                alertaAgregado();
+            },
+        });
+    });
 
     /*====================================
              ==============AÑO LECTIVO==============
@@ -248,7 +271,7 @@ $(function () {
     /*====================================
       ================MUNICIPIOS==============
       ======================================*/
-      /*AGREGAR Departamentos*/
+    /*AGREGAR Departamentos*/
     $("#formAgregarMunicipio").submit(function (e) {
         e.preventDefault();
         let idDepartamento = $("#idDepartamento").val();
@@ -256,7 +279,7 @@ $(function () {
         $.ajax({
             url: "municipio/agregarMunicipio/",
             type: "post",
-            data: { idDepartamento: idDepartamento, nombreMunicipio:nombreMunicipio },
+            data: { idDepartamento: idDepartamento, nombreMunicipio: nombreMunicipio },
             success: function (respuesta) {
                 modalFormRespuesta(
                     "#modalAgregarMunicipio",
@@ -528,12 +551,12 @@ $(function () {
         });
     });
 
-        /*====================================
-          ================MATERIA==============
-          ======================================*/
-        /*AGREGAR Materias*/
-       
-    $("#formAgregarMateria").submit(function(e){
+    /*====================================
+      ================MATERIA==============
+      ======================================*/
+    /*AGREGAR Materias*/
+
+    $("#formAgregarMateria").submit(function (e) {
         e.preventDefault();
         let idGrupo = $("#idGrupo").val();
         let idMaestro = $("#idMaestro").val();
@@ -541,7 +564,7 @@ $(function () {
         $.ajax({
             url: "materia/agregarMateria/",
             type: "post",
-            data: { idGrupo:idGrupo, idMaestro:idMaestro, nombreMateria: nombreMateria },
+            data: { idGrupo: idGrupo, idMaestro: idMaestro, nombreMateria: nombreMateria },
             success: function (respuesta) {
                 modalFormRespuesta(
                     "#modalAgregarMateria",
@@ -554,7 +577,7 @@ $(function () {
     /*====================================
     ==PRUEBAS FÍSICO-MOTRICES==============
     ======================================*/
-    $("#formAgregarMateria").submit(function(e){
+    $("#formAgregarMateria").submit(function (e) {
         e.preventDefault();
         let idE = $("#idE").val();
         let tipoPrueba = $("#tipoPrueba").val();
@@ -565,7 +588,7 @@ $(function () {
         $.ajax({
             url: "prueba/agregarPrueba/",
             type: "post",
-            data: { idE:idE, tipoPrueba:tipoPrueba, resultadoPrueba: resultadoPrueba, unidadPrueba: unidadPrueba, observacionPrueba: observacionPrueba, axo: axo },
+            data: { idE: idE, tipoPrueba: tipoPrueba, resultadoPrueba: resultadoPrueba, unidadPrueba: unidadPrueba, observacionPrueba: observacionPrueba, axo: axo },
             success: function (respuesta) {
                 modalFormRespuesta(
                     "#modalAgregarPrueba",
@@ -576,3 +599,20 @@ $(function () {
     });
 
 });
+
+
+//////////EVENTOS FUERA DEL DOM/////////////
+
+/*Función para ocultar pass*/
+function ocultarPass(elemento, icono) {
+    let input = $(elemento).attr('type');
+    if (input == "password") {
+        $(elemento).attr('type', 'text');
+        $(icono).removeClass('fa-eye');
+        $(icono).addClass('fa-eye-slash');
+    } else {
+        $(elemento).attr('type', 'password');
+        $(icono).removeClass('fa-eye-slash');
+        $(icono).addClass('fa-eye');
+    }
+}

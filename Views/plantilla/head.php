@@ -52,4 +52,11 @@
 
   <!-- MONO CSS -->
   <link id="main-css-href" rel="stylesheet" href="<?= PLANTILLA ?>css/style.css" />
+
+  <!-- PLUGINS CSS STYLE -->
+  <link href="<?= PLANTILLA ?>plugins/nprogress/nprogress.css" rel="stylesheet" />
+
+  <!-- FAVICON -->
+  <link href="<?= PLANTILLA ?>images/favicon.png" rel="shortcut icon" />
+
 </head>

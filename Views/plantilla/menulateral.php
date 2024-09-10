@@ -21,6 +21,24 @@
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
           <li class="section-title">
+              Usuario e Inicio de Sesión
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>login">
+              <i class="fa-solid fa-right-to-bracket"></i>
+                <span class="nav-text">Iniciar Sesión</span>
+              </a>
+            </li>
+
+            <li class="">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>logout">
+              <i class="fa-solid fa-left-to-bracket"></i>
+                <span class="nav-text">Cerrar Sesión</span>
+              </a>
+            </li>
+
+          <li class="section-title">
               Funcionalidades
             </li>
 
@@ -35,6 +53,12 @@
               Registro de Datos y Tablas
             </li>
 
+            <li class="menuLectivo">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>usuario">
+                <i class="fa-solid  fa-location-dot"></i>
+                <span class="nav-text">Usuarios</span>
+              </a>
+            </li>
             <li class="menuLectivo">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>lectivo">
                 <i class="fa-solid  fa-location-dot"></i>
