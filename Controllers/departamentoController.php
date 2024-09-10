@@ -14,6 +14,7 @@ class departamentoController extends Controller
     public function index()
     {
         $this->_view->tabla = $this->verDepartamento();
+        Sessiones::accesoVista('estudiante');
         $this->_view->renderizar('departamento');
     }
 
@@ -25,16 +26,24 @@ class departamentoController extends Controller
         for ($i = 0; $i < count($fila); $i++) {
             $datos = json_encode($fila[$i]);
             $tabla .= '
-                <tr>
-                    <td>' . $fila[$i]['id_departamento'] . '</td>
-                    <td>' . $fila[$i]['nombre_departamento'] . '</td>
-                    <td>
+            <tr>
+                <td>' . $fila[$i]['id_departamento'] . '</td>
+                <td>' . $fila[$i]['nombre_departamento'] . '</td>';
+                
+        // Aquí cerramos la cadena y usamos el if de PHP
+        if (Sessiones::getClave('rol')== "admin") {
+            $tabla .= '
+                <td>
                     <button data-departamentos=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarDepartamento" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarDepartamento"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
                     <button data-id=' . $fila[$i]['id_departamento'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarDepartamento"><i class="fa-solid fa-trash"></i> Borrar</button>
-                    </td>
-                </tr>
-                ';
+                </td>';
         }
+
+        // Luego seguimos con el resto de la tabla
+        $tabla .= '
+            </tr>
+            ';
+    }
         return $tabla;
     }
 

@@ -9,6 +9,8 @@ require_once APP_PATH . 'Rutas.php';
 require_once APP_PATH . 'Database.php';
 require_once APP_PATH . 'Controller.php';
 require_once APP_PATH . 'Model.php';
+require_once APP_PATH . 'Sessiones.php';
 require_once APP_PATH . 'View.php';
+Sessiones::iniciar();
 $rutas = new Rutas();
 $rutas->run();
