@@ -19,7 +19,11 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre </th>
-                        <th>Acciones</th>
+                        <?php
+                        if (Sessiones::getClave('rol') == "admin") {
+                            ?>
+                            <th>Acciones</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>

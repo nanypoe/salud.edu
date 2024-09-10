@@ -30,7 +30,7 @@
         public function salir()
         {
             Sessiones::salir();
-            $this->redireccionar('index');
+            $this->redireccionar('login');
         }
     }
 ?>
