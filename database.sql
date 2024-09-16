@@ -369,10 +369,6 @@ CALL ingresarMunicipios ('Costa Caribe Sur', 'Muelle de los Bueyes');
 CALL ingresarMunicipios ('Costa Caribe Sur', 'Nueva Guinea');
 CALL ingresarMunicipios ('Costa Caribe Sur', 'Paiwas');
 
--- Consulta para ver los MUNICIPIOS y DEPARTAMENTOS
--- use saludedu;
--- SELECT departamentos.id_departamento, nombre_departamento, id_municipio, nombre_municipio FROM municipios INNER JOIN departamentos ON municipios.id_departamento=departamentos.id_departamento;
-
-
-
-
+-- CONSULTA PARA Usuario Root, contraseña: Root-2024*
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `clave`, `rol`) VALUES
+(1, 'root', '$2y$10$fELo5JQP5ETIfJqKoqPP/ONOspQgn8rJerxvK07Ug3KIWVZeAfNS.', 'admin');
