@@ -325,12 +325,18 @@
                     <!-- User Account -->
                     <li class="dropdown user-menu ">
                         <button class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <span class="d-none d-lg-inline-block"><?php if(Sessiones::getClave('usuario')){
-                                                        echo Sessiones::getClave('usuario');
-                                                        } else{
-                                                            echo "Iniciar sesión";
-                                                        }?></span>
+<?php if (Sessiones::getVista('estudiante')) { ?>
+    <img src="<?= PLANTILLA ?>images/user/user.png" class="user-image rounded-circle" alt="User Image" /> 
+<?php } ?>
+<span class="d-none d-lg-inline-block">
+    <?php if (Sessiones::getClave('usuario')) {
+        echo Sessiones::getClave('usuario');
+    } else {
+        echo "Iniciar sesión";
+    } ?>
+</span>
                         </button>
+                        
                         <ul class="dropdown-menu dropdown-menu-right mr-2">
                             <li>
                                 <a class="dropdown-link-item" href="user-profile.html">
@@ -357,9 +363,20 @@
                                 </a>
                             </li>
 
+
+
                             <li class="dropdown-footer">
-                                <a class="dropdown-link-item" href="sign-in.html"> <i class="mdi mdi-logout"></i> Log
-                                    Out </a>
+                                <?php
+                                if (Sessiones::getClave('autenticado') == true) {
+                                    echo '
+                                        <a class="dropdown-link-item" href="' . BASE_URL . 'login/salir/"> <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                                        ';
+                                } else {
+                                    echo '
+                                        <a class="dropdown-link-item" href="' . BASE_URL . 'login"> <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
+                                        ';
+                                }
+                                ?>
                             </li>
                         </ul>
                     </li>

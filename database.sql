@@ -17,8 +17,8 @@ CREATE TABLE departamentos (
 
 -- Tabla AÑO LECTIVO
 CREATE TABLE axo_lectivo(
- id_lectivo INT PRIMARY KEY AUTO_INCREMENT,
- axo INT
+    id_lectivo INT PRIMARY KEY AUTO_INCREMENT,
+    axo INT
 )ENGINE=InnoDB;
 
 -- Tabla MUNICIPIOS
@@ -45,17 +45,17 @@ CREATE TABLE escuelas (
 
 -- Tabla GRADOS
 CREATE TABLE grados (
-id_grado INT,
-id_escuela INT,
-nombre_grado VARCHAR (15)
+    id_grado INT,
+    id_escuela INT,
+    nombre_grado VARCHAR (15)
 )ENGINE=InnoDB;
 
 -- Tabla GRUPOS
 CREATE TABLE grupos (
-id_grupo INT AUTO_INCREMENT PRIMARY KEY,
-id_grado INT,
-nombre_grupo varchar(1),
-modalidad ENUM ("Matutino", "Vespertino", "Nocturno", "Sabatino", "Dominical")
+    id_grupo INT AUTO_INCREMENT PRIMARY KEY,
+    id_grado INT,
+    nombre_grupo varchar(1),
+    modalidad ENUM ("Matutino", "Vespertino", "Nocturno", "Sabatino", "Dominical")
 )engine=InnoDB;
 
 
@@ -96,25 +96,25 @@ CREATE TABLE salud_estudiante (
 
 -- Tabla MATERIA
 CREATE TABLE materia(
-id_materia int primary key auto_increment,
-id_grupo int,
-id_maestro int,
-nombre_materia varchar(45),
-foreign key (id_grupo) references grupos (id_grupo),
-foreign key (id_maestro) references grupos (id_grupo)
+    id_materia int primary key auto_increment,
+    id_grupo int,
+    id_maestro int,
+    nombre_materia varchar(45),
+    foreign key (id_grupo) references grupos (id_grupo),
+    foreign key (id_maestro) references grupos (id_grupo)
 )engine=innodb;
 
 -- Tabla MAESTROS
 CREATE TABLE maestros (
-id_maestro INT AUTO_INCREMENT PRIMARY KEY,
-id_escuela INT,
-id_materia INT,
-nombre VARCHAR(255) NOT NULL,
-apellido VARCHAR(255) NOT NULL,
-email VARCHAR(100),
-telefono VARCHAR(50),
-FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE,
-FOREIGN KEY (id_materia) REFERENCES materia (id_materia) ON DELETE CASCADE
+    id_maestro INT AUTO_INCREMENT PRIMARY KEY,
+    id_escuela INT,
+    id_materia INT,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email VARCHAR(100),
+    telefono VARCHAR(50),
+    FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE,
+    FOREIGN KEY (id_materia) REFERENCES materia (id_materia) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
