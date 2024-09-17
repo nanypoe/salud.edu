@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salud.Edu</title>
+  <title>Salud.Edu: tu aliado digital.</title>
 
   <!-- FAVICON -->
-  <link href="<?= PLANTILLA ?>images/logo1.png" rel="shortcut icon" style="width:32px; height: 32px" />
+  <link href="<?= PLANTILLA ?>images/perfil/rColor1.png" rel="shortcut icon" style="width:32px; height: 32px" />
 
   <!--Google Fonts-->
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
@@ -43,17 +43,17 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-  <!--Select2-->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+  <!--Select2-->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   <!-- MONO CSS -->
   <link id="main-css-href" rel="stylesheet" href="<?= PLANTILLA ?>css/style.css" />
 
-  <!-- PLUGINS CSS STYLE -->
+  <!--NPROGRESS-->
   <link href="<?= PLANTILLA ?>plugins/nprogress/nprogress.css" rel="stylesheet" />
 
   <!-- FAVICON -->

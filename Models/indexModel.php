@@ -5,8 +5,8 @@ class indexModel extends Model
     {
         parent::__construct();
     }
-    public function obtenerUbi()
-    {
-        return $this->_db->query("SELECT * FROM gimnasios;")->fetchAll();
-    }
+    // public function obtenerUbi()
+    // {
+    //     return $this->_db->query("SELECT * FROM gimnasios;")->fetchAll();
+    // }
 }

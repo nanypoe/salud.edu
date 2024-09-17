@@ -13432,12 +13432,11 @@ label {
 .app-brand a {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items:center;
   height: 76px;
   line-height: 76px;
   width: 250px;
   transition: width 0.3s ease-in-out;
-  padding-left: 1.56rem;
 }
 @media (prefers-reduced-motion: reduce) {
   .app-brand a {
@@ -13450,8 +13449,7 @@ label {
   }
 }
 .app-brand a img {
-  max-width: 128px;
-  vertical-align: middle;
+  max-width: 250px;
 }
 .app-brand .brand-name {
   color: #ffffff;

@@ -30,8 +30,8 @@ class usuarioController extends Controller
                     <td>' . $fila[$i]['clave'] . '</td>
                     <td>' . $fila[$i]['rol'] . '</td>
                     <td>
-                    <button data-usuarios=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarUsuario" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarUsuario"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
-                    <button data-id=' . $fila[$i]['id_usuario'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarDepartamento"><i class="fa-solid fa-trash"></i> Borrar</button>
+                    <button data-usuario=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarUsuario" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarUsuario"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
+                    <button data-id=' . $fila[$i]['id_usuario'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarUsuario"><i class="fa-solid fa-trash"></i> Borrar</button>
                     </td>
                 </tr>
                 ';
@@ -46,18 +46,18 @@ public function agregarUsuario()
     echo $this->verUsuario();
 }
 
-    // /*Función para EDITAR los DEPARTAMENTOS previamente agredos*/
-    // public function editarDepartamento()
-    // {
-    //     $this->_user->editarDepartamento($this->getTexto('nombreDptoUp'), $this->getTexto('idDpto'));
-    //     echo $this->verDepartamento();
-    // }
+    /*Función para EDITAR los USUARIOS previamente agredos*/
+    public function editarUsuario()
+    {
+        $this->_user->editarUsuario($this->getTexto('idUsr'), $this->getTexto('usuarioUp'), $this->getTexto('passUp'), $this->getTexto('rolUp'));
+        echo $this->verUsuario();
+    }
 
-    // // Función para BORRAR los DEPARTAMENTOS
-    // public function borrarDepartamento()
-    // {
-    //     $this->_user->borrarDepartamento($this->getTexto('idDptoDel'));
-    //     echo $this->verDepartamento();
-    // }
+    // Función para BORRAR los USUARIOS
+    public function borrarUsuario()
+    {
+        $this->_user->borrarUsuario($this->getTexto('idUsrDel'));
+        echo $this->verUsuario();
+    }
 }
 ?>
