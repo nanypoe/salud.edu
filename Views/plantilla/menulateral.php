@@ -12,13 +12,20 @@
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="index.php">
-            <span class="brand-name">SALUD.EDU</span>
+            <img src="<?=PLANTILLA?>images/logo/hNegativo.png" class="brand-image">
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
         <div class="sidebar-left" data-simplebar style="height: 100%;">
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
+
+          <li class="active">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
+                  <i class="fa-solid  fa-house"></i>
+                  <span class="nav-text">Inicio</span>
+                </a>
+              </li>
 
             <li class="section-title">
               Inicio de Sesión
@@ -27,35 +34,23 @@
             <?php
             if (Sessiones::getClave('autenticado') == true) {
               echo '
-    <li class="">
-              <a class="sidenav-item-link" href="' . BASE_URL . 'login/salir/">
-              <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="nav-text">Cerrar Sesión</span>
-              </a>
-            </li>
-      ';
+                  <li class="">
+                    <a class="sidenav-item-link" href="' . BASE_URL . 'login/salir/">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                      <span class="nav-text">Cerrar Sesión</span>
+                    </a>
+                  </li>';
             } else {
               echo '
-<li class="">
-              <a class="sidenav-item-link" href="' . BASE_URL . 'login">
-              <i class="fa-solid fa-right-to-bracket"></i>
-                <span class="nav-text">Iniciar Sesión</span>
-              </a>
-            </li>
-';
+                  <li class="">
+                    <a class="sidenav-item-link" href="' . BASE_URL . 'login">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                      <span class="nav-text">Iniciar Sesión</span>
+                    </a>
+                  </li>';
             }
             ?>
 
-            <li class="section-title">
-              Información del Estudiante
-            </li>
-
-            <li class="">
-              <a class="sidenav-item-link" href="<?= BASE_URL ?>perfil">
-                <i class="fa-regular fa-user"></i>
-                <span class="nav-text">Perfil Estudiantil</span>
-              </a>
-            </li>
             <?php
             if (Sessiones::getVista('administrador')) {
               ?>
@@ -63,39 +58,39 @@
                 Registro de Datos y Tablas
               </li>
 
-              <li class="menuLectivo">
+              <!-- CRUD: Usuarios -->
+              <li class="crudUsuarios">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>usuario">
-                  <i class="fa-solid  fa-location-dot"></i>
+                <i class="fa-regular fa-user"></i>
                   <span class="nav-text">Usuarios</span>
                 </a>
               </li>
-              <li class="menuLectivo">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>lectivo">
-                  <i class="fa-solid  fa-location-dot"></i>
-                  <span class="nav-text">Lectivo</span>
-                </a>
-              </li>
 
-              <li class="menuDepartamentos">
+              <!-- CRUD: Departamentos -->
+              <li class="crudDepartamentos">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
-                  <i class="fa-solid  fa-location-dot"></i>
+                <i class="fa-solid fa-earth-americas"></i>
                   <span class="nav-text">Departamentos</span>
                 </a>
               </li>
 
-              <li class="menuMunicipios">
+              <!-- CRUD: Año Lectivo -->
+              <li class="crudLectivo">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>lectivo">
+                <i class="fa-regular fa-calendar"></i>
+                  <span class="nav-text">Años Lectivos</span>
+                </a>
+              </li>
+
+              <!-- CRUD: Municipios -->
+              <li class="crudMunicipios">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>municipio">
-                  <i class="fa-solid  fa-location-pin"></i>
+                <i class="fa-solid fa-map-location-dot"></i>
                   <span class="nav-text">Municipios</span>
                 </a>
               </li>
 
-              <li class="active">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
-                  <i class="fa-solid  fa-house"></i>
-                  <span class="nav-text">Inicio</span>
-                </a>
-              </li>
+              
 
               <li class="">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>escuela">

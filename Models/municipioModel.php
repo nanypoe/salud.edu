@@ -20,10 +20,10 @@ class municipioModel extends Model
         return $this->_db->query("SELECT * FROM departamentos")->fetchAll();
     }
 
-    /*Función para AGREGAR Departamento*/
-    public function agregarDepartamento($nombreDpto)
+    /*Función para AGREGAR Municipio*/
+    public function agregarMunicipio($dptoId, $municipio)
     {
-        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombreDpto);")->execute(array('nombreDpto' => $nombreDpto));
+        $this->_db->prepare("INSERT INTO municipios (id_departamento, nombre_municipio) VALUES (:dptoId, :municipio);")->execute(array('dptoId' => $dptoId, 'municipio'=>$municipio));
     }
 
     /*Función para EDITAR Departamento */

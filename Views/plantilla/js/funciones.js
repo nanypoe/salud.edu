@@ -92,7 +92,7 @@ $(function () {
         $.ajax({
             url: "usuario/agregarUsuario",
             type: "post",
-            data: {user:user, clave:clave, rol:rol},
+            data: { user: user, clave: clave, rol: rol },
             success: function (respuesta) {
                 modalFormRespuesta(
                     "#modalAgregarUsuario",
@@ -102,58 +102,40 @@ $(function () {
         });
     });
 
-    /*====================================
-             ==============AÑO LECTIVO==============
-             ======================================*/
-    /*AGREGAR Año Lectivo */
-    $("#formAgregarLectivo").submit(function (e) {
-        e.preventDefault();
-        let lectivo = $("#lectivo").val();
-        $.ajax({
-            url: "lectivo/agregarLectivo/",
-            type: "post",
-            data: { lectivo: lectivo },
-            success: function (respuesta) {
-                modalFormRespuesta(
-                    "#modalAgregarLectivo",
-                    "#formAgregarLectivo", respuesta);
-                alertaAgregado();
-            },
-        });
+    /*EDITAR Usuario*/
+    /*CARGAR los datos de USUARIO al modal EDITAR*/
+    $(".tablaUsuario").on("click", ".btnEditarUsuario", function () {
+        let datos = JSON.parse($(this).attr("data-usuario"));
+        $("#idUsr").val(datos["id_usuario"]);
+        $("#usuarioUp").val(datos["usuario"]);
     });
 
-    /*EDITAR Lectivo*/
-    /*CARGAR los datos de LECTIVO al modal EDITAR*/
-    $(".tablaLectivo").on("click", ".btnEditarLectivo", function () {
-        let datos = JSON.parse($(this).attr("data-lectivo"));
-        $("#idLectivo").val(datos["id_lectivo"]);
-        $("#axo").val(datos["axo"]);
-    });
-
-    /*ENVIAR al Backend datos de AÑO Lectivo editados*/
-    $('#formEditarLectivo').submit(function (e) {
-        $('#idLectivo').prop("disabled", false);
-        let idLectivo = $('#idLectivo').val();
-        let axo = $('#axo').val();
+    /*ENVIAR al Backend datos de USUARIOS editados*/
+    $('#formEditarUsuario').submit(function (e) {
+        $('#idUsr').prop("disabled", false);
+        let idUsr = $('#idUsr').val();
+        let usuarioUp = $('#usuarioUp').val();
+        let passUp = $('#passUp').val();
+        let rolUp = $('#rolUp').val();
         e.preventDefault();
         $.ajax({
-            url: 'lectivo/editarLectivo/',
+            url: 'usuario/editarUsuario/',
             type: "POST",
             data: {
-                idLectivo: idLectivo, axo: axo
+                idUsr: idUsr, usuarioUp: usuarioUp, passUp: passUp, rolUp: rolUp
             },
             success: function (respuesta) {
                 modalFormRespuesta(
-                    "#modalEditarLectivo",
-                    "#formEditarLectivo", respuesta
+                    "#modalEditarUsuario",
+                    "#formEditarUsuario", respuesta
                 );
                 alertaModificado();
             }
         });
     });
 
-    /*ELIMINAR Año Lectivo*/
-    $("#table").on("click", ".BtnBorrarLectivo", function () {
+    /*ELIMINAR Usuario*/
+    $("#table").on("click", ".BtnBorrarUsuario", function () {
         Swal.fire({
             title: "¿Estas seguro?",
             text: "Que deseas eliminar el registro!",
@@ -165,11 +147,11 @@ $(function () {
             cancelButtonText: "No, Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                let idLectivoDel = $(this).attr('data-id');
+                let idUsrDel = $(this).attr('data-id');
                 $.ajax({
-                    url: 'lectivo/borrarLectivo/',
+                    url: 'usuario/borrarUsuario/',
                     type: 'post',
-                    data: { idLectivoDel: idLectivoDel },
+                    data: { idUsrDel: idUsrDel },
                     success: function (respuesta) {
                         postBorrar(respuesta);
                         alertaEliminado();
@@ -183,7 +165,6 @@ $(function () {
             }
         });
     });
-
 
     /*====================================
              ==============DEPARTAMENTOS==============
@@ -269,17 +250,99 @@ $(function () {
     });
 
     /*====================================
+             ==============AÑO LECTIVO==============
+             ======================================*/
+    /*AGREGAR Año Lectivo */
+    $("#formAgregarLectivo").submit(function (e) {
+        e.preventDefault();
+        let lectivo = $("#lectivo").val();
+        $.ajax({
+            url: "lectivo/agregarLectivo/",
+            type: "post",
+            data: { lectivo: lectivo },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalAgregarLectivo",
+                    "#formAgregarLectivo", respuesta);
+                alertaAgregado();
+            },
+        });
+    });
+
+    /*EDITAR Lectivo*/
+    /*CARGAR los datos de LECTIVO al modal EDITAR*/
+    $(".tablaLectivo").on("click", ".btnEditarLectivo", function () {
+        let datos = JSON.parse($(this).attr("data-lectivo"));
+        $("#idLectivo").val(datos["id_lectivo"]);
+        $("#axo").val(datos["axo"]);
+    });
+
+    /*ENVIAR al Backend datos de AÑO Lectivo editados*/
+    $('#formEditarLectivo').submit(function (e) {
+        $('#idLectivo').prop("disabled", false);
+        let idLectivo = $('#idLectivo').val();
+        let axo = $('#axo').val();
+        e.preventDefault();
+        $.ajax({
+            url: 'lectivo/editarLectivo/',
+            type: "POST",
+            data: {
+                idLectivo: idLectivo, axo: axo
+            },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalEditarLectivo",
+                    "#formEditarLectivo", respuesta
+                );
+                alertaModificado();
+            }
+        });
+    });
+
+    /*ELIMINAR Año Lectivo*/
+    $("#table").on("click", ".BtnBorrarLectivo", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let idLectivoDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'lectivo/borrarLectivo/',
+                    type: 'post',
+                    data: { idLectivoDel: idLectivoDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
+        });
+    });
+
+    /*====================================
       ================MUNICIPIOS==============
       ======================================*/
     /*AGREGAR Departamentos*/
     $("#formAgregarMunicipio").submit(function (e) {
         e.preventDefault();
-        let idDepartamento = $("#idDepartamento").val();
-        let nombreMunicipio = $("#nombreMunicipio").val();
+        let dptoId = $("#dptoId").val();
+        let municipio = $("#municipio").val();
         $.ajax({
             url: "municipio/agregarMunicipio/",
-            type: "post",
-            data: { idDepartamento: idDepartamento, nombreMunicipio: nombreMunicipio },
+            type: "POST",
+            data: { dptoId: dptoId, municipio: municipio },
             success: function (respuesta) {
                 modalFormRespuesta(
                     "#modalAgregarMunicipio",

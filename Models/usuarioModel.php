@@ -21,16 +21,17 @@ class usuarioModel extends Model
         $this->_db->prepare("INSERT INTO usuarios (usuario, clave, rol) VALUES (:usuario, :clave, :rol);")->execute(array('usuario' => $usuario, 'clave'=> $hash,'rol'=> $rol));
     }
 
-    // /*Función para EDITAR Departamento */
-    // public function editarDepartamento ($nombreDptoUp, $idDpto)
-    // {
-    //     $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp'=>$nombreDptoUp, 'idDpto'=>$idDpto));
-    // }
+    /*Función para EDITAR Usuarios */
+    public function editarUsuario ($idUsr, $usuarioUp, $passUp, $rolUp)
+    {
+        $hash=password_hash($passUp, PASSWORD_DEFAULT);
+        $this->_db->prepare("UPDATE usuarios set usuario=:usuarioUp, clave=:passUp, rol=:rolUp where id_usuario=:idUsr")->execute(array('idUsr'=>$idUsr, 'usuarioUp'=>$usuarioUp, 'passUp'=>$hash, 'rolUp'=>$rolUp));
+    }
 
-    // //Función para BORRAR Departamentos
-    // public function borrarDepartamento($idDptoDel)
-    // {
-    //     $this->_db->prepare('DELETE FROM departamentos WHERE id_departamento=:idDptoDel')->execute(array('idDptoDel' => $idDptoDel));
-    // }
+    //Función para BORRAR Usuarios
+    public function borrarUsuario($idUsrDel)
+    {
+        $this->_db->prepare('DELETE FROM usuarios WHERE id_usuario=:idUsrDel')->execute(array('idUsrDel' => $idUsrDel));
+    }
 }
 ?>

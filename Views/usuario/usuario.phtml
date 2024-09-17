@@ -78,47 +78,82 @@
                         <div class="form-group">
                             <label for="rolUsuario" class="form-label">Rol</label>
                             <select name="rolUsuario" id="rolUsuario" class="form-select">
-                                <option id="admin" name="admin" value="admin">Administrador
+                                <option value="admin">Administrador
                                 </option>
-                                <option id="docente" name="docente" value="docente">Docente</option>
-                                <option id="estudiante" name="estudiante" value="estudiante">Estudiante</option>
+                                <option value="docente">Docente</option>
+                                <option value="estudiante">Estudiante</option>
                             </select>
                         </div>
 
                 </div>
             </div>
-            
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar usuario</button>
-            
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Agregar usuario</button>
+
             </div>
             </form>
         </div>
     </div>
 </div>
 
-<!-- Modal para EDITAR DEPARTAMENTOS
-<div class="modal fade" id="modalEditarDepartamento" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<!-- Modal EDITAR Usuarios -->
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Departamento</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formEditarDepartamento" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formEditarUsuario" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
-                            <label for="idDpto" class="form-label">ID Departamento</label>
-                            <input type="text" class="form-control" id="idDpto" name="idDpto" disabled>
+                            <label for="idUsr" class="form-label">ID Usuario</label>
+                            <input type="text" class="form-control" id="idUsr" name="idUsr">
                         </div>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="nombreDptoUp" class="form-label">Nombre del departamento</label>
-                            <input type="text" class="form-control" id="nombreDptoUp" name="nombreDptoUp">
+                        <div class="form-group">
+                            <label for="usuarioUp">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="usuarioUp" name="usuarioUp">
+                            <span id="result"></span>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="claveUp" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="claveUp" name="claveUp">
+                                <span class="input-group-text" id="ocultar"><i class="fa-solid fa-eye"
+                                        onclick="ocultarPass('#claveUp', this);"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="passUp" class="form-label">Repita contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="passUp" name="passUp">
+                                <span class="input-group-text" id="ocultaspass"><i class="fa-solid fa-eye"
+                                        onclick="ocultarPass('#passUp', this);"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progress-bar" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rolUp" class="form-label">Rol</label>
+                            <select name="rolUp" id="rolUp" class="form-select">
+                                <option value="admin">Administrador
+                                </option>
+                                <option value="docente">Docente</option>
+                                <option value="estudiante">Estudiante</option>
+                            </select>
                         </div>
 
                 </div>
@@ -130,4 +165,4 @@
             </form>
         </div>
     </div>
-</div> -->
+</div>

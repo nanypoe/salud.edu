@@ -370,5 +370,5 @@ CALL ingresarMunicipios ('Costa Caribe Sur', 'Nueva Guinea');
 CALL ingresarMunicipios ('Costa Caribe Sur', 'Paiwas');
 
 -- CONSULTA PARA Usuario Root, contraseña: Root-2024*
-INSERT INTO `usuarios` (`id_usuario`, `usuario`, `clave`, `rol`) VALUES
-(1, 'root', '$2y$10$fELo5JQP5ETIfJqKoqPP/ONOspQgn8rJerxvK07Ug3KIWVZeAfNS.', 'admin');
+INSERT INTO `usuarios` (`usuario`, `clave`, `rol`) VALUES
+('root', '$2y$10$fELo5JQP5ETIfJqKoqPP/ONOspQgn8rJerxvK07Ug3KIWVZeAfNS.', 'admin');
