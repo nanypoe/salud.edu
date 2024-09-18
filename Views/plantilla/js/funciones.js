@@ -352,6 +352,68 @@ $(function () {
         });
     });
 
+    /*EDITAR Municipios*/
+    /*CARGAR los datos de MUNICIPIOS al modal EDITAR*/
+    $(".tablaMunicipios").on("click", ".btnEditarMunicipio", function () {
+        let datos = JSON.parse($(this).attr("data-municipio"));
+        $("#muniIdUp").val(datos["id_municipio"]);
+        $("#municipioUp").val(datos["nombre_municipio"]);
+    });
+
+    /*ENVIAR al Backend datos de AÑO Municipios editados*/
+    $('#formEditarMunicipio').submit(function (e) {
+        $('#muniIdUp').prop("disabled", false);
+        let muniIdUp = $('#muniIdUp').val();
+        let municipioUp = $('#municipioUp').val();
+        e.preventDefault();
+        $.ajax({
+            url: 'municipio/editarMunicipio/',
+            type: "POST",
+            data: {
+                muniIdUp: muniIdUp, municipioUp: municipioUp
+            },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalEditarMunicipio",
+                    "#formEditarMunicipio", respuesta
+                );
+                alertaModificado();
+            }
+        });
+    });
+
+    /*ELIMINAR Municipio*/
+    $("#table").on("click", ".BtnBorrarMunicipio", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let idMunicipioDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'municipio/borrarMunicipio/',
+                    type: 'post',
+                    data: { idMunicipioDel: idMunicipioDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
+        });
+    });
+
     /*====================================
       ================ESCUELAS==============
       ======================================*/
