@@ -38,8 +38,8 @@ class municipioController extends Controller
                 <td>' . $fila[$i]['nombre_municipio'] . '</td>
 
                     <td>
-                    <button data-departamentos=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarDepartamento" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarDepartamento"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
-                    <button data-id=' . $fila[$i]['id_municipio'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarDepartamento"><i class="fa-solid fa-trash"></i> Borrar</button>
+                    <button data-municipio=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarMunicipio" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarMunicipio"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
+                    <button data-id=' . $fila[$i]['id_municipio'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarMunicipio"><i class="fa-solid fa-trash"></i> Borrar</button>
                     </td>
                 </tr>
                 ';
@@ -47,25 +47,24 @@ class municipioController extends Controller
         return $tabla;
     }
 
-    /*Función para AGREGAR nuevos DEPARTAMENTOS*/
-    public function agregarDepartamento()
+    /*Función para AGREGAR nuevos MUNICIPIOS*/
+    public function agregarMunicipio()
     {
-        $nombreDpto = $this->getTexto('nombreDpto');
-        $this->_munic->agregarDepartamento($nombreDpto);
+        $this->_munic->agregarMunicipio($this->getTexto('dptoId'), $this->getTexto('municipio'));
         echo $this->verMunicipio();
     }
 
     /*Función para EDITAR los DEPARTAMENTOS previamente agredos*/
-    public function editarDepartamento()
+    public function editarMunicipio()
     {
-        $this->_munic->editarDepartamento($this->getTexto('nombreDptoUp'), $this->getTexto('idDpto'));
+        $this->_munic->editarMunicipio($this->getTexto('muniIdUp'), $this->getTexto('municipioUp'));
         echo $this->verMunicipio();
     }
 
-    // Función para BORRAR los DEPARTAMENTOS
-    public function borrarDepartamento()
+    // Función para BORRAR los MUNICIPIOS
+    public function borrarMunicipio()
     {
-        $this->_munic->borrarDepartamento($this->getTexto('idDptoDel'));
+        $this->_munic->borrarMunicipio($this->getTexto('idMunicipioDel'));
         echo $this->verMunicipio();
     }
 }

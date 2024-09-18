@@ -8,6 +8,8 @@ class municipioModel extends Model
         parent::__construct();
     }
 
+    // ########## C.R.U.D ###### //
+    // LECTURA
     /*Función para OBTENER datos de MUNICIPIOS para la Vista*/
     public function obtenerDatosMunicipio()
     {
@@ -20,22 +22,25 @@ class municipioModel extends Model
         return $this->_db->query("SELECT * FROM departamentos")->fetchAll();
     }
 
+    // CREACIÓN
     /*Función para AGREGAR Municipio*/
     public function agregarMunicipio($dptoId, $municipio)
     {
-        $this->_db->prepare("INSERT INTO municipios (id_departamento, nombre_municipio) VALUES (:dptoId, :municipio);")->execute(array('dptoId' => $dptoId, 'municipio'=>$municipio));
+        $this->_db->prepare("INSERT INTO municipios (id_departamento, nombre_municipio) VALUES (:dptoId, :municipio);")->execute(array('dptoId' => $dptoId, 'municipio' => $municipio));
     }
 
-    /*Función para EDITAR Departamento */
-    public function editarDepartamento($nombreDptoUp, $idDpto)
+    // EDICION
+    /*Función para EDITAR Municipio */
+    public function editarMunicipio($muniIdUp, $municipioUp)
     {
-        $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp' => $nombreDptoUp, 'idDpto' => $idDpto));
+        $this->_db->prepare("UPDATE municipios set nombre_municipio=:municipioUp where id_municipio=:muniIdUp")->execute(array('muniIdUp' => $muniIdUp, 'municipioUp' => $municipioUp));
     }
 
+    //ELIMINACIÓN
     //Función para BORRAR Departamentos
-    public function borrarDepartamento($idDptoDel)
+    public function borrarMunicipio($idMunicipioDel)
     {
-        $this->_db->prepare('DELETE FROM departamentos WHERE id_departamento=:idDptoDel')->execute(array('idDptoDel' => $idDptoDel));
+        $this->_db->prepare('DELETE FROM municipios WHERE id_municipio=:idMunicipioDel')->execute(array('idMunicipioDel' => $idMunicipioDel));
     }
 }
 ?>
