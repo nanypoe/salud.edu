@@ -18,9 +18,7 @@ CREATE TABLE departamentos (
 -- Tabla AÑO LECTIVO
 CREATE TABLE axo_lectivo(
     id_lectivo INT PRIMARY KEY AUTO_INCREMENT,
-    id_escuela INT,
-    axo INT,
-    FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
+    axo INT
 )ENGINE=InnoDB;
 
 -- Tabla MUNICIPIOS
@@ -35,11 +33,13 @@ CREATE TABLE municipios (
 CREATE TABLE escuelas (
     id_escuela INT AUTO_INCREMENT PRIMARY KEY,
     id_municipio INT,
+    id_lectivo INT,
     nombre VARCHAR(255) NOT NULL,
     direccion VARCHAR(255),
     telefono VARCHAR(50),
     longitud DOUBLE,
     latitud DOUBLE,
+    FOREIGN KEY (id_lectivo) REFERENCES axo_lectivo (id_lectivo) ON DELETE CASCADE,
     FOREIGN KEY (id_municipio) REFERENCES municipios (id_municipio) ON DELETE CASCADE    
 )ENGINE=InnoDB;
 

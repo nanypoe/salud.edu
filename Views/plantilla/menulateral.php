@@ -95,7 +95,7 @@
               <li class="">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>escuela">
                   <i class="fa-solid  fa-school"></i>
-                  <span class="nav-text">Escuela</span>
+                  <span class="nav-text">Escuelas</span>
                 </a>
               </li>
 

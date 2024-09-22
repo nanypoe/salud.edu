@@ -1,23 +1,26 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-        <center><strong>Registro y Listado de Gerentes de Escuelas</strong></center>
+            <center><strong>Registro y Listado de Gerentes de Escuelas</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarEscuela" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Escuela</button>
+            <button data-bs-target="#modalAgregarEscuela" data-bs-toggle="modal" class="btn btn-primary float-right"><i
+                    class="fas fa-solid fa-plus"></i> Agregar Escuela</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <table id="table">
+            <table id="table" class="tablaEscuelas">
                 <thead>
                     <tr>
+                        <th>Año Lectivo</th>
+                        <th>Municipio</th>
                         <th>ID</th>
-                        <th>Nombre </th>
+                        <th>Escuela</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
                         <th>Longitud</th>
@@ -36,9 +39,9 @@
 
 
 <!--MODAL: Agregar Escuela-->
-    <div class="modal fade" id="modalAgregarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<div class="modal fade" id="modalAgregarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Escuela</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -46,29 +49,53 @@
             <div class="modal-body">
                 <div class="row">
                     <form class="row" method="post" id="formAgregarEscuela" enctype="multipart/form-data">
+
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="dptoEscuela" class="form-label">Departamento</label>
+                            <select name="dptoEscuela" id="dptoEscuela" class="form-select">
+                                <?= $this->departamento ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="municEscuela" class="form-label">Municipio</label>
+                            <select name="municEscuela" id="municEscuela" class="form-select" disabled>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3 col-lg-12">
+                            <label for="idAñoLectivo" class="form-label">Año Lectivo</label>
+                            <select name="idAñoLectivo" id="idAñoLectivo" class="form-select">
+                                <?= $this->lectivo?>
+                            </select>
+                        </div>
+
                         <div class="mb-3 col-lg-12">
                             <label for="nombreEscuela" class="form-label">Nombre de la Escuela</label>
                             <input type="text" class="form-control" id="nombreEscuela" name="nombreEscuela">
                         </div>
 
+
                         <div class="mb-3 col-lg-12">
                             <label for="direccionEscuela" class="form-label">Dirección</label>
-                            <textarea name="direccionEscuela" id="direccionEscuela" class="form-control" placeholder="Introduzca la dirección de la Escuela"></textarea>
+                            <textarea name="direccionEscuela" id="direccionEscuela" class="form-control"
+                                placeholder="Introduzca la dirección de la Escuela"></textarea>
                         </div>
 
-                        <div class="mb-3 col-lg-6">
+                        <div class="mb-3 col-lg-12">
                             <label for="telefonoEscuela" class="form-label">Telefono</label>
                             <input type="tel" class="form-control" id="telefonoEscuela" name="telefonoEscuela">
                         </div>
 
                         <div class="mb-3 col-lg-6">
                             <label for="longitudEscuela" class="form-label">Longitud</label>
-                            <input type="tel" class="form-control" id="longitudEscuela" name="longitudEscuela">
+                            <input type="text" class="form-control" id="longitudEscuela" name="longitudEscuela">
                         </div>
 
                         <div class="mb-3 col-lg-6">
                             <label for="latitudEscuela" class="form-label">Latitud</label>
-                            <input type="tel" class="form-control" id="latitudEscuela" name="latitudEscuela">
+                            <input type="text" class="form-control" id="latitudEscuela" name="latitudEscuela">
                         </div>
 
                 </div>
@@ -78,27 +105,46 @@
                 <button type="submit" class="btn btn-primary">Guardar Escuela</button>
             </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
 
 
-    <!--MODAL: Actualizar Escuela-->
-
-    <div class="modal fade" id="modalEditarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<!-- MODAL: Actualizar Escuela -->
+<div class="modal fade" id="modalEditarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Escuela</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formEditarAlumno" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formEditarEscuela" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
                             <label for="idEscuela" class="form-label">ID Escuela</label>
-                            <input type="text" class="form-control" id="idEscuela" name="idEscuela">
+                            <input type="text" class="form-control" id="idEscuela" name="idEscuela" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="idAñoLectivoUp" class="form-label">Año Lectivo</label>
+                            <select name="idAñoLectivoUp" id="idAñoLectivoUp" class="form-select">
+                                <?= $this->lectivo ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="dptoEscuela" class="form-label">Departamento</label>
+                            <select name="dptoEscuela" id="dptoEscuelaUp" class="form-select">
+                                <?= $this->departamento ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="municEscuela" class="form-label">Municipio</label>
+                            <select name="municEscuelaUp" id="municEscuelaUp" class="form-select" disabled>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-lg-12">
@@ -108,22 +154,23 @@
 
                         <div class="mb-3 col-lg-12">
                             <label for="direccionEscuelaUp" class="form-label">Dirección</label>
-                            <textarea name="direccionEscuelaUp" id="direccionEscuelaUp" class="form-control">Introduzca la dirección de la escuela</textarea>
+                            <textarea name="direccionEscuelaUp" id="direccionEscuelaUp"
+                                class="form-control">Introduzca la dirección de la escuela</textarea>
                         </div>
 
-                        <div class="mb-3 col-lg-6">
+                        <div class="mb-3 col-lg-12">
                             <label for="telefonoEscuelaUp" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefonoEscuelaUp" name="telefonoEscuelaUp">
+                            <input type="tel" class="form-control" id="telefonoEscuelaUp" name="teleEscuelaUp">
                         </div>
 
                         <div class="mb-3 col-lg-6">
                             <label for="longitudEscuelaUp" class="form-label">Longitud</label>
-                            <input type="tel" class="form-control" id="longitudEscuelaUp" name="longitudEscuelaUp">
+                            <input type="text" class="form-control" id="longitudEscuelaUp" name="longEscuelaUp">
                         </div>
 
                         <div class="mb-3 col-lg-6">
                             <label for="latitudEscuelaUp" class="form-label">Latitud</label>
-                            <input type="tel" class="form-control" id="latitudEscuelaUp" name="latitudEscuelaUp">
+                            <input type="text" class="form-control" id="latitudEscuelaUp" name="latEscuelaUp">
                         </div>
 
                 </div>
@@ -133,6 +180,6 @@
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
             </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
