@@ -80,6 +80,40 @@ $(function () {
         });
     }
 
+    //CARGAR Datos en Modal
+    /* Funcion para cargar municipios segun el departamento seleccionado */
+    function cargarMunicipioModal(idDpto, idMunic, dirFunction) {
+        $(idDpto).on("change", function () {
+            let idDepartamento = $(idDpto).val();
+            $.ajax({
+                url: dirFunction,
+                type: 'post',
+                data: { 'idDepartamento': idDepartamento },
+                success: function (respuesta) {
+                    $(idMunic).prop("disabled", false);
+                    $(idMunic).html(respuesta);
+                }
+            });
+        });
+    }
+
+    //Función para cargar municipios en el MODAL Editar
+    function editarMunicipioModal(idDpto, idMunic, dirFunction, idMunicipio = null) {
+        let idDepartamento = $(idDpto).val();
+        $.ajax({
+            url: dirFunction,
+            type: 'post',
+            data: { 'idDepartamento': idDepartamento },
+            success: function (respuesta) {
+                $(idMunic).prop("disabled", false);
+                $(idMunic).html(respuesta);
+                if (idMunicipio) {
+                    $(idMunic).val(idMunicipio); // Setear el valor una vez que las opciones se hayan cargado
+                }
+            }
+        });
+    }
+
     /*====================================
                  ==============USUARIOS==============
                  ======================================*/
@@ -417,49 +451,111 @@ $(function () {
     /*====================================
       ================ESCUELAS==============
       ======================================*/
-
-    /*===== Funcion para enviar los datos de las ESCUELAS =====*/
+    /*AGREGAR Escuelas*/
+    cargarMunicipioModal("#dptoEscuela", "#municEscuela", "escuela/obtenerMunicipio/");
     $("#formAgregarEscuela").submit(function (e) {
         e.preventDefault();
-        let nombreEscuela = $("#nombreEscuela").val();
-        let direccionEscuela = $("#direccionEscuela").val();
-        let telefonoEscuela = $("#telefonoEscuela").val();
-        let latitudEscuela = $("#latitudEscuela").val();
-        let longitudEscuela = $("#longitudEscuela").val();
-
+        $('#municEscuela').prop("disabled", false);
         $.ajax({
             url: "escuela/agregarEscuela/",
-            type: "post",
-            data: {
-                nombreEscuela: nombreEscuela,
-                direccionEscuela: direccionEscuela,
-                telefonoEscuela: telefonoEscuela,
-                latitudEscuela: latitudEscuela,
-                longitudEscuela: longitudEscuela,
-            },
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
             success: function (respuesta) {
-                $("#modalAgregarEscuela").modal("hide");
-                $("#formAgregarEscuela")[0].reset();
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                $("#table").DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true,
-                });
-                Swal.fire({
-                    title: "Agregado!",
-                    text: "El registro he sido registrado de forma correcta.",
-                    icon: "success",
-                });
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalAgregarEscuela",
+                        "#formAgregarEscuela", respuesta);
+                    alertaAgregado();
+                }
             },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //EDITAR Escuelas
+    /*CARGAR los datos de ESCUELAS al modal EDITAR*/
+    $(".tablaEscuelas").on("click", ".btnEditarEscuela", function () {
+        let datos = JSON.parse($(this).attr("data-escuela"));
+        $("#idAñoLectivoUp").val(datos["id_lectivo"]);
+        $("#idEscuela").val(datos["id_escuela"]);
+        $("#dptoEscuelaUp").val(datos["id_departamento"]);
+        $("#nombreEscuelaUp").val(datos["nombre"]);
+        $("#direccionEscuelaUp").val(datos["direccion"]);
+        $("#telefonoEscuelaUp").val(datos["telefono"]);
+        $("#longitudEscuelaUp").val(datos["longitud"]);
+        $("#latitudEscuelaUp").val(datos["latitud"]);
+
+        // Cargar el municipio basado en el departamento seleccionado
+        editarMunicipioModal("#dptoEscuelaUp", "#municEscuelaUp", "escuela/obtenerMunicipio/", datos["id_municipio"]);
+        cargarMunicipioModal("#dptoEscuelaUp", "#municEscuelaUp", "escuela/obtenerMunicipio/");
+    });
+
+    /*ENVIAR al Backend datos de ESCUELAS editados*/
+    $('#formEditarEscuela').submit(function (e) {
+        $('#idEscuela').prop("disabled", false);
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]);
+        }
+        $.ajax({url: "escuela/editarEscuela/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalEditarEscuela",
+                        "#formEditarEscuela", respuesta);
+                    alertaModificado();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //ELIMINAR Escuelas
+    $("#table").on("click", ".BtnBorrarEscuela", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let idEscuelaDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'escuela/borrarEscuela/',
+                    type: 'post',
+                    data: { idEscuelaDel: idEscuelaDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
         });
     });
 
