@@ -563,217 +563,321 @@ $(function () {
     /*====================================
       ================DOCENTES==============
       ======================================*/
-// AGREGAR Docente
-$("#formAgregarDocente").submit(function (e) {
-    e.preventDefault();
-    let formData  = new FormData(this);
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
-    $.ajax({
-        url: "docente/agregarDocente/",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (respuesta) {
-            console.log("Respuesta del servidor: ", respuesta);
-            if (respuesta.includes("Error en la consulta: ")) {
-                alert(respuesta);
-            } else {
-                modalFormRespuesta(
-                    "#modalAgregarDocente",
-                    "#formAgregarDocente", respuesta);
-                alertaAgregado();
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alertaError(jqXHR, textStatus, errorThrown);
+    // AGREGAR Docente
+    $("#formAgregarDocente").submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
         }
-    });
-});
-
-// EDITAR Docente
-$(".tablaDocentes").on("click", ".btnEditarDocente", function () {
-    let datos = JSON.parse($(this).attr("data-docente"));
-    $("#idDocenteUp").val(datos["id_docente"]);
-    $("#escuelaDocenteUp").val(datos["id_escuela"]);
-    $("#nombreDocenteUp").val(datos["nombre"]);
-    $("#apellidoDocenteUp").val(datos["apellido"]);
-    $("#emailDocenteUp").val(datos["email"]);
-    $("#telefonoDocenteUp").val(datos["telefono"]);
-    $("#perfilDocenteUp").val(datos["perfil"]);
-});
-
-// ENVIAR al Backend datos de Docente editados
-$('#formEditarDocente').submit(function (e) {
-    e.preventDefault();
-    let formData = new FormData(this);
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
-    $.ajax({
-        url: "docente/editarDocente/",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (respuesta) {
-            console.log("Respuesta del servidor: ", respuesta);
-            if (respuesta.includes("Error en la consulta: ")) {
-                alert(respuesta);
-            } else {
-                modalFormRespuesta(
-                    "#modalEditarDocente",
-                    "#formEditarDocente", respuesta);
-                alertaModificado();
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alertaError(jqXHR, textStatus, errorThrown);
-        }
-    });
-});
-
-//ELIMINAR Docentes
-$("#table").on("click", ".BtnBorrarDocente", function () {
-    Swal.fire({
-        title: "¿Estas seguro?",
-        text: "Que deseas eliminar el registro!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, Eliminar!",
-        cancelButtonText: "No, Cancelar"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let idDocenteDel = $(this).attr('data-id');
-            $.ajax({
-                url: 'docente/borrarDocente/',
-                type: 'post',
-                data: { idDocenteDel: idDocenteDel },
-                success: function (respuesta) {
-                    postBorrar(respuesta);
-                    alertaEliminado();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alertaError(jqXHR, textStatus, errorThrown);
+        $.ajax({
+            url: "docente/agregarDocente/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalAgregarDocente",
+                        "#formAgregarDocente", respuesta);
+                    alertaAgregado();
                 }
-            });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            alertaCancelado();
-        }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
     });
-});
+
+    // EDITAR Docente
+    $(".tablaDocentes").on("click", ".btnEditarDocente", function () {
+        let datos = JSON.parse($(this).attr("data-docente"));
+        $("#idDocenteUp").val(datos["id_docente"]);
+        $("#escuelaDocenteUp").val(datos["id_escuela"]);
+        $("#nombreDocenteUp").val(datos["nombre"]);
+        $("#apellidoDocenteUp").val(datos["apellido"]);
+        $("#emailDocenteUp").val(datos["email"]);
+        $("#telefonoDocenteUp").val(datos["telefono"]);
+        $("#perfilDocenteUp").val(datos["perfil"]);
+    });
+
+    // ENVIAR al Backend datos de Docente editados
+    $('#formEditarDocente').submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            url: "docente/editarDocente/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalEditarDocente",
+                        "#formEditarDocente", respuesta);
+                    alertaModificado();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //ELIMINAR Docentes
+    $("#table").on("click", ".BtnBorrarDocente", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let idDocenteDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'docente/borrarDocente/',
+                    type: 'post',
+                    data: { idDocenteDel: idDocenteDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
+        });
+    });
 
     /*====================================
     ================GRUPOS==============
     ======================================*/
     // AGREGAR Grupo
-$("#formAgregarGrupo").submit(function (e) {
-    e.preventDefault();
-    let formData  = new FormData(this);
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
-    $.ajax({
-        url: "grupo/agregarGrupo/",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (respuesta) {
-            console.log("Respuesta del servidor: ", respuesta);
-            if (respuesta.includes("Error en la consulta: ")) {
-                alert(respuesta);
-            } else {
-                modalFormRespuesta(
-                    "#modalAgregarGrupo",
-                    "#formAgregarGrupo", respuesta);
-                alertaAgregado();
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alertaError(jqXHR, textStatus, errorThrown);
+    $("#formAgregarGrupo").submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
         }
-    });
-});
-
-
-// EDITAR Grupo
-$(".tablaGrupos").on("click", ".btnEditarGrupo", function () {
-    let datos = JSON.parse($(this).attr("data-grupo"));
-    $("#idGrupo").val(datos["id_grupo"]); // corrected id
-    $("#idAxo").val(datos["lectivo_id"]); // corrected id
-    $("#idDocenteUp").val(datos["docente_id"]); // corrected id
-    $("#gradoGrupo").val(datos["axo_grupo"]); // corrected id
-    $("#seccionGrado").val(datos["nombre_grupo"]); // corrected id
-    $("#modalidadUp").val(datos["modalidad"]); // no change needed
-});
-
-// ENVIAR al Backend datos de Grupo editados
-$('#formEditarGrupo').submit(function (e) {
-    $("#idGrupo").prop("disabled", false);
-    e.preventDefault();
-    let formData = new FormData(this);
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
-    $.ajax({
-        url: "grupo/editarGrupo/",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (respuesta) {
-            console.log("Respuesta del servidor: ", respuesta);
-            if (respuesta.includes("Error en la consulta: ")) {
-                alert(respuesta);
-            } else {
-                modalFormRespuesta(
-                    "#modalEditarGrupo",
-                    "#formEditarGrupo", respuesta);
-                alertaModificado();
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alertaError(jqXHR, textStatus, errorThrown);
-        }
-    });
-});
-
-//ELIMINAR Grupo
-$(".tablaGrupos").on("click", ".BtnBorrarGrupo", function () {
-    Swal.fire({
-        title: "¿Estas seguro?",
-        text: "Que deseas eliminar el registro!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, Eliminar!",
-        cancelButtonText: "No, Cancelar"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let id_grupoDel = $(this).attr('data-id');
-            $.ajax({
-                url: 'grupo/borrarGrupo/',
-                type: 'post',
-                data: { id_grupoDel: id_grupoDel },
-                success: function (respuesta) {
-                    postBorrar(respuesta);
-                    alertaEliminado();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alertaError(jqXHR, textStatus, errorThrown);
+        $.ajax({
+            url: "grupo/agregarGrupo/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalAgregarGrupo",
+                        "#formAgregarGrupo", respuesta);
+                    alertaAgregado();
                 }
-            });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            alertaCancelado();
-        }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
     });
-});
+
+
+    // EDITAR Grupo
+    $(".tablaGrupos").on("click", ".btnEditarGrupo", function () {
+        let datos = JSON.parse($(this).attr("data-grupo"));
+        $("#idGrupo").val(datos["id_grupo"]); // corrected id
+        $("#idAxo").val(datos["lectivo_id"]); // corrected id
+        $("#idDocenteUp").val(datos["docente_id"]); // corrected id
+        $("#gradoGrupo").val(datos["axo_grupo"]); // corrected id
+        $("#seccionGrado").val(datos["nombre_grupo"]); // corrected id
+        $("#modalidadUp").val(datos["modalidad"]); // no change needed
+    });
+
+    // ENVIAR al Backend datos de Grupo editados
+    $('#formEditarGrupo').submit(function (e) {
+        $("#idGrupo").prop("disabled", false);
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            url: "grupo/editarGrupo/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalEditarGrupo",
+                        "#formEditarGrupo", respuesta);
+                    alertaModificado();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //ELIMINAR Grupo
+    $(".tablaGrupos").on("click", ".BtnBorrarGrupo", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let id_grupoDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'grupo/borrarGrupo/',
+                    type: 'post',
+                    data: { id_grupoDel: id_grupoDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
+        });
+    });
+
+    /*====================================
+        ================MATERIAS==============
+        ======================================*/
+    //AGREGAR MATERIA
+    $("#formAgregarMateria").submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            url: "materia/agregarMateria/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalAgregarMateria",
+                        "#formAgregarMateria", respuesta);
+                    alertaAgregado();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //EDITAR MATERIA
+    $(".tablaMateria").on("click", ".btnEditarMateria", function () {
+        let datos = JSON.parse($(this).attr("data-materia"));
+        $("#id_materia").val(datos["id_materia"]);
+        $("#grupoUp").val(datos["id_grupo"]);
+        $("#materiaUp").val(datos["nombre_materia"]);
+    });
+
+    // ENVIAR al Backend datos de Materia editados
+    $('#formEditarMateria').submit(function (e) {
+        $("#id_materia").prop("disabled", false);
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            url: "materia/editarMateria/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalEditarMateria",
+                        "#formEditarMateria", respuesta);
+                    alertaModificado();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //ELIMINAR MATERIA
+    $(".tablaMateria").on("click", ".BtnBorrarMateria", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let id_materiaDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'materia/borrarMateria/',
+                    type: 'post',
+                    data: { id_materiaDel: id_materiaDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
+        });
+    });
 
     /*====================================
    ================ESTUDIANTES==============
@@ -884,104 +988,6 @@ $(".tablaGrupos").on("click", ".BtnBorrarGrupo", function () {
         });
     });
 
-
-    /*====================================
-      ================MAESTROS==============
-      ======================================*/
-
-    /* Funcion para enviar los datos de los MAESTROS*/
-
-    $("#formAgregarMaestros").submit(function (e) {
-        e.preventDefault();
-        let idEscuela = $("#id").val();
-        let nombre = $("#nombre").val();
-        let apellido = $("#apellido").val();
-        let correo = $("#correo").val();
-        let telefono = $("#telefono").val();
-        let perfil = $("#perfil").val();
-        $.ajax({
-            url: "maestros/agregarMaestros/",
-            type: "post",
-            data: {
-                id: idEscuela,
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                telefono: telefono,
-                perfil: perfil,
-            },
-            success: function (respuesta) {
-                $("#modalAgregarMaestro").modal("hide");
-                $("#formAgregarMaestros")[0].reset();
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                $("#table").DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true,
-                });
-                Swal.fire({
-                    title: "Agregado!",
-                    text: "El registro a sido Agregado de forma correcta.",
-                    icon: "success",
-                });
-            },
-        });
-    });
-
-    /*====================================
-      ================MATERIA==============
-      ======================================*/
-    /*AGREGAR Materias*/
-
-    $("#formAgregarMateria").submit(function (e) {
-        e.preventDefault();
-        let idGrupo = $("#idGrupo").val();
-        let idMaestro = $("#idMaestro").val();
-        let nombreMateria = $("#nombreMateria").val();
-        $.ajax({
-            url: "materia/agregarMateria/",
-            type: "post",
-            data: { idGrupo: idGrupo, idMaestro: idMaestro, nombreMateria: nombreMateria },
-            success: function (respuesta) {
-                modalFormRespuesta(
-                    "#modalAgregarMateria",
-                    "#formAgregarMateria", respuesta);
-                alertaAgregado();
-            },
-        });
-    });
-
-    /*====================================
-    ==PRUEBAS FÍSICO-MOTRICES==============
-    ======================================*/
-    $("#formAgregarMateria").submit(function (e) {
-        e.preventDefault();
-        let idE = $("#idE").val();
-        let tipoPrueba = $("#tipoPrueba").val();
-        let resultadoPrueba = $("#resultadoPrueba").val();
-        let unidadPrueba = $("#unidadPrueba").val();
-        let observacionPrueba = $("#observacionPrueba").val();
-        let axo = $("#axo").val();
-        $.ajax({
-            url: "prueba/agregarPrueba/",
-            type: "post",
-            data: { idE: idE, tipoPrueba: tipoPrueba, resultadoPrueba: resultadoPrueba, unidadPrueba: unidadPrueba, observacionPrueba: observacionPrueba, axo: axo },
-            success: function (respuesta) {
-                modalFormRespuesta(
-                    "#modalAgregarPrueba",
-                    "#formAgregarPrueba", respuesta);
-                alertaAgregado();
-            },
-        });
-    });
 
 });
 

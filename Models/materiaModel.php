@@ -2,34 +2,68 @@
 
 class materiaModel extends Model
 {
-
     function __construct()
     {
         parent::__construct();
     }
 
-    /*Función para OBTENER datos de MATERIAS para la Vista*/
-    public function obtenerDatosMateria()
+    // Función para obtener GRUPOS para la Vista
+    public function obtenerGrupos()
     {
-        return $this->_db->query("SELECT materia.id_materia, nombre_grupo, maestros.nombre, maestros.apellido FROM materia INNER JOIN grupos ON materia.id_grupo=grupos.id_grupo INNER JOIN maestros ON materia.id_maestro=maestros.id_maestro")->fetchAll();
+        return $this->_db->query("SELECT * FROM grupos")->fetchAll();
     }
 
-    /*Función para AGREGAR Materias*/
-    public function agregarDepartamento($nombreDpto)
+    // Función para obtener MATERIAS para la Vista
+    public function obtenerMaterias()
     {
-        $this->_db->prepare("INSERT INTO departamentos (nombre_departamento) VALUES (:nombreDpto);")->execute(array('nombreDpto' => $nombreDpto));
+        return $this->_db->query("SELECT m.*, g.nombre_grupo 
+                                 FROM materias m 
+                                 INNER JOIN grupos g ON m.id_grupo = g.id_grupo")->fetchAll();
     }
 
-    /*Función para EDITAR Materias */
-    public function editarDepartamento ($nombreDptoUp, $idDpto)
+    // Función para AGREGAR Materia
+    public function agregarMateria($id_grupo, $nombre_materia)
     {
-        $this->_db->prepare("UPDATE departamentos set nombre_departamento=:nombreDptoUp where id_departamento=:idDpto")->execute(array('nombreDptoUp'=>$nombreDptoUp, 'idDpto'=>$idDpto));
+        try {
+            $stmt = $this->_db->prepare("INSERT INTO materias (
+                id_grupo,
+                nombre_materia
+            ) VALUES (
+                :id_grupo,
+                :nombre_materia
+            )");
+            $stmt->execute(array(
+                'id_grupo' => $id_grupo,
+                'nombre_materia' => $nombre_materia
+            ));
+        } catch (PDOException $e) {
+            echo "Error en la consulta: " . $e->getMessage();
+            return false;
+        }
     }
 
-    //Función para BORRAR Materias
-    public function borrarDepartamento($idDptoDel)
+    // Función para EDITAR Materia
+    public function editarMateria($id_materia, $id_grupo, $nombre_materia)
     {
-        $this->_db->prepare('DELETE FROM departamentos WHERE id_departamento=:idDptoDel')->execute(array('idDptoDel' => $idDptoDel));
+        try {
+            $stmt = $this->_db->prepare("UPDATE materias SET 
+            id_grupo=:id_grupo,
+            nombre_materia=:nombre_materia
+            WHERE id_materia=:id_materia");
+            $stmt->execute(array(
+                'id_materia' => $id_materia,
+                'id_grupo' => $id_grupo,
+                'nombre_materia' => $nombre_materia
+            ));
+        } catch (PDOException $e) {
+            echo "Error al actualizar la materia: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    // Función para BORRAR Materia
+    public function borrarMateria($id_materiaDel)
+    {
+        $this->_db->prepare('DELETE FROM materias WHERE id_materia=:id_materiaDel')->execute(array('id_materiaDel' => $id_materiaDel));
     }
 }
-?>
