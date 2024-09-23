@@ -1,13 +1,15 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-        <center><strong>Registro y Listado de Materias</strong></center>
+            <center><strong>Registro y Listado de Materias</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarMateria" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Materia</button>
+            <button class="btn btn-primary float-right" data-bs-target="#modalAgregarMateria" data-bs-toggle="modal">
+                <i class="fas fa-solid fa-plus"></i> Agregar Materia
+            </button>
         </div>
     </div>
 
@@ -18,124 +20,80 @@
                     <tr>
                         <th>ID Materia</th>
                         <th>Grupo</th>
-                        <th>Maestro</th>
-                        <th>Materia</th>                      
+                        <th>Materia</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?= $this->tabla ?>
                 </tbody>
-
             </table>
         </div>
     </div>
-</div>
 
-
-<!--Modal AGREGAR Materias-->
+    <!-- Modal Agregar Materia -->
     <div class="modal fade" id="modalAgregarMateria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Materia</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgregarMateria" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="id_grupo" class="form-label">Grupo</label>
+                            <select class="form-select" name="id_grupo" id="id_grupo">
+                                <?= $this->grupos ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre_materia" class="form-label">Materia</label>
+                            <input type="text" class="form-control" id="nombre_materia" name="nombre_materia">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Materia</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Materia -->
+<div class="modal fade" id="modalEditarMateria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Materia</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Materia</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <form class="row" method="post" id="formAgregarMateria" enctype="multipart/form-data">
+                <form id="formEditarMateria" method="post" enctype="multipart/form-data">
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="idGrupo" class="form-label">Grupos</label>
-                            <select class="form-select" name="idGrupo" id="idGrupo"> 
-                                <?=$this->grupo?>
-                            </select>
-                        </div>
+                    <div class="mb-3">
+                        <label for="id_materia" class="form-label">ID Materia</label>
+                        <input type="text" id="id_materia" name="id_materia" class="form-control" disabled>
+                    </div>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="idMaestro" class="form-label">Maestro</label>
-                            <select class="form-select" name="idMaestro" id="idMaestro"> 
-                                <?=$this->maestro?>
-                            </select>
-                        </div>
+                    <div class="mb-3">
+                        <label for="grupoUp" class="form-label">Grupo</label>
+                        <select class="form-select" name="grupoUp" id="grupoUp">
+                            <?= $this->grupos ?>
+                        </select>
 
-                        <div class="mb-3 col-lg-12">
-                            <label for="nombreMateria" class="form-label">Materia</label>
-                            <select class="form-select" name="nombreMateria" id="nombreMateria"> 
-                                <option value="0">Seleccione una opción</option>
-                                <option value="matematica">Matemáticas</option>
-                                <option value="Lengua y literatura">Lengua y literatura</option>
-                                <option value="Ciencias Sociales">Ciencias Sociales</option>
-                                <option value="Ciencias Naturales">Ciencias Naturales</option>
-                                <option value="Creciendo en valores">Creciendo en valores</option>
-                                <option value="Talleres de Arte y Cultura">Talleres de Arte y Cultura</option>
-                                <option value="Educación Física">Educación Física</option>
-                                <option value="A E P">A E P</option>
-                                <option value="Educación Física">Educación Física</option>
-                            </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="materiaUp" class="form-label">Materia</label>
+                        <input type="text" class="form-control" id="materiaUp" name="materiaUp">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar materia</button>
-            </div>
-            </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!--MODAL: Actualizar Escuela-->
-
-    <div class="modal fade" id="modalEditarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Escuela</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <form class="row" method="post" id="formEditarAlumno" enctype="multipart/form-data">
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="idEscuela" class="form-label">ID Escuela</label>
-                            <input type="text" class="form-control" id="idEscuela" name="idEscuela">
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="nombreEscuelaUp" class="form-label">Nombre de la Escuela</label>
-                            <input type="text" class="form-control" id="nombreEscuelaUp" name="nombreEscuelaUp">
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="direccionEscuelaUp" class="form-label">Dirección</label>
-                            <textarea name="direccionEscuelaUp" id="direccionEscuelaUp" class="form-control">Introduzca la dirección de la escuela</textarea>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="telefonoEscuelaUp" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefonoEscuelaUp" name="telefonoEscuelaUp">
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="longitudEscuelaUp" class="form-label">Longitud</label>
-                            <input type="tel" class="form-control" id="longitudEscuelaUp" name="longitudEscuelaUp">
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="latitudEscuelaUp" class="form-label">Latitud</label>
-                            <input type="tel" class="form-control" id="latitudEscuelaUp" name="latitudEscuelaUp">
-                        </div>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            </div>
-            </form>
-            </div>
-        </div>
-    </div>
