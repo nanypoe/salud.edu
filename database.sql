@@ -97,6 +97,7 @@ CREATE TABLE estudiantes (
     FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
 ) ENGINE=InnoDB;
 
+-- Tabla para los Datos de SALUD del ESTUDIANTE
 CREATE TABLE salud_estudiante (
     id_estudiante INT,
     peso FLOAT,
@@ -120,6 +121,48 @@ CREATE TABLE pruebas_fisicas (
     observaciones TEXT,
     PRIMARY KEY (id_estudiante, fecha_prueba),
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+) ENGINE=InnoDB;
+
+-- Tabla para asignar ESTUDIANTES a un GRUPO
+CREATE TABLE asignacion_estudiantes (
+    id_asignacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_estudiante INT,
+    id_grupo INT,
+    fecha_asignacion DATE NOT NULL,
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_estudiante) ON DELETE CASCADE,
+    FOREIGN KEY (id_grupo) REFERENCES grupos(id_grupo) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabla de EVENTOS Deportivos y otros
+CREATE TABLE eventos_deportivos (
+    id_evento INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_evento VARCHAR(255) NOT NULL,
+    fecha_evento DATE NOT NULL,
+    duracion TIME,  -- Se puede cambiar a DECIMAL o INT si se prefiere en horas
+    direccion VARCHAR(255),
+    latitud DOUBLE,
+    longitud DOUBLE,
+    descripcion TEXT
+) ENGINE=InnoDB;
+
+-- Tabla de EJERCICIOS
+CREATE TABLE ejercicios (
+    id_ejercicio INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_ejercicio VARCHAR(255),
+    descripcion TEXT,
+    categoria VARCHAR(255),  -- Por ejemplo, fuerza, resistencia, flexibilidad, etc.
+    duracion_estimada INT  -- En minutos o segundos, según prefieras
+) ENGINE=InnoDB;
+
+-- Tabla de PLANES - EJERCICIO
+CREATE TABLE ejercicios_plan (
+    id_ejercicio_plan INT AUTO_INCREMENT PRIMARY KEY,
+    id_plan INT,
+    id_ejercicio INT,
+    repeticiones INT,
+    series INT,
+    FOREIGN KEY (id_plan) REFERENCES planes_ejercicio(id_plan) ON DELETE CASCADE,
+    FOREIGN KEY (id_ejercicio) REFERENCES ejercicios(id_ejercicio) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 
