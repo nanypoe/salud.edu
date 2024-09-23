@@ -107,55 +107,16 @@
                 </a>
               </li>
 
-
-
-              <li class="">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>maestros">
-                  <i class="fa-solid fa-chalkboard-user"></i>
-                  <span class="nav-text">Maestros</span>
-                </a>
-              </li>
-
-              <li class="">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>estudiante">
-                  <i class="fa-solid fa-graduation-cap"></i>
-                  <span class="nav-text">Alumnos</span>
-                </a>
-              </li>
-
-              <li class="">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>salud">
-                  <i class="fa-solid fa-notes-medical"></i>
-                  <span class="nav-text">Perfil de Salud</span>
-                </a>
-              </li>
-
-
-
-
-
-              <li class="">
-
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>prueba">
-                  <i class="fa-solid  fa-location-pin"></i>
-                  <span class="nav-text">Prueba Fisica</span>
-                </a>
-              </li>
-
-              <li class="">
-
+              <!-- CRUD: Grupos -->
+              <li class="crudGrados">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
-                  <i class="fa-solid  fa-location-pin"></i>
-                  <span class="nav-text">Grupo</span>
+                <i class="fa-solid fa-people-group"></i>
+                  <span class="nav-text">Grupos/Secciones</span>
                 </a>
               </li>
 
-              <li class="">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>materia">
-                  <i class="fa-solid fa-book-open-reader"></i>
-                  <span class="nav-text">Materia</span>
-                </a>
-              </li>
+
+
 
               <li class="section-title">
                 Aplicaciones

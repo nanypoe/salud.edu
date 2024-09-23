@@ -670,50 +670,110 @@ $("#table").on("click", ".BtnBorrarDocente", function () {
     /*====================================
     ================GRUPOS==============
     ======================================*/
-    /*===== Funcion para enviar los datos de las GRUPOS =====*/
-    $("#formAgregarGrupo").submit(function (e) {
-        e.preventDefault();
-        let gradoGrupo = $("#gradoGrupo").val();
-        let seccionGrupo = $("#seccionGrupo").val();
-        let turnoGrupo = $("#turnoGrupo").val();
-        let modalidadGrupo = $("#modalidadGrupo").val();
-        let axoGrupo = $("#axoGrupo").val();
-
-        $.ajax({
-            url: "grupo/agregarGrupo/",
-            type: "post",
-            data: {
-                gradoGrupo: gradoGrupo,
-                seccionGrupo: seccionGrupo,
-                turnoGrupo: turnoGrupo,
-                modalidadGrupo: modalidadGrupo,
-                axoGrupo: axoGrupo,
-            },
-            success: function (respuesta) {
-                $("#modalAgregarGrupo").modal("hide");
-                $("#formAgregarGrupo")[0].reset();
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                $("#table").DataTable({
-                    dom: "Bfrtip",
-                    buttons: ["copy", "excel", "pdf", "print"],
-                    language: {
-                        sSearch: "Buscar",
-                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        zeroRecords: "No se encuentraron coincidencias",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-                    },
-                    responsive: true,
-                });
-                Swal.fire({
-                    title: "Agregado!",
-                    text: "El registro he sido registrado de forma correcta.",
-                    icon: "success",
-                });
-            },
-        });
+    // AGREGAR Grupo
+$("#formAgregarGrupo").submit(function (e) {
+    e.preventDefault();
+    let formData  = new FormData(this);
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    $.ajax({
+        url: "grupo/agregarGrupo/",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            console.log("Respuesta del servidor: ", respuesta);
+            if (respuesta.includes("Error en la consulta: ")) {
+                alert(respuesta);
+            } else {
+                modalFormRespuesta(
+                    "#modalAgregarGrupo",
+                    "#formAgregarGrupo", respuesta);
+                alertaAgregado();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertaError(jqXHR, textStatus, errorThrown);
+        }
     });
+});
+
+
+// EDITAR Grupo
+$(".tablaGrupos").on("click", ".btnEditarGrupo", function () {
+    let datos = JSON.parse($(this).attr("data-grupo"));
+    $("#idGrupo").val(datos["id_grupo"]); // corrected id
+    $("#idAxo").val(datos["lectivo_id"]); // corrected id
+    $("#idDocenteUp").val(datos["docente_id"]); // corrected id
+    $("#gradoGrupo").val(datos["axo_grupo"]); // corrected id
+    $("#seccionGrado").val(datos["nombre_grupo"]); // corrected id
+    $("#modalidadUp").val(datos["modalidad"]); // no change needed
+});
+
+// ENVIAR al Backend datos de Grupo editados
+$('#formEditarGrupo').submit(function (e) {
+    $("#idGrupo").prop("disabled", false);
+    e.preventDefault();
+    let formData = new FormData(this);
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    $.ajax({
+        url: "grupo/editarGrupo/",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            console.log("Respuesta del servidor: ", respuesta);
+            if (respuesta.includes("Error en la consulta: ")) {
+                alert(respuesta);
+            } else {
+                modalFormRespuesta(
+                    "#modalEditarGrupo",
+                    "#formEditarGrupo", respuesta);
+                alertaModificado();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertaError(jqXHR, textStatus, errorThrown);
+        }
+    });
+});
+
+//ELIMINAR Grupo
+$(".tablaGrupos").on("click", ".BtnBorrarGrupo", function () {
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "Que deseas eliminar el registro!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let id_grupoDel = $(this).attr('data-id');
+            $.ajax({
+                url: 'grupo/borrarGrupo/',
+                type: 'post',
+                data: { id_grupoDel: id_grupoDel },
+                success: function (respuesta) {
+                    postBorrar(respuesta);
+                    alertaEliminado();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alertaError(jqXHR, textStatus, errorThrown);
+                }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            alertaCancelado();
+        }
+    });
+});
 
     /*====================================
    ================ESTUDIANTES==============
