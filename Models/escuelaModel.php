@@ -116,11 +116,12 @@ class escuelaModel extends Model
             $stmt->execute(array(
                 'id_escuela' => $idEscuela,
                 'id_municipio' => $municEscuelaUp,
-                'nombre' => $idAñoLectivoUp,
-                'direccion' => $nombreEscuelaUp,
-                'telefono' => $direccionEscuelaUp,
-                'longitud' => $telefonoEscuelaUp,
-                'latitud' => $longitudEscuelaUp
+                'id_lectivo' => $idAñoLectivoUp,
+                'nombre' => $nombreEscuelaUp,
+                'direccion' => $direccionEscuelaUp,
+                'telefono' => $telefonoEscuelaUp,
+                'longitud' => $longitudEscuelaUp,
+                'latitud' => $latitudEscuelaUp
             ));
 
             // Mensaje opcional de éxito
@@ -139,4 +140,3 @@ class escuelaModel extends Model
         $this->_db->prepare('DELETE FROM escuelas WHERE id_escuela=:idEscuelaDel')->execute(array('idEscuelaDel' => $idEscuelaDel));
     }
 }
-?>

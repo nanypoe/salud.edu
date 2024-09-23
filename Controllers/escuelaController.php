@@ -27,7 +27,7 @@ class escuelaController extends Controller
     //Mandar DATOS de MUNICIPIOS a la Vista ESCUELAS
     public function obtenerMunicipio()
     {
-        $fila = $this->_escue->obtenerMunicipio($this->getTexto('idDepartamento'));
+        $fila = $this->_escue->obtenerMunicipio($this->getTexto('idSending'));
         $datos = '<option value="0"> Seleccione un Municipio</option>';
         for ($i = 0; $i < count($fila); $i++) {
             $datos .= '<option value="' . $fila[$i]['id_municipio'] . '">' . $fila[$i]['nombre_municipio'] . '</option>';
@@ -111,7 +111,3 @@ class escuelaController extends Controller
         echo $this->verEscuela();
     }
 }
-
-
-
-?>

@@ -12,7 +12,7 @@
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="index.php">
-            <img src="<?=PLANTILLA?>images/logo/hNegativo.png" class="brand-image">
+            <img src="<?= PLANTILLA ?>images/logo/hNegativo.png" class="brand-image">
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
@@ -20,12 +20,12 @@
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
-          <li class="active">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
-                  <i class="fa-solid  fa-house"></i>
-                  <span class="nav-text">Inicio</span>
-                </a>
-              </li>
+            <li class="active">
+              <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
+                <i class="fa-solid  fa-house"></i>
+                <span class="nav-text">Inicio</span>
+              </a>
+            </li>
 
             <li class="section-title">
               Inicio de Sesión
@@ -61,7 +61,7 @@
               <!-- CRUD: Usuarios -->
               <li class="crudUsuarios">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>usuario">
-                <i class="fa-regular fa-user"></i>
+                  <i class="fa-regular fa-user"></i>
                   <span class="nav-text">Usuarios</span>
                 </a>
               </li>
@@ -69,7 +69,7 @@
               <!-- CRUD: Departamentos -->
               <li class="crudDepartamentos">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
-                <i class="fa-solid fa-earth-americas"></i>
+                  <i class="fa-solid fa-earth-americas"></i>
                   <span class="nav-text">Departamentos</span>
                 </a>
               </li>
@@ -77,7 +77,7 @@
               <!-- CRUD: Año Lectivo -->
               <li class="crudLectivo">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>lectivo">
-                <i class="fa-regular fa-calendar"></i>
+                  <i class="fa-regular fa-calendar"></i>
                   <span class="nav-text">Años Lectivos</span>
                 </a>
               </li>
@@ -85,19 +85,29 @@
               <!-- CRUD: Municipios -->
               <li class="crudMunicipios">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>municipio">
-                <i class="fa-solid fa-map-location-dot"></i>
+                  <i class="fa-solid fa-map-location-dot"></i>
                   <span class="nav-text">Municipios</span>
                 </a>
               </li>
 
-              
 
-              <li class="">
+              <!-- CRUD: Escuelas -->
+              <li class="crudEscuelas">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>escuela">
                   <i class="fa-solid  fa-school"></i>
                   <span class="nav-text">Escuelas</span>
                 </a>
               </li>
+
+              <!-- CRUD: Docentes -->
+              <li class="crudGrados">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>docente">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                  <span class="nav-text">Docentes</span>
+                </a>
+              </li>
+
+
 
               <li class="">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>maestros">

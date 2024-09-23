@@ -43,30 +43,46 @@ CREATE TABLE escuelas (
     FOREIGN KEY (id_municipio) REFERENCES municipios (id_municipio) ON DELETE CASCADE    
 )ENGINE=InnoDB;
 
--- Tabla GRADOS
-CREATE TABLE grados (
-    id_grado INT,
+-- Tabla DOCENTES
+    CREATE TABLE docentes (
+    id_docente INT AUTO_INCREMENT PRIMARY KEY,
     id_escuela INT,
-    nombre_grado VARCHAR (15)
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email VARCHAR(100),
+    telefono VARCHAR(50),
+    FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Tabla GRUPOS
 CREATE TABLE grupos (
     id_grupo INT AUTO_INCREMENT PRIMARY KEY,
-    id_grado INT,
-    nombre_grupo varchar(1),
-    modalidad ENUM ("Matutino", "Vespertino", "Nocturno", "Sabatino", "Dominical")
-)engine=InnoDB;
+    lectivo_id INT,
+    docente_id INT,
+    axo_grupo VARCHAR(15),
+    nombre_grupo VARCHAR(50),
+    modalidad ENUM ("Matutino", "Vespertino", "Nocturno", "Sabatino", "Dominical"),
+    FOREIGN KEY (lectivo_id) REFERENCES axo_lectivo (id_lectivo),
+    FOREIGN KEY (docente_id) REFERENCES docentes (id_docente)
+) ENGINE=InnoDB;
 
+-- Tabla MATERIA
+CREATE TABLE materias (
+    id_materia INT PRIMARY KEY AUTO_INCREMENT,
+    id_grupo INT,
+    nombre_materia VARCHAR (45),
+    FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo)
+)ENGINE=InnoDB;
 
--- Tabla ESTUDIANTES
-CREATE table estudiantes (
-	id_estudiante INT PRIMARY KEY AUTO_INCREMENT,
+--Tabla ESTUDIANTES
+CREATE TABLE estudiantes (
+    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
+    id_grupo INT,
     id_escuela INT,
-    primer_nombre VARCHAR (255),
-    segundo_nombre VARCHAR (255),
-    primer_apellido VARCHAR (255),
-    segundo_apellido VARCHAR (255),
+    primer_nombre VARCHAR(50),
+    segundo_nombre VARCHAR(50),
+    primer_apellido VARCHAR(50),
+    segundo_apellido VARCHAR(50),
     edad INT,
     fecha_nacimiento DATE,
     sexo ENUM('Masculino', 'Femenino'),
@@ -75,13 +91,13 @@ CREATE table estudiantes (
     email VARCHAR(100),
     nombre_tutor VARCHAR(255),
     telefono_tutor VARCHAR(50),
-    imagen VARCHAR (15),
-	FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela)
-)ENGINE=InnoDB;
+    imagen VARCHAR(15),
+    estado ENUM('Activo', 'Inactivo'),
+    FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo),
+    FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
+) ENGINE=InnoDB;
 
--- Tabla DATOS DE SALUD del estudiante
 CREATE TABLE salud_estudiante (
-    id_salud INT PRIMARY KEY AUTO_INCREMENT,
     id_estudiante INT,
     peso FLOAT,
     altura FLOAT,
@@ -90,43 +106,21 @@ CREATE TABLE salud_estudiante (
     condicion_medica VARCHAR (255),
     descripcion TEXT,
     medicacion TEXT,
-    somatotipo VARCHAR (255)
-)ENGINE=InnoDB;
-
-
--- Tabla MATERIA
-CREATE TABLE materia(
-    id_materia int primary key auto_increment,
-    id_grupo int,
-    id_maestro int,
-    nombre_materia varchar(45),
-    foreign key (id_grupo) references grupos (id_grupo),
-    foreign key (id_maestro) references grupos (id_grupo)
-)engine=innodb;
-
--- Tabla MAESTROS
-CREATE TABLE maestros (
-    id_maestro INT AUTO_INCREMENT PRIMARY KEY,
-    id_escuela INT,
-    id_materia INT,
-    nombre VARCHAR(255) NOT NULL,
-    apellido VARCHAR(255) NOT NULL,
-    email VARCHAR(100),
-    telefono VARCHAR(50),
-    FOREIGN KEY (id_escuela) REFERENCES Escuelas(id_escuela) ON DELETE CASCADE,
-    FOREIGN KEY (id_materia) REFERENCES materia (id_materia) ON DELETE CASCADE
-)ENGINE=InnoDB;
+    somatotipo VARCHAR (255),
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+) ENGINE=InnoDB;
 
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
-CREATE TABLE puebras_fisicas (
-    id_prueba INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE pruebas_fisicas (
     id_estudiante INT,
-    tipo_prueba VARCHAR (255),
-    resultado VARCHAR (255),
-    unidad_medida VARCHAR (255),
+    fecha_prueba DATE,
+    tipo_prueba ENUM('Carrera', 'Salto', 'Flexibilidad', 'Resistencia', 'Otros'),
+    resultado FLOAT,
+    unidad_medida VARCHAR(20),
     observaciones TEXT,
-    fecha_prueba DATE
-)ENGINE=InnoDB;
+    PRIMARY KEY (id_estudiante, fecha_prueba),
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+) ENGINE=InnoDB;
 
 
 -- ######### CONSULTAS ###############
@@ -372,3 +366,13 @@ CALL ingresarMunicipios ('Costa Caribe Sur', 'Paiwas');
 -- CONSULTA PARA Usuario Root, contraseña: Root-2024*
 INSERT INTO `usuarios` (`usuario`, `clave`, `rol`) VALUES
 ('root', '$2y$10$fELo5JQP5ETIfJqKoqPP/ONOspQgn8rJerxvK07Ug3KIWVZeAfNS.', 'admin');
+
+
+-- OTRAS TABLAS FUTURAS
+-- -- Tabla GRADOS
+-- CREATE TABLE grados (
+--     id_grado INT AUTO_INCREMENT,
+--     id_escuela INT NOT NULL,
+--     nombre_grado VARCHAR (15) NOT NULL,
+--     PRIMARY KEY (id_grado, nombre_grado)
+-- )ENGINE=InnoDB;
