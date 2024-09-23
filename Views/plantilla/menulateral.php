@@ -130,6 +130,14 @@
                 </a>
               </li>
 
+              <!-- CRUD: Eventos -->
+              <li class="crudEstudiantes">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>eventos">
+                <i class="fa-regular fa-calendar-minus"></i>
+                  <span class="nav-text">Eventos</span>
+                </a>
+              </li>
+
 
 
 

@@ -74,7 +74,7 @@ CREATE TABLE materias (
     FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo)
 )ENGINE=InnoDB;
 
---Tabla ESTUDIANTES
+-- Tabla ESTUDIANTES
 CREATE TABLE estudiantes (
     id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
     id_grupo INT,
@@ -156,12 +156,10 @@ CREATE TABLE ejercicios (
 
 -- Tabla de PLANES - EJERCICIO
 CREATE TABLE ejercicios_plan (
-    id_ejercicio_plan INT AUTO_INCREMENT PRIMARY KEY,
-    id_plan INT,
+    id_plan INT AUTO_INCREMENT PRIMARY KEY,
     id_ejercicio INT,
     repeticiones INT,
     series INT,
-    FOREIGN KEY (id_plan) REFERENCES planes_ejercicio(id_plan) ON DELETE CASCADE,
     FOREIGN KEY (id_ejercicio) REFERENCES ejercicios(id_ejercicio) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
