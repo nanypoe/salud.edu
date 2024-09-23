@@ -17,7 +17,7 @@ class estudianteController extends Controller
         $filaAxo = $this->_estudiante->obtenerGrupos();
         $grupos = '<option value="0"> Seleccione un Grupo</option>';
         for ($i = 0; $i < count($filaAxo); $i++) {
-            $grupos .= '<option value="' . $filaAxo[$i]['id_grupo'] . '">' . $filaAxo[$i]['axo_grupo'] . '</option>';
+            $grupos .= '<option value="' . $filaAxo[$i]['id_grupo'] . '">' . $filaAxo[$i]['axo_grupo'] . ' '.$filaAxo[$i]['nombre_grupo'].'</option>';
         }
         $this->_view->grupos = $grupos;
 
@@ -25,7 +25,7 @@ class estudianteController extends Controller
         $fila = $this->_estudiante->obtenerEscuelas();
         $escuelas = '<option value="0"> Seleccione una Escuela</option>';
         for ($i = 0; $i < count($fila); $i++) {
-            $escuelas .= '<option value="' . $fila[$i]['id_escuela'] . '">' . $fila[$i]['nombre_escuela'] . '</option>';
+            $escuelas .= '<option value="' . $fila[$i]['id_escuela'] . '">' . $fila[$i]['nombre'] . '</option>';
         }
         $this->_view->escuelas = $escuelas;
 
