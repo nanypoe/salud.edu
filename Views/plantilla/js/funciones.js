@@ -503,9 +503,10 @@ $(function () {
         e.preventDefault();
         let formData = new FormData(this);
         for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]);
+            console.log(pair[0] + ', ' + pair[1]);
         }
-        $.ajax({url: "escuela/editarEscuela/",
+        $.ajax({
+            url: "escuela/editarEscuela/",
             type: "POST",
             data: formData,
             contentType: false,
@@ -560,8 +561,111 @@ $(function () {
     });
 
     /*====================================
-      ================GRADOS==============
+      ================DOCENTES==============
       ======================================*/
+// AGREGAR Docente
+$("#formAgregarDocente").submit(function (e) {
+    e.preventDefault();
+    let formData  = new FormData(this);
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    $.ajax({
+        url: "docente/agregarDocente/",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            console.log("Respuesta del servidor: ", respuesta);
+            if (respuesta.includes("Error en la consulta: ")) {
+                alert(respuesta);
+            } else {
+                modalFormRespuesta(
+                    "#modalAgregarDocente",
+                    "#formAgregarDocente", respuesta);
+                alertaAgregado();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertaError(jqXHR, textStatus, errorThrown);
+        }
+    });
+});
+
+// EDITAR Docente
+$(".tablaDocentes").on("click", ".btnEditarDocente", function () {
+    let datos = JSON.parse($(this).attr("data-docente"));
+    $("#idDocenteUp").val(datos["id_docente"]);
+    $("#escuelaDocenteUp").val(datos["id_escuela"]);
+    $("#nombreDocenteUp").val(datos["nombre"]);
+    $("#apellidoDocenteUp").val(datos["apellido"]);
+    $("#emailDocenteUp").val(datos["email"]);
+    $("#telefonoDocenteUp").val(datos["telefono"]);
+    $("#perfilDocenteUp").val(datos["perfil"]);
+});
+
+// ENVIAR al Backend datos de Docente editados
+$('#formEditarDocente').submit(function (e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    $.ajax({
+        url: "docente/editarDocente/",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            console.log("Respuesta del servidor: ", respuesta);
+            if (respuesta.includes("Error en la consulta: ")) {
+                alert(respuesta);
+            } else {
+                modalFormRespuesta(
+                    "#modalEditarDocente",
+                    "#formEditarDocente", respuesta);
+                alertaModificado();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertaError(jqXHR, textStatus, errorThrown);
+        }
+    });
+});
+
+//ELIMINAR Docentes
+$("#table").on("click", ".BtnBorrarDocente", function () {
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "Que deseas eliminar el registro!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let idDocenteDel = $(this).attr('data-id');
+            $.ajax({
+                url: 'docente/borrarDocente/',
+                type: 'post',
+                data: { idDocenteDel: idDocenteDel },
+                success: function (respuesta) {
+                    postBorrar(respuesta);
+                    alertaEliminado();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alertaError(jqXHR, textStatus, errorThrown);
+                }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            alertaCancelado();
+        }
+    });
+});
 
     /*====================================
     ================GRUPOS==============
