@@ -1,32 +1,31 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-            <center><strong>Registro de Datos de Salud del Estudiante</strong></center>
+            <center><strong>Registro y Listado de Salud Estudiante</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <a href="<?= BASE_URL ?>salud/agregar" class="btn btn-primary float-right"><i
-                    class="fas fa-solid fa-plus"></i> Agregar Datos de Salud</a>
+            <button data-bs-target="#modalAgregarSalud" data-bs-toggle="modal" class="btn btn-primary float-right"><i
+                    class="fas fa-solid fa-plus"></i> Agregar Salud Estudiante</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <table id="table">
+            <table id="table" class="tablaSaludEstudiante">
                 <thead>
                     <tr>
-                        <th>ID Salud</th>
-                        <th>Estudiante</th>
+                        <th>ID Estudiante</th>
                         <th>Peso</th>
                         <th>Altura</th>
                         <th>IMC</th>
-                        <th>Categoría de Peso</th>
-                        <th>Somatotipo</th>
+                        <th>Categoría Peso</th>
                         <th>Condición Médica</th>
                         <th>Descripción</th>
                         <th>Medicación</th>
+                        <th>Somatotipo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -39,75 +38,145 @@
 
 </div>
 
-<!-- Modal Actualizar Maestro -->
 
-<div class="modal fade" id="modalActualizarMaestro" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<!-- Modal agregar Salud Estudiante -->
+
+<div class="modal fade" id="modalAgregarSalud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Datos de Maestro</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Salud Estudiante</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formAgregarMaestros" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formAgregarSalud" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">ID Maestro</label>
-                            <input type="text" class="form-control" id="idUp">
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Escuela Labora</label>
-                            <select class="form-select" name="" id="id">
-
-                                <?= $this->escuelas ?>
+                            <label for="id_estudiante" class="form-label">ID Estudiante</label>
+                            <select class="form-select" name="id_estudiante" id="id_estudiante">
+                                <?= $this->estudiantes ?>
                             </select>
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Nombres Maestro</label>
-                            <input type="text" class="form-control" id="nombre">
+                            <label for="peso" class="form-label">Peso</label>
+                            <input type="number" class="form-control" id="peso" name="peso">
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Apellidos Maestro</label>
-                            <input type="text" class="form-control" id="apellido">
+                            <label for="altura" class="form-label">Altura</label>
+                            <input type="number" class="form-control" id="altura" name="altura">
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Correo Electronico</label>
-                            <input type="email" class="form-control" id="correo">
+                            <label for="imc" class="form-label">IMC</label>
+                            <input type="number" class="form-control" id="imc" name="imc">
                         </div>
 
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefono">
+                        <div class="mb-3 col-lg-12">
+                            <label for="categoria_peso" class="form-label">Categoría Peso</label>
+                            <input type="text" class="form-control" id="categoria_peso" name="categoria_peso">
                         </div>
 
-
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">Perfil</label>
-                            <input type="text" class="form-control" id="perfil">
+                        <div class="mb-3 col-lg-12">
+                            <label for="condicion_medica" class="form-label">Condición Médica</label>
+                            <input type="text" class="form-control" id="condicion_medica" name="condicion_medica">
                         </div>
 
+                        <div class="mb-3 col-lg-12">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                        </div>
 
+                        <div class="mb-3 col-lg-12">
+                            <label for="medicacion" class="form-label">Medicación</label>
+                            <textarea class="form-control" id="medicacion" name="medicacion"></textarea>
+                        </div>
 
+                        <div class="mb-3 col-lg-12">
+                            <label for="somatotipo" class="form-label">Somatotipo</label>
+                            <input type="text" class="form-control" id="somatotipo" name="somatotipo">
+                        </div>
 
-
-
-
+                </div >
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar
-                    Cambios</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal editar Salud Estudiante -->
+
+<div class="modal fade" id="modalEditarSalud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Salud Estudiante</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            </form>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formEditarSalud" enctype="multipart/form-data">
+
+                        <input type="hidden" id="id_salud_estudiante" name="id_salud_estudiante">
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="id_estudiante_edit" class="form-label">ID Estudiante</label>
+                            <select class="form-select" name="id_estudiante_edit" id="id_estudiante_edit">
+                                <?= $this->estudiantes ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="peso_edit" class="form-label">Peso</label>
+                            <input type="number" class="form-control" id="peso_edit" name="peso_edit">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="altura_edit" class="form-label">Altura</label>
+                            <input type="number" class="form-control" id="altura_edit" name="altura_edit">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="imc_edit" class="form-label">IMC</label>
+                            <input type="number" class="form-control" id="imc_edit" name="imc_edit">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="categoria_peso_edit" class="form-label">Categoría Peso</label>
+                            <input type="text" class="form-control" id="categoria_peso_edit" name="categoria_peso_edit">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="condicion_medica_edit" class="form-label">Condición Médica</label>
+                            <input type="text" class="form-control" id="condicion_medica_edit" name="condicion_medica_edit">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="descripcion_edit" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion_edit" name="descripcion_edit"></textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="medicacion_edit" class="form-label">Medicación</label>
+                            <textarea class="form-control" id="medicacion_edit" name="medicacion_edit"></textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="somatotipo_edit" class="form-label">Somatotipo</label>
+                            <input type="text" class="form-control" id="somatotipo_edit" name="somatotipo_edit">
+                        </div>
+
+                </div >
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

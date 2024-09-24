@@ -1,47 +1,48 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-        <center><strong>Registro y Listado de Pruebas fisicas</strong></center>
+            <center><strong>Registro y Listado de Pruebas Físico-Motrices</strong></center>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarPrueba" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Prueba Fisica</button>
+            <button data-bs-target="#modalAgregarPrueba" data-bs-toggle="modal" class="btn btn-primary float-right"><i
+                    class="fas fa-solid fa-plus"></i> Agregar Prueba</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <table id="table">
+            <table id="table" class="tablaPruebas">
                 <thead>
                     <tr>
-                        <th>Estudiante</th>
-                        <th>ID Prueba</th>
+                        <th>ID Estudiante</th>
+                        <th>Fecha de Prueba</th>
                         <th>Tipo de Prueba</th>
-                        <th>Unidad de medida</th>
-                        <th>Resultado obtenido</th>
+                        <th>Resultado</th>
+                        <th>Unidad de Medida</th>
                         <th>Observaciones</th>
-                        <th>Fecha</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?= $this->tabla ?>
+                    <?= $this->pruebas ?>
                 </tbody>
-
             </table>
         </div>
     </div>
+
 </div>
 
 
-<!--MODAL: Agregar Prueba Fisica-->
-    <div class="modal fade" id="modalAgregarPrueba" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<!-- Modal agregar Prueba -->
+
+<div class="modal fade" id="modalAgregarPrueba" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Prueba Fisica</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Prueba Físico-Motriz</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -49,100 +50,111 @@
                     <form class="row" method="post" id="formAgregarPrueba" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
-                            <label for="" class="form-label">Seleccione el ID del Estudiante</label>
-                            <select class="form-select" name="idE" id="idE">
+                            <label for="id_estudiante" class="form-label">ID Estudiante</label>
+                            <select class="form-select" name="id_estudiante" id="id_estudiante">
                                 <?= $this->estudiantes ?>
                             </select>
                         </div>
 
+                        <div class="mb-3 col-lg-12">
+                            <label for="fecha_prueba" class="form-label">Fecha de Prueba</label>
+                            <input type="date" class="form-control" id="fecha_prueba" name="fecha_prueba">
+                        </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="tipoPrueba" class="form-label">Tipo de prueba</label>
-                            <input type="text" class="form-control" id="tipoPrueba" name="tipoPrueba">
+                            <label for="tipo_prueba" class="form-label">Tipo de Prueba</label>
+                            <select class="form-select" name="tipo_prueba" id="tipo_prueba">
+                                <option value="Carrera">Carrera</option>
+                                <option value="Salto">Salto</option>
+                                <option value="Flexibilidad">Flexibilidad</option>
+                                <option value="Resistencia">Resistencia</option>
+                                <option value="Otros">Otros</option>
+                            </select>
                         </div>
-                        
+
                         <div class="mb-3 col-lg-12">
-                            <label for="resultadoPrueba" class="form-label">Resultado</label>
-                            <textarea name="resultadoPrueba" id="resultadoPrueba" class="form-control"></textarea>
+                            <label for="resultado" class="form-label">Resultado</label>
+                            <input type="number" class="form-control" id="resultado" name="resultado">
                         </div>
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="unidadPrueba" class="form-label">Unidad</label>
-                            <input name="unidadPrueba" id="unidadPrueba" class="form-control">
+                        <div class="mb-3 col-lg-12">
+                            <label for="unidad_medida" class="form-label">Unidad de Medida</label>
+                            <input type="text" class="form-control" id="unidad_medida" name="unidad_medida">
                         </div>
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="observacionPrueba" class="form-label">Observaciones</label>
-                            <input type="text" class="form-control" id="observacionPrueba" name="observacionPrueba">
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="axo" class="form-label">Fecha</label>
-                            <input type="date" class="form-control" id="axo" name="axo">
+                        <div class="mb-3 col-lg-12">
+                            <label for="observaciones" class="form-label">Observaciones</label>
+                            <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
                         </div>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar Escuela</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
             </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
 
-
-    <!--MODAL: Actualizar Escuela-->
-
-    <div class="modal fade" id="modalEditarEscuela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<!-- Modal Actualizar Prueba -->
+<div class="modal fade" id="modalEditarPrueba" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Escuela</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Prueba Físico-Motriz</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="row" method="post" id="formEditarAlumno" enctype="multipart/form-data">
+                    <form class="row" method="post" id="formEditarPrueba" enctype="multipart/form-data">
 
                         <div class="mb-3 col-lg-12">
-                            <label for="idEscuela" class="form-label">ID Escuela</label>
-                            <input type="text" class="form-control" id="idEscuela" name="idEscuela">
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="nombreEscuelaUp" class="form-label">Nombre de la Escuela</label>
-                            <input type="text" class="form-control" id="nombreEscuelaUp" name="nombreEscuelaUp">
+                            <label for="id_estudiante" class="form-label">ID Estudiante</label>
+                            <select class="form-select" name="id_estudiante" id="id_estudiante">
+                                <?= $this->estudiantes ?>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="direccionEscuelaUp" class="form-label">Dirección</label>
-                            <textarea name="direccionEscuelaUp" id="direccionEscuelaUp" class="form-control">Introduzca la dirección de la escuela</textarea>
+                            <label for="fecha_prueba" class="form-label">Fecha de Prueba</label>
+                            <input type="date" class="form-control" id="fecha_prueba" name="fecha_prueba">
                         </div>
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="telefonoEscuelaUp" class="form-label">Telefono</label>
-                            <input type="tel" class="form-control" id="telefonoEscuelaUp" name="telefonoEscuelaUp">
+                        <div class="mb-3 col-lg-12">
+                            <label for="tipo_prueba" class="form-label">Tipo de Prueba</label>
+                            <select class="form-select" name="tipo_prueba" id="tipo_prueba">
+                                <option value="Carrera">Carrera</option>
+                                <option value="Salto">Salto</option>
+                                <option value="Flexibilidad">Flexibilidad</option>
+                                <option value="Resistencia">Resistencia</option>
+                                <option value="Otros">Otros</option>
+                            </select>
                         </div>
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="longitudEscuelaUp" class="form-label">Longitud</label>
-                            <input type="tel" class="form-control" id="longitudEscuelaUp" name="longitudEscuelaUp">
+                        <div class="mb-3 col-lg-12">
+                            <label for="resultado" class="form-label">Resultado</label>
+                            <input type="number" class="form-control" id="resultado" name="resultado">
                         </div>
 
-                        <div class="mb-3 col-lg-6">
-                            <label for="latitudEscuelaUp" class="form-label">Latitud</label>
-                            <input type="tel" class="form-control" id="latitudEscuelaUp" name="latitudEscuelaUp">
+                        <div class="mb-3 col-lg-12">
+                            <label for="unidad_medida" class="form-label">Unidad de Medida</label>
+                            <input type="text" class="form-control" id="unidad_medida" name="unidad_medida">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="observaciones" class="form-label">Observaciones</label>
+                            <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
                         </div>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
             </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
