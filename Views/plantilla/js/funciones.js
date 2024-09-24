@@ -902,7 +902,7 @@ $(function () {
             processData: false,
             success: function (respuesta) {
                 console.log("Respuesta del servidor:  ", respuesta);
-                if (respuesta.includes("Error en la consulta: ")){
+                if (respuesta.includes("Error en la consulta: ")) {
                     alert(respuesta);
                 } else {
                     modalFormRespuesta(
@@ -914,6 +914,90 @@ $(function () {
             error: function (jqXHR, textStatus, errorThrown) {
                 alertaError(jqXHR, textStatus, errorThrown);
             },
+        });
+    });
+
+    /*EDITAR Estudiante*/
+    /*CARGAR los datos de ESTUDIANTE al modal EDITAR*/
+    $(".tablaEstudiantes").on("click", ".btnEditarEstudiante", function () {
+        let datos = JSON.parse($(this).attr("data-estudiante"));
+        $("#idEstudiante").val(datos["id_estudiante"]);
+        $("#idEscuelaUp").val(datos["id_escuela"]);
+        $("#pNombreUp").val(datos["primer_nombre"]);
+        $("#sNombreUp").val(datos["segundo_nombre"]);
+        $("#pApellidoUp").val(datos["primer_apellido"]);
+        $("#sApellidoUp").val(datos["segundo_apellido"]);
+        $("#edadUp").val(datos["edad"]);
+        $("#nacimientoUp").val(datos["fecha_nacimiento"]);
+        $("#sexoUp").val(datos["sexo"]);
+        $("#direccionUp").val(datos["direccion"]);
+        $("#telefonoUp").val(datos["telefono"]);
+        $("#emailUp").val(datos["email"]);
+        $("#tutorUp").val(datos["nombre_tutor"]);
+        $("#tutorTelUp").val(datos["telefono_tutor"]);
+        $("#estadoUp").val(datos["estado"]);
+        $("#fotoEstudiante").attr('src', "../salud.edu/Views/plantilla/images/estudianteFotos/" + datos["imagen"]);
+    });
+
+    // ENVIAR al Backend datos de ESTUDIANTES editados
+    $('#formEditarEstudiante').submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            url: "estudiante/editarEstudiante/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalEditarEstudiante",
+                        "#formEditarEstudiante", respuesta);
+                    alertaModificado();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+    //ELIMINAR MATERIA
+    $(".tablaEstudiantes").on("click", ".BtnBorrarEstudiante", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let idEstudianteDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'estudiante/borrarEstudiante/',
+                    type: 'post',
+                    data: { idEstudianteDel: idEstudianteDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
         });
     });
 
