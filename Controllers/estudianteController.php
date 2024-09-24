@@ -9,9 +9,7 @@ class estudianteController extends Controller
         $this->_estudiante = $this->loadModel('estudiante');
     }
 
-    /**
-     * Función para renderizar la vista de registro y listado de estudiantes
-     */
+    //RENDERIZAR Vista Estudiantes
     public function index()
     {
         /* Mandar datos de escuelas a la vista estudiantes */
@@ -21,14 +19,11 @@ class estudianteController extends Controller
             $escuelas .= '<option value="' . $escuela['id_escuela'] . '">' . $escuela['nombre'] . '</option>';
         }
         $this->_view->escuelas = $escuelas;
-
         $this->_view->tabla = $this->verEstudiantes();
         $this->_view->renderizar('estudiante');
     }
 
-    /**
-     * Función para obtener la tabla de estudiantes
-     */
+    //OBTENER Datos de Estudiantes a la VISTA
     public function verEstudiantes()
     {
         $fila = $this->_estudiante->obtenerDatosEstudiantes();
@@ -59,9 +54,7 @@ class estudianteController extends Controller
         return $tabla;
     }
 
-    /**
-     * Función para agregar un estudiante
-     */
+    //AGREGAR Estudiante
     public function agregarEstudiante()
     {
         function upload_image()
@@ -95,8 +88,7 @@ class estudianteController extends Controller
                 $image
             );
             echo $this->verEstudiantes();
-        } else
-        {
+        } else {
             $this->_estudiante->agregarEstudianteNoFoto(
                 $this->getTexto('idEscuela'),
                 $this->getTexto('pNombre'),
@@ -113,40 +105,70 @@ class estudianteController extends Controller
                 $this->getTexto('tutorTel'),
                 $this->getTexto('estado')
             );
-            echo  $this->verEstudiantes();
+            echo $this->verEstudiantes();
         }
     }
 
-    /**
-     * Función para editar un estudiante
-     */
+    //EDITAR Estudiantes
     public function editarEstudiante()
     {
-        $this->_estudiante->editarEstudiante(
-            $this->getTexto('id'),
-            $this->getTexto('pNombre'),
-            $this->getTexto('sNombre'),
-            $this->getTexto('pApellido'),
-            $this->getTexto('sApellido'),
-            $this->getTexto('edad'),
-            $this->getTexto('nacimiento'),
-            $this->getTexto('sexo'),
-            $this->getTexto('direccion'),
-            $this->getTexto('telefono'),
-            $this->getTexto('email'),
-            $this->getTexto('tutor'),
-            $this->getTexto('tutorTel'),
-            $this->getTexto('estado')
-        );
+        function upload_image()
+        {
+            if (isset($_FILES["fotoUp"])) {
+                $extension = explode('.', $_FILES["fotoUp"]["name"]);
+                $new_name = rand() . '.' . $extension[1];
+                $destination = './Views/plantilla/images/estudianteFotos/' . $new_name;
+                move_uploaded_file($_FILES["fotoUp"]["tmp_name"], $destination);
+                return $new_name;
+            }
+        }
+        $imageUp = '';
+        if ($_FILES["fotoUp"]["name"] != '') {
+            $imageUp = upload_image();
+            $this->_estudiante->editarEstudianteFoto(
+                $this->getTexto('idEstudiante'),
+                $this->getTexto('idEscuelaUp'),
+                $this->getTexto('pNombreUp'),
+                $this->getTexto('sNombreUp'),
+                $this->getTexto('pApellidoUp'),
+                $this->getTexto('sApellidoUp'),
+                $this->getTexto('edadUp'),
+                $this->getTexto('nacimientoUp'),
+                $this->getTexto('sexoUp'),
+                $this->getTexto('direccionUp'),
+                $this->getTexto('telefonoUp'),
+                $this->getTexto('emailUp'),
+                $this->getTexto('tutorUp'),
+                $this->getTexto('tutorTelUp'),
+                $this->getTexto('estadoUp'),
+                $imageUp
+            );
+        } else {
+            $this->_estudiante->editarEstudianteNoFoto(
+                $this->getTexto('idEstudiante'),
+                $this->getTexto('idEscuelaUp'),
+                $this->getTexto('pNombreUp'),
+                $this->getTexto('sNombreUp'),
+                $this->getTexto('pApellidoUp'),
+                $this->getTexto('sApellidoUp'),
+                $this->getTexto('edadUp'),
+                $this->getTexto('nacimientoUp'),
+                $this->getTexto('sexoUp'),
+                $this->getTexto('direccionUp'),
+                $this->getTexto('telefonoUp'),
+                $this->getTexto('emailUp'),
+                $this->getTexto('tutorUp'),
+                $this->getTexto('tutorTelUp'),
+                $this->getTexto('estadoUp')
+            );
+        }
         echo $this->verEstudiantes();
     }
 
-    /**
-     * Función para eliminar un estudiante
-     */
-    public function eliminarEstudiante()
+    //ELIMINAR Estudiantes
+    public function borrarEstudiante()
     {
-        $this->_estudiante->eliminarEstudiante($this->getTexto('id'));
+        $this->_estudiante->borrarEstudiante($this->getTexto('idEstudianteDel'));
         echo $this->verEstudiantes();
     }
 }

@@ -52,6 +52,32 @@
             ?>
 
             <?php
+            if (Sessiones::accesoVista('docente')) {
+              ?>
+              <li class="section-title">
+                Apartados
+              </li>
+
+              <li>
+                <a class="sidenav-item-link" href="<?= PLANTILLA ?>perfil">
+                  <i class="mdi mdi-wechat"></i>
+                  <span class="nav-text">Perfil Estudiante</span>
+                </a>
+              </li>
+
+            <?php } ?>
+
+            <li class="section-title">
+              Apartados
+            </li>
+
+            <li>
+              <a class="sidenav-item-link" href="<?= PLANTILLA ?>perfil">
+                <i class="mdi mdi-wechat"></i>
+                <span class="nav-text">Perfil Estudiante</span>
+              </a>
+            </li>
+            <?php
             if (Sessiones::getVista('administrador')) {
               ?>
               <li class="section-title">
@@ -109,7 +135,7 @@
               <!-- CRUD: Grupos -->
               <li class="crudGrupos">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>grupo">
-                <i class="fa-solid fa-people-group"></i>
+                  <i class="fa-solid fa-people-group"></i>
                   <span class="nav-text">Grupos/Secciones</span>
                 </a>
               </li>
@@ -117,7 +143,7 @@
               <!-- CRUD: Materia -->
               <li class="crudMaterias">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>materia">
-                <i class="fa-solid fa-book"></i>
+                  <i class="fa-solid fa-book"></i>
                   <span class="nav-text">Materias</span>
                 </a>
               </li>
@@ -125,7 +151,7 @@
               <!-- CRUD: Estudiantes -->
               <li class="crudEstudiantes">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>estudiante">
-                <i class="fa-solid fa-graduation-cap"></i>
+                  <i class="fa-solid fa-graduation-cap"></i>
                   <span class="nav-text">Estudiantes</span>
                 </a>
               </li>
@@ -133,18 +159,12 @@
               <!-- CRUD: Eventos -->
               <li class="crudEstudiantes">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>eventos">
-                <i class="fa-regular fa-calendar-minus"></i>
+                  <i class="fa-regular fa-calendar-minus"></i>
                   <span class="nav-text">Eventos</span>
                 </a>
               </li>
 
-
-
-
-              <li class="section-title">
-                Aplicaciones
-              </li>
-
+              <!-- 
               <li>
                 <a class="sidenav-item-link" href="<?= PLANTILLA ?>templates/chat.html">
                   <i class="mdi mdi-wechat"></i>
@@ -649,21 +669,37 @@
               </li>
             </ul>
           </div>
+            -->
+            <?php } ?>
 
-        <?php } ?>
-
-        <div class="sidebar-footer">
-          <div class="sidebar-footer-content">
-            <ul class="d-flex">
-              <li>
-                <a href="user-account-settings.html" data-toggle="tooltip" title="Profile settings"><i
-                    class="mdi mdi-settings"></i></a>
-              </li>
-              <li>
-                <a href="#" data-toggle="tooltip" title="No chat messages"><i class="mdi mdi-chat-processing"></i></a>
-              </li>
-            </ul>
-          </div>
+            <div class="sidebar-footer">
+              <div class="sidebar-footer-content">
+                <ul class="d-flex">
+                  <?php
+                  if (Sessiones::getClave('autenticado')) {
+                    echo '
+                      <li>
+                        <a href="user-account-settings.html" data-toggle="tooltip" title="Profile settings">
+                          <i class="mdi mdi-settings"></i></a>
+                      </li>
+                      <li>
+                        <a href="' . BASE_URL . 'login/salir/">
+                          <i class="mdi mdi-logout" alt="Cerrar Sesión"></i>
+                        </a>
+                      </li>
+                    ';
+                  } else {
+                    echo '
+                      <li>
+                        <a href="' . BASE_URL . 'login">
+                          <i class="fa-solid fa-right-to-bracket" alt="Iniciar Sesión"></i>
+                        </a>
+                      </li>
+                    ';
+                  }
+                  ?>
+                </ul>
+              </div>
+            </div>
         </div>
-      </div>
     </aside>
