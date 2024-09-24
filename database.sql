@@ -51,6 +51,7 @@ CREATE TABLE escuelas (
     apellido VARCHAR(255) NOT NULL,
     email VARCHAR(100),
     telefono VARCHAR(50),
+    usuario VARCHAR(50)
     FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
@@ -73,6 +74,16 @@ CREATE TABLE materias (
     nombre_materia VARCHAR (45),
     FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo)
 )ENGINE=InnoDB;
+
+-- Tabla Matrícula
+CREATE TABLE  matricula (
+    id_matricula INT AUTO_INCREMENT PRIMARY KEY,
+    id_grupo INT,
+    id_estudiante INT,
+    FOREIGN KEY  (id_grupo) REFERENCES grupos (id_grupo),
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+)ENGINE=InnoDB;
+
 
 -- Tabla ESTUDIANTES
 CREATE TABLE estudiantes (
