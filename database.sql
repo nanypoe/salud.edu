@@ -74,10 +74,9 @@ CREATE TABLE materias (
     FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo)
 )ENGINE=InnoDB;
 
---Tabla ESTUDIANTES
+-- Tabla ESTUDIANTES
 CREATE TABLE estudiantes (
     id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
-    id_grupo INT,
     id_escuela INT,
     primer_nombre VARCHAR(50),
     segundo_nombre VARCHAR(50),
@@ -91,12 +90,12 @@ CREATE TABLE estudiantes (
     email VARCHAR(100),
     nombre_tutor VARCHAR(255),
     telefono_tutor VARCHAR(50),
-    imagen VARCHAR(15),
+    imagen VARCHAR(50),
     estado ENUM('Activo', 'Inactivo'),
-    FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo),
     FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
 ) ENGINE=InnoDB;
 
+-- Tabla para los Datos de SALUD del ESTUDIANTE
 CREATE TABLE salud_estudiante (
     id_estudiante INT,
     peso FLOAT,
@@ -122,33 +121,48 @@ CREATE TABLE pruebas_fisicas (
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
 
+-- Tabla para asignar ESTUDIANTES a un GRUPO
+CREATE TABLE asignacion_estudiantes (
+    id_asignacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_estudiante INT,
+    id_grupo INT,
+    fecha_asignacion DATE NOT NULL,
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_estudiante) ON DELETE CASCADE,
+    FOREIGN KEY (id_grupo) REFERENCES grupos(id_grupo) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabla de EVENTOS Deportivos y otros
+CREATE TABLE eventos_deportivos (
+    id_evento INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_evento VARCHAR(255) NOT NULL,
+    fecha_evento DATE NOT NULL,
+    duracion TIME,  -- Se puede cambiar a DECIMAL o INT si se prefiere en horas
+    direccion VARCHAR(255),
+    latitud DOUBLE,
+    longitud DOUBLE,
+    descripcion TEXT
+) ENGINE=InnoDB;
+
+-- Tabla de EJERCICIOS
+CREATE TABLE ejercicios (
+    id_ejercicio INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_ejercicio VARCHAR(255),
+    descripcion TEXT,
+    categoria VARCHAR(255),  -- Por ejemplo, fuerza, resistencia, flexibilidad, etc.
+    duracion_estimada INT  -- En minutos o segundos, según prefieras
+) ENGINE=InnoDB;
+
+-- Tabla de PLANES - EJERCICIO
+CREATE TABLE ejercicios_plan (
+    id_plan INT AUTO_INCREMENT PRIMARY KEY,
+    id_ejercicio INT,
+    repeticiones INT,
+    series INT,
+    FOREIGN KEY (id_ejercicio) REFERENCES ejercicios(id_ejercicio) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 
 -- ######### CONSULTAS ###############
--- Procedimiento de Almacenado para agregar MUNICIPIO a los DEPARTAMENTOS
- DELIMITER //
-CREATE PROCEDURE ingresarGrados(
-    IN escuelaNombre VARCHAR(255),
-    IN grado VARCHAR(15)
-)
-BEGIN
-    DECLARE escuelaId INT;
-
-    -- Obtener el id del departamento basado en su nombre
-    SELECT id_escuela INTO escuelaId
-    FROM escuelas
-    WHERE nombre_escuela = escuelaNombre;
-    
-    -- Inserta los municipios, si el departamento existe
-    IF escueloId IS NOT NULL THEN
-        INSERT INTO grados (id_escuela, nombre_grado) VALUES (escuelaId, grado);
-    ELSE
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Departamento no encontrado';
-    END IF;
-END //
-DELIMITER ;
-
--- Call ingresarGrados("", "Primer grado");
-
 -- Consulta para agregar todos los DEPARTAMENTOS
  INSERT INTO departamentos (nombre_departamento) VALUES ("Madriz"), ("Nueva Segovia"), ("Estelí"), ("Jinotega"), ("Matagalpa"), ("Managua"), 
  ("León"), ("Chinandega"), ("Masaya"), ("Carazo"), ("Granada"), ("Rivas"), ("Boaco"), ("Chontales"), ("Río San Juan"), ("Costa Caribe Norte"), ("Costa Caribe Sur");

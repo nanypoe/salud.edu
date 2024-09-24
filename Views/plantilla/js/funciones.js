@@ -884,19 +884,19 @@ $(function () {
    ======================================*/
 
     /* Función para enviar los datos de los ESTUDIANTES*/
-    $("#formAgregarAlumno").submit(function (e) {
+    $("#formAgregarEstudiante").submit(function (e) {
         e.preventDefault();
-        let extension = $("#imagen").val().split(".").pop().toLowerCase();
+        let extension = $("#foto").val().split(".").pop().toLowerCase();
         if (extension != "") {
             if (jQuery.inArray(extension, ["png", "jpg", "jpeg"]) == -1) {
-                $("#imagen").val("");
+                $("#foto").val("");
                 alert("Formato de imagen incorrecto");
                 return false;
             }
         }
         console.log(extension);
         $.ajax({
-            url: "../estudiante/agregarAlumno/",
+            url: "estudiante/agregarEstudiante/",
             type: "post",
             data: new FormData(this),
             contentType: false,
