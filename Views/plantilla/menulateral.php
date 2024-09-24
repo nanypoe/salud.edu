@@ -59,7 +59,7 @@
               </li>
 
               <li>
-                <a class="sidenav-item-link" href="<?= PLANTILLA ?>perfil">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>perfil">
                   <i class="mdi mdi-wechat"></i>
                   <span class="nav-text">Perfil Estudiante</span>
                 </a>
@@ -67,18 +67,8 @@
 
             <?php } ?>
 
-            <li class="section-title">
-              Apartados
-            </li>
-
-            <li>
-              <a class="sidenav-item-link" href="<?= PLANTILLA ?>perfil">
-                <i class="mdi mdi-wechat"></i>
-                <span class="nav-text">Perfil Estudiante</span>
-              </a>
-            </li>
             <?php
-            if (Sessiones::getVista('administrador')) {
+            if (Sessiones::getVista('admin')) {
               ?>
               <li class="section-title">
                 Registro de Datos y Tablas

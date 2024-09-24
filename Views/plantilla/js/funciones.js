@@ -1004,6 +1004,22 @@ $(function () {
     /*=========================================
               ==========DATOS DE SALUD ESTUDIANTIL===
               ======================================*/
+    $("#grupos").on("change", function () {
+        let idGrupo = $("#grupos").val();
+        console.log(idGrupo);
+        $.ajax({
+            url: 'perfil/getEstudiante/',
+            type: 'post',
+            data: { idGrupo: idGrupo },
+            success: function (respuesta) {
+                $("#table").DataTable().destroy();
+                $("#table tbody").html(respuesta);
+                inicializarDataTable();
+            }
+        });
+    });
+
+
 
     /*Función para Calcular IMC y categoría de peso*/
     $("#alturaEstudiante, #pesoEstudiante").on("keyup", function () {
