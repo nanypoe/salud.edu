@@ -18,12 +18,8 @@
                 <thead>
                     <tr>
                         <th>Escuela</th>
-<<<<<<< Updated upstream
                         <th>Grado/Sección</th>
-                        <th>ID Estudiante</th>
-=======
                         <th>ID</th>
->>>>>>> Stashed changes
                         <th>Nombre Completo</th>
                         <th>Edad</th>
                         <th>F. Nacimiento</th>
@@ -60,18 +56,8 @@
                 <div class="row">
                     <form class="row" method="post" id="formAgregarEstudiante" enctype="multipart/form-data">
 
-<<<<<<< Updated upstream
-                        <div class="mb-3 col-lg-6">
-                            <label for="idSeccion" class="form-label">Grupo</label>
-                            <select class="form-select" name="idSeccion" id="idSeccion">
-                                <?= $this->grupos ?>
-                            </select>
-                        </div>
 
-                        <div class="mb-3 col-lg-6">
-=======
                         <div class="mb-3 col-lg-12">
->>>>>>> Stashed changes
                             <label for="idEscuela" class="form-label">Escuela</label>
                             <select class="form-select" name="idEscuela" id="idEscuela">
                                 <?= $this->escuelas ?>
@@ -98,32 +84,33 @@
                             <input type="text" class="form-control" id="sApellido" name="sApellido">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-4">
                             <label for="edad" class="form-label">Edad</label>
                             <input type="number" class="form-control" id="edad" name="edad">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-4">
                             <label for="nacimiento" class="form-label">Fecha Nacimiento</label>
                             <input type="date" class="form-control" id="nacimiento" name="nacimiento">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-4">
                             <label for="sexo" class="form-label">Sexo</label>
                             <select class="form-select" name="sexo" id="sexo">
+                                <option value="0">Seleccione sexo del estudiante</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-3">
-                            <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" id="telefono" name="telefono">
-                        </div>
-
                         <div class="mb-3 col-lg-12">
                             <label for="direccion" class="form-label">Dirección</label>
-                            <textarea name="direccion" id="direccion" class="form-control"></textarea>
+                            <input type="text" class="form-control" id="direccion" name="direccion">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono">
                         </div>
 
                         <div class="mb-3 col-lg-6">
@@ -136,20 +123,13 @@
                             <input type="text" class="form-control" id="tutor" name="tutor">
                         </div>
 
-<<<<<<< Updated upstream
-                        <div class="mb-3 col-lg-6">
-=======
                         <div class="mb-3 col-lg-3">
->>>>>>> Stashed changes
                             <label for="tutorTel" class="form-label">Teléfono Tutor</label>
                             <input type="tel" class="form-control" id="tutorTel" name="tutorTel">
                         </div>
 
-<<<<<<< Updated upstream
-                        <div class="mb-3 col-lg-6">
-=======
+
                         <div class="mb-3 col-lg-3">
->>>>>>> Stashed changes
                             <label for="estado" class="form-label">Estado</label>
                             <select class="form-select" name="estado" id="estado">
                                 <option value="Activo">Activo</option>
@@ -158,11 +138,7 @@
                         </div>
 
                         <div class="mb-3 col-lg-12">
-<<<<<<< Updated upstream
-                            <label for="foto" class="form-label">Seleccione una fotografía del estudiante</label>
-=======
-                            <label for="foto" class="form-label">Foto del Estudiante</label>
->>>>>>> Stashed changes
+                            <label for="foto" class="form-label">Seleccione una fotografía del Estudiante</label>
                             <input type="file" class="form-control" id="foto" name="foto">
                         </div>
 
@@ -180,7 +156,7 @@
 <!-- Modal editar Estudiante -->
 
 <div class="modal fade" id="modalEditarEstudiante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Estudiante</h1>
@@ -190,56 +166,46 @@
                 <div class="row">
                     <form class="row" method="post" id="formEditarEstudiante" enctype="multipart/form-data">
 
+                        <input type="hidden" id="idEstudiante" name="idEstudiante">
+
                         <div class="mb-3 col-lg-12">
-                            <label for="idEstudiante" class="form-label">ID Estudiante</label>
-                            <input type="text" class="form-control" id="idEstudiante" name="idEstudiante" disabled>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            <label for="idSeccionUp" class="form-label">Grupo</label>
-                            <select class="form-select" name="idSeccionUp" id="idSeccionUp">
-                                <?= $this->grupos ?>
-                            </select>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
                             <label for="idEscuelaUp" class="form-label">Escuela</label>
                             <select class="form-select" name="idEscuelaUp" id="idEscuelaUp">
                                 <?= $this->escuelas ?>
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="pNombreUp" class="form-label">Primer Nombre</label>
                             <input type="text" class="form-control" id="pNombreUp" name="pNombreUp">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="sNombreUp" class="form-label">Segundo Nombre</label>
                             <input type="text" class="form-control" id="sNombreUp" name="sNombreUp">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="pApellidoUp" class="form-label">Primer Apellido</label>
                             <input type="text" class="form-control" id="pApellidoUp" name="pApellidoUp">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="sApellidoUp" class="form-label">Segundo Apellido</label>
                             <input type="text" class="form-control" id="sApellidoUp" name="sApellidoUp">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="edadUp" class="form-label">Edad</label>
                             <input type="number" class="form-control" id="edadUp" name="edadUp">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="nacimientoUp" class="form-label">Fecha Nacimiento</label>
                             <input type="date" class="form-control" id="nacimientoUp" name="nacimientoUp">
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
                             <label for="sexoUp" class="form-label">Sexo</label>
                             <select class="form-select" name="sexoUp" id="sexoUp">
                                 <option value="Masculino">Masculino</option>
@@ -247,49 +213,50 @@
                             </select>
                         </div>
 
-                        <div class="mb-3 col-lg-3">
+                        <div class="mb-3 col-lg-12">
+                            <label for="direccionUp" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccionUp" name="direccionUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
                             <label for="telefonoUp" class="form-label">Teléfono</label>
                             <input type="tel" class="form-control" id="telefonoUp" name="telefonoUp">
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            <label for="direccionUp" class="form-label">Dirección</label>
-                            <textarea name="direccionUp" id="direccionUp" class="form-control"></textarea>
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
                             <label for="emailUp" class="form-label">Email</label>
                             <input type="email" class="form-control" id="emailUp" name="emailUp">
                         </div>
 
-                        < div class="mb-3 col-lg-6">
+                        <div class="mb-3 col-lg-12">
                             <label for="tutorUp" class="form-label">Nombre Tutor</label>
                             <input type="text" class="form-control" id="tutorUp" name="tutorUp">
-                </div>
+                        </div>
 
-                <div class="mb-3 col-lg-6">
-                    <label for="tutorTelUp" class="form-label">Teléfono Tutor</label>
-                    <input type="tel" class="form-control" id="tutorTelUp" name="tutorTelUp">
-                </div>
+                        <div class="mb-3 col-lg-12">
+                            <label for="tutorTelUp" class="form-label">Teléfono Tutor</label>
+                            < input type="tel" class="form-control" id="tutorTelUp" name="tutorTelUp">
+                        </div>
 
-                <div class="mb-3 col-lg-6">
-                    <label for="estadoUp" class="form-label">Estado</label>
-                    <select class="form-select" name="estadoUp" id="estadoUp">
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
-                    </select>
-                </div>
+                        <div class="mb-3 col-lg-12">
+                            <label for="fotoUp" class="form-label">Imagen</label>
+                            <input type="file" class="form-control" id="fotoUp" name="fotoUp">
+                        </div>
 
-                <div class="mb-3 col-lg-12">
-                    <label for="fotoUp" class="form-label">Seleccione una fotografía del estudiante</label>
-                    <input type="file" class="form-control" id="fotoUp" name="fotoUp">
-                </div>
+                        <div class="mb-3 col-lg-12">
+                            <label for="estadoUp" class="form-label">Estado</label>
+                            <select class="form-select" name="estadoUp" id="estadoUp">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
 
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-primary">Editar Estudiante</button>
-                </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-primary">Editar Estudiante</button>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

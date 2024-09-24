@@ -77,7 +77,6 @@ CREATE TABLE materias (
 -- Tabla ESTUDIANTES
 CREATE TABLE estudiantes (
     id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
-    id_grupo INT,
     id_escuela INT,
     primer_nombre VARCHAR(50),
     segundo_nombre VARCHAR(50),
@@ -91,9 +90,8 @@ CREATE TABLE estudiantes (
     email VARCHAR(100),
     nombre_tutor VARCHAR(255),
     telefono_tutor VARCHAR(50),
-    imagen VARCHAR(15),
+    imagen VARCHAR(50),
     estado ENUM('Activo', 'Inactivo'),
-    FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo),
     FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
 ) ENGINE=InnoDB;
 
@@ -165,31 +163,6 @@ CREATE TABLE ejercicios_plan (
 
 
 -- ######### CONSULTAS ###############
--- Procedimiento de Almacenado para agregar MUNICIPIO a los DEPARTAMENTOS
- DELIMITER //
-CREATE PROCEDURE ingresarGrados(
-    IN escuelaNombre VARCHAR(255),
-    IN grado VARCHAR(15)
-)
-BEGIN
-    DECLARE escuelaId INT;
-
-    -- Obtener el id del departamento basado en su nombre
-    SELECT id_escuela INTO escuelaId
-    FROM escuelas
-    WHERE nombre_escuela = escuelaNombre;
-    
-    -- Inserta los municipios, si el departamento existe
-    IF escueloId IS NOT NULL THEN
-        INSERT INTO grados (id_escuela, nombre_grado) VALUES (escuelaId, grado);
-    ELSE
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Departamento no encontrado';
-    END IF;
-END //
-DELIMITER ;
-
--- Call ingresarGrados("", "Primer grado");
-
 -- Consulta para agregar todos los DEPARTAMENTOS
  INSERT INTO departamentos (nombre_departamento) VALUES ("Madriz"), ("Nueva Segovia"), ("Estelí"), ("Jinotega"), ("Matagalpa"), ("Managua"), 
  ("León"), ("Chinandega"), ("Masaya"), ("Carazo"), ("Granada"), ("Rivas"), ("Boaco"), ("Chontales"), ("Río San Juan"), ("Costa Caribe Norte"), ("Costa Caribe Sur");
