@@ -894,7 +894,6 @@ $(function () {
                 return false;
             }
         }
-        console.log(extension);
         $.ajax({
             url: "../estudiante/agregarAlumno/",
             type: "post",
@@ -902,17 +901,18 @@ $(function () {
             contentType: false,
             processData: false,
             success: function (respuesta) {
-                console.log("success");
-                console.log(respuesta);
-                $("#formAgregarAlumno")[0].reset();
-                Swal.fire({
-                    title: "Agregado!",
-                    text: "El registro a sido Agregado de forma correcta.",
-                    icon: "success",
-                });
+                console.log("Respuesta del servidor:  ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")){
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        '#modalAgregarEstudiante', '#formAgregarEstudiante', respuesta
+                    );
+                    alertaAgregado();
+                }
             },
-            error: function () {
-                console.log("Error");
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
             },
         });
     });

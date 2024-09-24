@@ -18,17 +18,21 @@
                 <thead>
                     <tr>
                         <th>Escuela</th>
+<<<<<<< Updated upstream
                         <th>Grado/Sección</th>
                         <th>ID Estudiante</th>
+=======
+                        <th>ID</th>
+>>>>>>> Stashed changes
                         <th>Nombre Completo</th>
                         <th>Edad</th>
-                        <th>Fecha Nacimiento</th>
+                        <th>F. Nacimiento</th>
                         <th>Sexo</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
                         <th>Email</th>
-                        <th>Tutor/Teléfono</th>
-                        <th>Imagen</th>
+                        <th>Tutor</th>
+                        <th>Tel. Tutor</th>
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
@@ -56,6 +60,7 @@
                 <div class="row">
                     <form class="row" method="post" id="formAgregarEstudiante" enctype="multipart/form-data">
 
+<<<<<<< Updated upstream
                         <div class="mb-3 col-lg-6">
                             <label for="idSeccion" class="form-label">Grupo</label>
                             <select class="form-select" name="idSeccion" id="idSeccion">
@@ -64,6 +69,9 @@
                         </div>
 
                         <div class="mb-3 col-lg-6">
+=======
+                        <div class="mb-3 col-lg-12">
+>>>>>>> Stashed changes
                             <label for="idEscuela" class="form-label">Escuela</label>
                             <select class="form-select" name="idEscuela" id="idEscuela">
                                 <?= $this->escuelas ?>
@@ -128,12 +136,20 @@
                             <input type="text" class="form-control" id="tutor" name="tutor">
                         </div>
 
+<<<<<<< Updated upstream
                         <div class="mb-3 col-lg-6">
+=======
+                        <div class="mb-3 col-lg-3">
+>>>>>>> Stashed changes
                             <label for="tutorTel" class="form-label">Teléfono Tutor</label>
                             <input type="tel" class="form-control" id="tutorTel" name="tutorTel">
                         </div>
 
+<<<<<<< Updated upstream
                         <div class="mb-3 col-lg-6">
+=======
+                        <div class="mb-3 col-lg-3">
+>>>>>>> Stashed changes
                             <label for="estado" class="form-label">Estado</label>
                             <select class="form-select" name="estado" id="estado">
                                 <option value="Activo">Activo</option>
@@ -142,7 +158,11 @@
                         </div>
 
                         <div class="mb-3 col-lg-12">
+<<<<<<< Updated upstream
                             <label for="foto" class="form-label">Seleccione una fotografía del estudiante</label>
+=======
+                            <label for="foto" class="form-label">Foto del Estudiante</label>
+>>>>>>> Stashed changes
                             <input type="file" class="form-control" id="foto" name="foto">
                         </div>
 
