@@ -2,32 +2,27 @@
 
 class estudianteModel extends Model
 {
+    private $_estudiante;
+
     function __construct()
     {
         parent::__construct();
     }
 
-    // Función para obtener GRUPOS para la Vista
-    public function obtenerGrupos()
-    {
-        return $this->_db->query("SELECT * FROM grupos")->fetchAll();
-    }
-
-    // Función para obtener ESCUELAS para la Vista
+    //Función para OBTENER Escuelas
     public function obtenerEscuelas()
     {
         return $this->_db->query("SELECT * FROM escuelas")->fetchAll();
     }
 
-    // Función para obtener ESTUDIANTES para la Vista
-    public function obtenerEstudiantes()
+    //Función para OBTENER Datos Estudiantes
+    public function obtenerDatosEstudiantes()
     {
-        return $this->_db->query("SELECT * FROM estudiantes")->fetchAll();
+        return $this->_db->query("SELECT * FROM estudiantes INNER JOIN escuelas  ON estudiantes.id_escuela = escuelas.id_escuela")->fetchAll();
     }
 
-    // Función para AGREGAR Estudiante
-    public function agregarEstudiante(
-        $idSeccion,
+    //Función para agregar Estudiante con Foto
+    public function agregarEstudianteFoto(
         $idEscuela,
         $pNombre,
         $sNombre,
@@ -45,43 +40,9 @@ class estudianteModel extends Model
         $imagen
     ) {
         try {
-            $stmt = $this->_db->prepare("INSERT INTO estudiantes (
-                id_seccion,
-                id_escuela,
-                p_nombre,
-                s_nombre,
-                p_apellido,
-                s_apellido,
-                edad,
-                nacimiento,
-                sexo,
-                direccion,
-                telefono,
-                email,
-                tutor,
-                tutor_tel,
-                estado,
-                imagen
-            ) VALUES (
-                :idSeccion,
-                :idEscuela,
-                :pNombre,
-                :sNombre,
-                :pApellido,
-                :sApellido,
-                :edad,
-                :nacimiento,
-                :sexo,
-                :direccion,
-                :telefono,
-                :email,
-                :tutor,
-                :tutorTel,
-                :estado,
-                :imagen
+            $stmt = $this->_db->prepare("INSERT INTO estudiantes(id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, nombre_tutor, telefono_tutor, estado, imagen) VALUES (:idEscuela, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado, :imagen
             )");
             $stmt->execute(array(
-                'idSeccion' => $idSeccion,
                 'idEscuela' => $idEscuela,
                 'pNombre' => $pNombre,
                 'sNombre' => $sNombre,
@@ -104,44 +65,76 @@ class estudianteModel extends Model
         }
     }
 
-    // Función para EDITAR Estudiante
-    public function editarEstudiante(
-        $idEstudiante,
-        $idGrupoUp,
-        $idEscuelaUp,
-        $pNombreUp,
-        $sNombreUp,
-        $pApellidoUp,
-        $sApellidoUp,
-        $edadUp,
-        $nacimientoUp,
-        $sexoUp,
-        $direccionUp,
-        $telefonoUp,
-        $emailUp,
-        $tutorUp,
-        $tutorTelUp,
-        $estadoUp,
-        $imagenUp
+    //Función para agregar Estudiante sin Foto
+    public function agregarEstudianteNoFoto(
+        $idSeccion,
+        $idEscuela,
+        $pNombre,
+        $sNombre,
+        $pApellido,
+        $sApellido,
+        $edad,
+        $nacimiento,
+        $sexo,
+        $direccion,
+        $telefono,
+        $email,
+        $tutor,
+        $tutorTel,
+        $estado
     ) {
         try {
+            $stmt = $this->_db->query("INSERT INTO estudiantes (
+            id_grupo, id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, tutor, tutor_tel, estado)
+            ) VALUES (
+            :idSeccion,  :idEscuela, :pNombre, :sNombre, :pApellido, :sApellido,  :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado
+            );");
+            $stmt->execute(array(
+                'idSeccion' => $idSeccion,
+                'idEscuela' => $idEscuela,
+                'pNombre' => $pNombre,
+                'sNombre' => $sNombre,
+                'pApellido' => $pApellido,
+                'sApellido' => $sApellido,
+                'edad' => $edad,
+                'nacimiento' => $nacimiento,
+                'sexo' => $sexo,
+                'direccion' => $direccion,
+                'telefono' => $telefono,
+                'email' => $email,
+                'tutor' => $tutor,
+                'tutorTel' => $tutorTel,
+                'estado' => $estado
+            ));
+        } catch (PDOException $e) {
+            echo "Error al agregar estudiante: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    /**
+     * Función para editar un estudiante
+     */
+    public function editarEstudiante($idEstudiante, $idGrupoUp, $idEscuelaUp, $pNombreUp, $sNombreUp, $pApellidoUp, $sApellidoUp, $edadUp, $nacimientoUp, $sexoUp, $direccionUp, $telefonoUp, $emailUp, $tutorUp, $tutorTelUp, $estadoUp, $imagenUp)
+    {
+        try {
             $stmt = $this->_db->prepare("UPDATE estudiantes SET 
-            id_grupo=:idGrupoUp,
-            id_escuela=:idEscuelaUp,
-            p_nombre=:pNombreUp,
-            s_nombre=:sNombreUp,
-            p_apellido=:pApellidoUp,
-            s_apellido=:sApellidoUp,
-            edad=:edadUp,
-            nacimiento=:nacimientoUp,
-            sexo=:sexoUp,
-            direccion=:direccionUp,
-            telefono=:telefonoUp,
-            email=:emailUp,
-            tutor=:tutorUp,
-            tutor_tel=:tutorTelUp,
-            estado=:estadoUp,
-            imagen=:imagenUp
+                id_grupo=:idGrupoUp,
+                id_escuela=:idEscuelaUp,
+                p_nombre=:pNombreUp,
+                s_nombre=:sNombreUp,
+                p_apellido=:pApellidoUp,
+                s_apellido=:sApellidoUp,
+                edad=:edadUp,
+                nacimiento=:nacimientoUp,
+                sexo=:sexoUp,
+                direccion=:direccionUp,
+                telefono=:telefonoUp,
+                email=:emailUp,
+                tutor=:tutorUp,
+                tutor_tel=:tutorTelUp,
+                estado=:estadoUp,
+                imagen=:imagenUp
             WHERE id_estudiante=:idEstudiante");
             $stmt->execute(array(
                 'idEstudiante' => $idEstudiante,
@@ -153,7 +146,7 @@ class estudianteModel extends Model
                 'sApellidoUp' => $sApellidoUp,
                 'edadUp' => $edadUp,
                 'nacimientoUp' => $nacimientoUp,
-                ' sexoUp' => $sexoUp,
+                'sexoUp' => $sexoUp,
                 'direccionUp' => $direccionUp,
                 'telefonoUp' => $telefonoUp,
                 'emailUp' => $emailUp,
@@ -168,17 +161,17 @@ class estudianteModel extends Model
         }
     }
 
-    // Función para BORRAR Estudiante
-    public function borrarEstudiante($idEstudiante)
+    /**
+     * Función para eliminar un estudiante
+     */
+    public function eliminarEstudiante($idEstudiante)
     {
         try {
             $stmt = $this->_db->prepare("DELETE FROM estudiantes WHERE id_estudiante=:idEstudiante");
             $stmt->execute(array('idEstudiante' => $idEstudiante));
         } catch (PDOException $e) {
-            echo "Error al borrar estudiante: " . $e->getMessage();
+            echo "Error al eliminar estudiante: " . $e->getMessage();
             return false;
         }
     }
 }
-
-?>

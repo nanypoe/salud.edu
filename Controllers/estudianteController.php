@@ -1,5 +1,4 @@
 <?php
-
 class estudianteController extends Controller
 {
     private $_estudiante;
@@ -10,22 +9,16 @@ class estudianteController extends Controller
         $this->_estudiante = $this->loadModel('estudiante');
     }
 
-    /*Función para RENDERIZAR la Vista REGISTRO Y LISTADO DE ESTUDIANTES*/
+    /**
+     * Función para renderizar la vista de registro y listado de estudiantes
+     */
     public function index()
     {
-        /*Mandar DATOS de GRUPOS a la Vista ESTUDIANTES*/
-        $filaAxo = $this->_estudiante->obtenerGrupos();
-        $grupos = '<option value="0"> Seleccione un Grupo</option>';
-        for ($i = 0; $i < count($filaAxo); $i++) {
-            $grupos .= '<option value="' . $filaAxo[$i]['id_grupo'] . '">' . $filaAxo[$i]['axo_grupo'] . ' '.$filaAxo[$i]['nombre_grupo'].'</option>';
-        }
-        $this->_view->grupos = $grupos;
-
-        /*Mandar DATOS de ESCUELAS a la Vista ESTUDIANTES*/
+        /* Mandar datos de escuelas a la vista estudiantes */
         $fila = $this->_estudiante->obtenerEscuelas();
         $escuelas = '<option value="0"> Seleccione una Escuela</option>';
-        for ($i = 0; $i < count($fila); $i++) {
-            $escuelas .= '<option value="' . $fila[$i]['id_escuela'] . '">' . $fila[$i]['nombre'] . '</option>';
+        foreach ($fila as $escuela) {
+            $escuelas .= '<option value="' . $escuela['id_escuela'] . '">' . $escuela['nombre'] . '</option>';
         }
         $this->_view->escuelas = $escuelas;
 
@@ -33,31 +26,32 @@ class estudianteController extends Controller
         $this->_view->renderizar('estudiante');
     }
 
-    //OBTENER Datos de la tabla ESTUDIANTES en DataTable
+    /**
+     * Función para obtener la tabla de estudiantes
+     */
     public function verEstudiantes()
     {
-        $fila = $this->_estudiante->obtenerEstudiantes();
+        $fila = $this->_estudiante->obtenerDatosEstudiantes();
         $tabla = '';
-        for ($i = 0; $i < count($fila); $i++) {
-            $datos = json_encode($fila[$i]);
+        foreach ($fila as $estudiante) {
+            $datos = json_encode($estudiante);
             $tabla .= '
             <tr>
-                <td>' . $fila[$i]['id_estudiante'] . '</td>
-                <td>' . $fila[$i]['axo_grupo'] . '</td>
-                <td>' . $fila[$i]['nombre_completo'] . '</td>
-                <td>' . $fila[$i]['edad'] . '</td>
-                <td>' . $fila[$i]['fecha_nacimiento'] . '</td>
-                <td>' . $fila[$i]['sexo'] . '</td>
-                <td>' . $fila[$i]['direccion'] . '</td>
-                <td>' . $fila[$i]['telefono'] . '</td>
-                <td>' . $fila[$i]['email'] . '</td>
-                <td>' . $fila[$i]['nombre_tutor'] . '</td>
-                <td>' . $fila[$i]['telefono_tutor'] . '</td>
-                <td>' . $fila[$i]['imagen'] . '</td>
-                <td>' . $fila[$i]['estado'] . '</td>
+                <td>' . $estudiante['nombre'] . '</td>
+                <td>' . $estudiante['id_estudiante'] . '</td>
+                <td>' . $estudiante['primer_nombre'] . ' ' . $estudiante['segundo_nombre'] . ' ' . $estudiante['primer_apellido'] . ' ' . $estudiante['segundo_apellido'] . '</td>
+                <td>' . $estudiante['edad'] . '</td>
+                <td>' . $estudiante['fecha_nacimiento'] . '</td>
+                <td>' . $estudiante['sexo'] . '</td>
+                <td>' . $estudiante['direccion'] . '</td>
+                <td>' . $estudiante['telefono'] . '</td>
+                <td>' . $estudiante['email'] . '</td>
+                <td>' . $estudiante['nombre_tutor'] . '</td>
+                <td>' . $estudiante['telefono_tutor'] . '</td>
+                <td>' . $estudiante['estado'] . '</td>
                 <td>
                 <button data-estudiante=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarEstudiante" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarEstudiante"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>
-                <button data-id=' . $fila[$i]['id_estudiante'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarEstudiante"><i class="fa-solid fa-trash"></i> Borrar</button>
+                <button data-id=' . $estudiante['id_estudiante'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarEstudiante"><i class="fa-solid fa-trash"></i> Borrar</button>
                 </td>
             </tr>
             ';
@@ -65,12 +59,71 @@ class estudianteController extends Controller
         return $tabla;
     }
 
-    //AGREGAR Estudiante
+    /**
+     * Función para agregar un estudiante
+     */
     public function agregarEstudiante()
     {
-        $this->_estudiante->agregarEstudiante(
-            $this->getTexto('idSeccion'),
-            $this->getTexto('idEscuela'),
+        function upload_image()
+        {
+            if (isset($_FILES["foto"])) {
+                $extension = explode('.', $_FILES["foto"]["name"]);
+                $new_name = rand() . '.' . $extension[1];
+                $destination = './Views/plantilla/images/estudianteFotos/' . $new_name;
+                move_uploaded_file($_FILES["foto"]["tmp_name"], $destination);
+                return $new_name;
+            }
+        }
+        $image = '';
+        if ($_FILES["foto"]["name"] != '') {
+            $image = upload_image();
+            $this->_estudiante->agregarEstudianteFoto(
+                $this->getTexto('idEscuela'),
+                $this->getTexto('pNombre'),
+                $this->getTexto('sNombre'),
+                $this->getTexto('pApellido'),
+                $this->getTexto('sApellido'),
+                $this->getTexto('edad'),
+                $this->getTexto('nacimiento'),
+                $this->getTexto('sexo'),
+                $this->getTexto('direccion'),
+                $this->getTexto('telefono'),
+                $this->getTexto('email'),
+                $this->getTexto('tutor'),
+                $this->getTexto('tutorTel'),
+                $this->getTexto('estado'),
+                $image
+            );
+            echo $this->verEstudiantes();
+        } else
+        {
+            $this->_estudiante->agregarEstudianteNoFoto(
+                $this->getTexto('idEscuela'),
+                $this->getTexto('pNombre'),
+                $this->getTexto('sNombre'),
+                $this->getTexto('pApellido'),
+                $this->getTexto('sApellido'),
+                $this->getTexto('edad'),
+                $this->getTexto('nacimiento'),
+                $this->getTexto('sexo'),
+                $this->getTexto('direccion'),
+                $this->getTexto('telefono'),
+                $this->getTexto('email'),
+                $this->getTexto('tutor'),
+                $this->getTexto('tutorTel'),
+                $this->getTexto('estado')
+            );
+            echo  $this->verEstudiantes();
+        }
+    }
+
+    /**
+     * Función para editar un estudiante
+     */
+    public function editarEstudiante()
+    {
+        $this->_estudiante->editarEstudiante(
+            $this->getTexto('id'),
             $this->getTexto('pNombre'),
             $this->getTexto('sNombre'),
             $this->getTexto('pApellido'),
@@ -83,43 +136,17 @@ class estudianteController extends Controller
             $this->getTexto('email'),
             $this->getTexto('tutor'),
             $this->getTexto('tutorTel'),
- $this->getTexto('estado'),
-            $_FILES['foto']['name']
+            $this->getTexto('estado')
         );
-        $this->redirect('estudiante/index');
+        echo $this->verEstudiantes();
     }
 
-    //EDITAR Estudiante
-    public function editarEstudiante()
+    /**
+     * Función para eliminar un estudiante
+     */
+    public function eliminarEstudiante()
     {
-        $this->_estudiante->editarEstudiante(
-            $this->getTexto('idEstudiante'),
-            $this->getTexto('idGrupoUp'),
-            $this->getTexto('idEscuelaUp'),
-            $this->getTexto('pNombreUp'),
-            $this->getTexto('sNombreUp'),
-            $this->getTexto('pApellidoUp'),
-            $this->getTexto('sApellidoUp'),
-            $this->getTexto('edadUp'),
-            $this->getTexto('nacimientoUp'),
-            $this->getTexto('sexoUp'),
-            $this->getTexto('direccionUp'),
-            $this->getTexto('telefonoUp'),
-            $this->getTexto('emailUp'),
-            $this->getTexto('tutorUp'),
-            $this->getTexto('tutorTelUp'),
-            $this->getTexto('estadoUp'),
-            $_FILES['fotoUp']['name']
-        );
-        $this->redirect('estudiante/index');
-    }
-
-    //BORRAR Estudiante
-    public function borrarEstudiante()
-    {
-        $this->_estudiante->borrarEstudiante($this->getTexto('idEstudiante'));
-        $this->redirect('estudiante/index');
+        $this->_estudiante->eliminarEstudiante($this->getTexto('id'));
+        echo $this->verEstudiantes();
     }
 }
-
-?>
