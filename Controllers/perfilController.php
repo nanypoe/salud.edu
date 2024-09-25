@@ -1,20 +1,20 @@
 <?php
 class perfilController extends Controller
 {
-    private $_perf;
+    private $_perfil;
 
     function __construct()
     {
         parent::__construct();
-        $this->_perf = $this->loadModel('perfil');
+        $this->_perfil = $this->loadModel('perfil');
     }
 
     public function getEstudiantes()
     {
 
-        $datos = $this->_perf->obtenerDatosEstudiantes(Sessiones::getClave('usuario'));
+        $datos = $this->_perfil->obtenerDatosEstudiantes(Sessiones::getClave('usuario'));
         $id = $datos[0]["id_docente"];
-        $fila = $this->_perf->obtenerGrupos($id);
+        $fila = $this->_perfil->obtenerGrupos($id);
         $grupos = '<option>Seleccione un grupo</option>';
         foreach ($fila as $grupo) {
             $grupos .= '<option value="' . $grupo['id_grupo'] . '">' . $grupo['axo_grupo'] . ' ' . $grupo['nombre_grupo'] . '</option>';
@@ -26,7 +26,7 @@ class perfilController extends Controller
     public function index()
     {
         // //Mandar a la vista Datos de Estudiantes
-        // $fila =$this ->_perf->obtenerEstudiantes();
+        // $fila =$this ->_perfil->obtenerEstudiantes();
         // $datos = '<option value="0"></option>';
         $this->_view->grupos = $this->getEstudiantes();
         $this->_view->renderizar('perfil');
@@ -35,7 +35,7 @@ class perfilController extends Controller
     // Función para CARGAR la DataTable
     public function getEstudiante()
     {
-        $fila= $this->_perf->obtenerEstudiantes($this->getTexto("idGrupo"));
+        $fila= $this->_perfil->obtenerEstudiantes($this->getTexto("idGrupo"));
         $tabla = '';
         for ($i = 0; $i < count($fila); $i++) {
             $datos = json_encode($fila[$i]);
@@ -54,6 +54,23 @@ class perfilController extends Controller
         echo $tabla;
     }
 
-}
 
-?>
+    //AGREGAR Datos de PERFIL
+    public function agregarPerfil(){
+        $this->_perfil ->agregarPerfil(
+            $this->getTexto('idEstudiante'),
+            $this->getTexto('peso'),
+            $this->getTexto('altura'),
+            $this->getTexto('imc'),
+            $this->getTexto('categoriaPeso'),
+            $this->getTexto('somatotipo'),
+            $this->getTexto('condicion'),
+            $this->getTexto('descripcion'),
+            $this->getTexto('medicacion'),
+            $this->getTexto('idGrupo')
+        );
+        
+        echo $this->getEstudiante();
+        
+    }
+}
