@@ -11,6 +11,8 @@ class perfilController extends Controller
 
     public function getEstudiantes()
     {
+
+
         $datos = $this->_perfil->obtenerDatosDocente(Sessiones::getClave('usuario'));
         $id = $datos[0]["id_docente"];
         $fila = $this->_perfil->obtenerGrupos($id);
@@ -24,6 +26,7 @@ class perfilController extends Controller
     /*Función para RENDERIZAR la Vista PERFIL DEL ESTUDIANTE*/
     public function index()
     {
+
         $this->_view->grupos = $this->getEstudiantes();
         $this->_view->renderizar('perfil');
     }
@@ -66,5 +69,3 @@ class perfilController extends Controller
         
     }
 }
-
-?>

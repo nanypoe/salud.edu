@@ -1101,12 +1101,6 @@ $(function () {
         });
     });
 
-//######################################
-//######DATOS PERSONALES ESTUDIANTE#####
-//######################################
-
-
-
 });
 
 //EVENTOS FUER DEL DOM
@@ -1124,3 +1118,4 @@ function ocultarPass(elemento, icono) {
         $(icono).addClass('fa-eye');
     }
 }
+
