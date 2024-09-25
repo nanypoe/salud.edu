@@ -4,16 +4,16 @@
             <center><strong>Perfil del Estudiante</strong></center>
         </div>
     </div>
-<div class="mt-3 mb-2">
-<select name="grupos" id="grupos" class="form-select">
-    <?= $this->grupos?>
-</select>
-</div>
+    <div class="mt-3 mb-2">
+        <select name="grupos" id="grupos" class="form-select">
+            <?= $this->grupos ?>
+        </select>
+    </div>
 
 
     <div class="row">
         <div class="col">
-            <table id="table" class="tablaDatosEstudiante">
+            <table id="table" class="tablaPerfiles">
                 <thead>
                     <tr>
                         <th>ID Alumno</th>
@@ -26,5 +26,105 @@
             </table>
         </div>
     </div>
+</div>
 
+<!-- MODAL: AGREGAR Datos de Salud del Perfil del Estudiante -->
+
+<div class="modal fade" id="modalPerfilEstudiante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Datos de Salud del Estudiante
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formPerfilEstudiante">
+
+                        <input type="hidden" id="idEstudiante" name="idEstudiante">
+                        <input type="hidden" id="idGrupo" name="idGrupo">
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-12 d-flex justify-content-center">
+                                <img src="" alt="foto" class="img-thumbnail" style="width:200px; height:auto"
+                                    id="fotoEstudiante">
+                            </div>
+                            <div class="mb-2 col-lg-12 d-flex justify-content-center">
+                                <p class="h3" id="nombreCompleto"></p>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="peso" class="form-label">Peso (lbs)</label>
+                            <input type="number" class="form-control" id="peso" name="peso">
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="altura" class="form-label">Altura (cm)</label>
+                            <input type="number" class="form-control" id="altura" name="altura">
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="imc" class="form-label">IMC</label>
+                            <input type="number" class="form-control" id="imc" name="imc" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-3">
+                            <label for="categoriaPeso" class="form-label">Categoría de Peso</label>
+                            <input type="text" class="form-control" id="categoriaPeso" name="categoriaPeso" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="somatotipo" class="form-label">Somatotipo</label>
+                            <select name="somatotipo" id="somatotipo" class="form-select">
+                                <option value="0">Seleccione Somatotipo del Estudiante</option>
+                                <option value="ectomorfo">Ectomorfo</option>
+                                <option value="mesomorfo">Mesomorfo</option>
+                                <option value="endomorfo">endomorfo</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="condicion" class="form-label">Condición Médica</label>
+                            <select name="condicion" id="condicion" class="form-select">
+                                <option value="0">Seleccione Condición Médica del Estudiante</option>
+                                <option value="sin condición médica">Sin condición médica</option>
+                                <option value="asma">Asma</option>
+                                <option value="hipertensión arterial">Hipertensión arterial</option>
+                                <option value="diabetes mellitus">Diabetes mellitus</option>
+                                <option value="infecciones respiratorias">Infecciones respiratorias</option>
+                                <option value="obesidad">Obesidad</option>
+                                <option value="trastornos de ansiedad">Trastornos de ansiedad</option>
+                                <option value="depresión">Depresión</option>
+                                <option value="alergias">Alergias</option>
+                                <option value="trastornos del sueño">Trastornos del sueño</option>
+                                <option value="trastornos alimentarios">Trastornos alimentarios</option>
+                                <option value="síndrome de Down">Síndrome de Down</option>
+                                <option value="deficiencia de hierro">Deficiencia de hierro</option>
+                                <option value="trastornos del desarrollo">Trastornos del desarrollo</option>
+                                <option value="enfermedades gastrointestinales">Enfermedades gastrointestinales</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="medicacion" class="form-label">Medicación</label>
+                            <textarea class="form-control" id="medicacion" name="medicacion"></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-primary">Agregar Datos de Salud</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

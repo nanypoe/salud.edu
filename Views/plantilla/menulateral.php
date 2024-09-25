@@ -27,7 +27,7 @@
               </a>
             </li>
 
-            <li class="section-title">
+            <!-- <li class="section-title">
               Inicio de Sesión
             </li>
 
@@ -49,13 +49,29 @@
                     </a>
                   </li>';
             }
-            ?>
+            ?> -->
+
+
+            <?php
+            if (Sessiones::accesoVista('estudiante')) {
+              ?>
+              <li class="section-title">
+              Funionalidades
+              </li>
+
+              <li>
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>personal">
+                <i class="fa-regular fa-user"></i>
+                <span class="nav-text">Datos Personales</span>
+                </a>
+              </li>
+            <?php } ?>
 
             <?php
             if (Sessiones::accesoVista('docente')) {
               ?>
               <li class="section-title">
-                Apartados
+                Funciones
               </li>
 
               <li>

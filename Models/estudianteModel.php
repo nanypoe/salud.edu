@@ -37,10 +37,12 @@ class estudianteModel extends Model
         $tutor,
         $tutorTel,
         $estado,
-        $imagen
+        $imagen,
+        $usuario,
+        $clave
     ) {
         try {
-            $stmt = $this->_db->prepare("INSERT INTO estudiantes(id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, nombre_tutor, telefono_tutor, estado, imagen) VALUES (:idEscuela, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado, :imagen
+            $stmt = $this->_db->prepare("INSERT INTO estudiantes(id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, nombre_tutor, telefono_tutor, estado, imagen, usuario, clave) VALUES (:idEscuela, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado, :imagen,  :usuario, :clave
             )");
             $stmt->execute(array(
                 'idEscuela' => $idEscuela,
@@ -57,15 +59,21 @@ class estudianteModel extends Model
                 'tutor' => $tutor,
                 'tutorTel' => $tutorTel,
                 'estado' => $estado,
-                'imagen' => $imagen
+                'imagen' => $imagen,
+                'usuario'=> $usuario,
+                'clave'=> $clave
             ));
+            //Hash de la clave
+            $hash = password_hash($clave, PASSWORD_DEFAULT);
+            $stmt = $this->_db->prepare("INSERT INTO usuarios (usuario, clave, rol) VALUES  (:usuario, :hash, 'estudiante')");
+            $stmt->execute(array('usuario'=>$usuario, 'hash'=>$hash));
         } catch (PDOException $e) {
             echo "Error al agregar estudiante: " . $e->getMessage();
             return false;
         }
     }
 
-    //AGREGAR Estudiantes
+    //AGREGAR Estudiantes sin Fotos
     public function agregarEstudianteNoFoto(
         $idEscuela,
         $pNombre,
@@ -80,10 +88,12 @@ class estudianteModel extends Model
         $email,
         $tutor,
         $tutorTel,
-        $estado
+        $estado,
+        $usuario,
+        $clave
     ) {
         try {
-            $stmt = $this->_db->prepare("INSERT INTO estudiantes(id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, nombre_tutor, telefono_tutor, estado) VALUES (:idEscuela, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado
+            $stmt = $this->_db->prepare("INSERT INTO estudiantes(id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, nombre_tutor, telefono_tutor, estado, usuario, clave) VALUES (:idEscuela, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado,  :usuario, :clave
             )");
             $stmt->execute(array(
                 'idEscuela' => $idEscuela,
@@ -99,8 +109,14 @@ class estudianteModel extends Model
                 'email' => $email,
                 'tutor' => $tutor,
                 'tutorTel' => $tutorTel,
-                'estado' => $estado
+                'estado' => $estado,
+                'usuario'=> $usuario,
+                'clave'=> $clave
             ));
+            //Hash de la clave
+            $hash = password_hash($clave, PASSWORD_DEFAULT);
+            $stmt = $this->_db->prepare("INSERT INTO usuarios (usuario, clave, rol) VALUES  (:usuario, :hash, 'estudiante')");
+            $stmt->execute(array('usuario'=>$usuario, 'hash'=>$hash));
         } catch (PDOException $e) {
             echo "Error al agregar estudiante: " . $e->getMessage();
             return false;

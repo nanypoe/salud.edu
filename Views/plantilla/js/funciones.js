@@ -1004,6 +1004,7 @@ $(function () {
     /*=========================================
               ==========DATOS DE SALUD ESTUDIANTIL===
               ======================================*/
+    //Inicializar estudiantes según Docente
     $("#grupos").on("change", function () {
         let idGrupo = $("#grupos").val();
         console.log(idGrupo);
@@ -1019,16 +1020,34 @@ $(function () {
         });
     });
 
+    //Cargar datos al Modal
+    $(".tablaPerfiles").on("click", ".btnEditarPerfil", function () {
+        //Cargar Datos del Estudiante
+        let datos = JSON.parse($(this).attr("data-perfil"));
+        $("#fotoEstudiante").attr('src', "../salud.edu/Views/plantilla/images/estudianteFotos/" + datos["imagen"]);
+        $("#nombreCompleto").html(datos["primer_nombre"] + " " + datos["segundo_nombre"] + " " + datos["primer_apellido"] + " " + datos["segundo_apellido"]);
+        $("#idEstudiante").val(datos["id_estudiante"]);
+        $("#idGrupo").val(datos["id_grupo"]);
+        $("#peso").val(datos["peso"]);
+        $("#altura").val(datos["altura"]);
+        $("#imc").val(datos["imc"]);
+        $("#categoriaPeso").val(datos["categoria_peso"]);
+        $("#condicion").val(datos["condicion_medica"]);
+        $("#descripcion").val(datos["descripcion"]);
+        $("#medicacion").val(datos["medicacion"]);
+        $("#somatotipo").val(datos["somatotipo"]);
+    });
 
 
-    /*Función para Calcular IMC y categoría de peso*/
-    $("#alturaEstudiante, #pesoEstudiante").on("keyup", function () {
+
+    //Calcular IMC y Categoría de peso
+    $("#altura, #peso").on("keyup", function () {
         if (
             $("#alturaEstudiante").val() != "" &&
             $("#pesoEstudiante").val() != ""
         ) {
-            let peso = parseFloat($("#pesoEstudiante").val() / 2.205);
-            let altura = parseFloat($("#alturaEstudiante").val() / 100);
+            let peso = parseFloat($("#peso").val() / 2.205);
+            let altura = parseFloat($("#altura").val() / 100);
             let imc = parseFloat(peso / (altura * altura)).toFixed(2);
             $("#imc").val(imc);
             if (imc <= 18.5) {
@@ -1046,53 +1065,51 @@ $(function () {
         }
     });
 
+
     /*Envío de DATOS DE SALUD ESTUDIANTIL al BackEnd */
-    $("#formAgregarDatosSalud").submit(function (e) {
+    $("#formPerfilEstudiante").submit(function (e) {
         e.preventDefault();
-        let idEstudiante = $("#idEstudiante").val();
-        let pesoEstudiante = $("#pesoEstudiante").val();
-        let alturaEstudiante = $("#alturaEstudiante").val();
-        let imc = $("#imc").val();
-        let categoriaPeso = $("#categoriaPeso").val();
-        let somatotipo = $("#somatotipo").val();
-        let condicionMedica = $("#condicionMedica").val();
-        let descripcionMedica = $("#descripcionMedica").val();
-        let medicacion = $("#medicacion").val();
         $("#imc").prop("disabled", false);
         $("#categoriaPeso").prop("disabled", false);
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
         $.ajax({
-            url: "../salud/agregarDatosSalud/",
-            type: "post",
-            data: {
-                idEstudiante: idEstudiante,
-                pesoEstudiante: pesoEstudiante,
-                alturaEstudiante: alturaEstudiante,
-                imc: imc,
-                categoriaPeso: categoriaPeso,
-                somatotipo: somatotipo,
-                condicionMedica: condicionMedica,
-                descripcionMedica: descripcionMedica,
-                medicacion: medicacion,
-            },
+            url: "perfil/agregarPerfil/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function (respuesta) {
-                console.log(respuesta);
-                $("#formAgregarDatosSalud")[0].reset();
-                $("#imc").prop("disabled", true);
-                $("#categoriaPeso").prop("disabled", true);
-                Swal.fire({
-                    title: "Agregado!",
-                    text: "El registro ha sido Agregado de forma correcta.",
-                    icon: "success",
-                });
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalPerfilEstudiante",
+                        "#formPerfilEstudiante", respuesta);
+                    alertaModificado();
+
+                    $("#imc").prop("disabled", true);
+                    $("#categoriaPeso").prop("disabled", true);
+                }
             },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
         });
     });
+
+//######################################
+//######DATOS PERSONALES ESTUDIANTE#####
+//######################################
+
 
 
 });
 
-
-//////////EVENTOS FUERA DEL DOM/////////////
+//EVENTOS FUER DEL DOM
 
 /*Función para ocultar pass*/
 function ocultarPass(elemento, icono) {

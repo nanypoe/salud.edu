@@ -85,7 +85,9 @@ class estudianteController extends Controller
                 $this->getTexto('tutor'),
                 $this->getTexto('tutorTel'),
                 $this->getTexto('estado'),
-                $image
+                $image,
+                $this->getTexto('usuario'),
+                $this->getTexto(clave: 'clave')
             );
             echo $this->verEstudiantes();
         } else {
@@ -103,7 +105,9 @@ class estudianteController extends Controller
                 $this->getTexto('email'),
                 $this->getTexto('tutor'),
                 $this->getTexto('tutorTel'),
-                $this->getTexto('estado')
+                $this->getTexto('estado'),
+                $this->getTexto('usuario'),
+                $this->getTexto('clave')
             );
             echo $this->verEstudiantes();
         }

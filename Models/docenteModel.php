@@ -37,20 +37,23 @@ class docenteModel extends Model
                 nombre,
                 apellido,
                 email,
-                telefono
+                telefono,
+                usuario
             ) VALUES (
                 :idEscuela,
                 :nombreDocente,
                 :apellidoDocente,
                 :emailDocente,
-                :telefonoDocente
+                :telefonoDocente,
+                :usuarioDocente
             )");
             $stmt->execute(array(
                 'idEscuela' => $idEscuela,
                 'nombreDocente' => $nombreDocente,
                 'apellidoDocente' => $apellidoDocente,
                 'emailDocente' => $emailDocente,
-                'telefonoDocente' => $telefonoDocente
+                'telefonoDocente' => $telefonoDocente,
+                'usuarioDocente' => $usuarioDocente,
             ));
 
             // Hash de la contraseña
