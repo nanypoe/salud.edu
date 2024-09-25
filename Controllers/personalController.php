@@ -25,6 +25,7 @@ class personalController extends Controller
             <span class="h2 d-block mt-3 mb-2" id="nombrePersonal">' . $nombre["primer_nombre"] . ' ' . $nombre["primer_apellido"] . '</span>
             ' . $matricula . '           
             ';
+
         }
         return $nombres;
     }

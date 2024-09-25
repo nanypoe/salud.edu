@@ -8,6 +8,7 @@ class personalModel extends Model
         parent::__construct();
     }
 
+
     public function sesionEstudiante()
     {
         return $this->_db->query("SELECT * FROM estudiantes")->fetchAll();
@@ -25,4 +26,5 @@ class personalModel extends Model
     {
         return $this->_db->query("SELECT * FROM estudiantes INNER JOIN salud_estudiante ON estudiantes.id_estudiante=salud_estudiante.id_estudiante WHERE estudiantes.id_estudiante='$id'")->fetchAll();
     }
+
 }

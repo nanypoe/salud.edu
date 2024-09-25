@@ -51,7 +51,7 @@ CREATE TABLE escuelas (
     apellido VARCHAR(255) NOT NULL,
     email VARCHAR(100),
     telefono VARCHAR(50),
-    usuario VARCHAR(50)
+    usuario VARCHAR(50),
     FOREIGN KEY (id_escuela) REFERENCES escuelas(id_escuela) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
@@ -75,16 +75,6 @@ CREATE TABLE materias (
     FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo)
 )ENGINE=InnoDB;
 
--- Tabla Matrícula
-CREATE TABLE  matricula (
-    id_matricula INT AUTO_INCREMENT PRIMARY KEY,
-    id_grupo INT,
-    id_estudiante INT,
-    FOREIGN KEY  (id_grupo) REFERENCES grupos (id_grupo),
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-)ENGINE=InnoDB;
-
-
 -- Tabla ESTUDIANTES
 CREATE TABLE estudiantes (
     id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
@@ -103,8 +93,19 @@ CREATE TABLE estudiantes (
     telefono_tutor VARCHAR(50),
     imagen VARCHAR(50),
     estado ENUM('Activo', 'Inactivo'),
+    usuario VARCHAR(50),
+    clave VARCHAR (50),
     FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
 ) ENGINE=InnoDB;
+
+-- Tabla Matrícula
+CREATE TABLE  matricula (
+    id_matricula INT AUTO_INCREMENT PRIMARY KEY,
+    id_grupo INT,
+    id_estudiante INT,
+    FOREIGN KEY  (id_grupo) REFERENCES grupos (id_grupo),
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+)ENGINE=InnoDB;
 
 -- Tabla para los Datos de SALUD del ESTUDIANTE
 CREATE TABLE salud_estudiante (

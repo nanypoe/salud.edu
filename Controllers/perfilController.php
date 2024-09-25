@@ -12,12 +12,13 @@ class perfilController extends Controller
     public function getEstudiantes()
     {
 
-        $datos = $this->_perfil->obtenerDatosEstudiantes(Sessiones::getClave('usuario'));
+
+        $datos = $this->_perfil->obtenerDatosDocente(Sessiones::getClave('usuario'));
         $id = $datos[0]["id_docente"];
         $fila = $this->_perfil->obtenerGrupos($id);
         $grupos = '<option>Seleccione un grupo</option>';
         foreach ($fila as $grupo) {
-            $grupos .= '<option value="' . $grupo['id_grupo'] . '">' . $grupo['axo_grupo'] . ' ' . $grupo['nombre_grupo'] . '</option>';
+            $grupos .= '<option value="' . $grupo['id_grupo'] . '">' . $grupo['axo_grupo']. ' ' . $grupo['nombre_grupo'] . '</option>';
         }
         return $grupos;
     }
@@ -25,9 +26,7 @@ class perfilController extends Controller
     /*Función para RENDERIZAR la Vista PERFIL DEL ESTUDIANTE*/
     public function index()
     {
-        // //Mandar a la vista Datos de Estudiantes
-        // $fila =$this ->_perfil->obtenerEstudiantes();
-        // $datos = '<option value="0"></option>';
+
         $this->_view->grupos = $this->getEstudiantes();
         $this->_view->renderizar('perfil');
     }
@@ -42,18 +41,14 @@ class perfilController extends Controller
             $tabla .= '
                 <tr>
                 <td>' . $fila[$i]['id_estudiante'] . '</td>
-                <td>' . $fila[$i]['primer_nombre'] . ' ' . $fila[$i]['segundo_nombre'] . '</td>
+                <td>' . $fila[$i]['primer_nombre'] . ' ' . $fila[$i]['segundo_nombre'] .' '. $fila[$i]['primer_apellido'] .' '.$fila[$i]['segundo_apellido'] . '</td>
                     <td>
-                    <button data-municipio=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalEditarMunicipio" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarMunicipio"><i class="fa-solid fa-rotate-right"></i> Actualizar</button>  
-                    <button data-id=' . $fila[$i]['id_estudiante'] . ' type="button" style="color:white;font-weight:bold" class="btn btn-danger BtnBorrarMunicipio"><i class="fa-solid fa-trash"></i> Borrar</button>
-                    </td>
+                    <button data-perfil=\'' . $datos . '\'  data-bs-toggle="modal" data-bs-target="#modalPerfilEstudiante" type="button" style="color:white;font-weight:bold" class="btn btn-warning btnEditarPerfil"><i class="fa-solid fa-person-circle-plus"></i>Perfil Estudiantil</button>
                 </tr>
                 ';
         }
-        var_dump($tabla);
         echo $tabla;
     }
-
 
     //AGREGAR Datos de PERFIL
     public function agregarPerfil(){
