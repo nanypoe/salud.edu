@@ -121,15 +121,35 @@ CREATE TABLE salud_estudiante (
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
 
+CREATE TABLE historial_salud (
+    id_estudiante INT,
+    fecha_realizacion DATE,
+    peso FLOAT,
+    altura FLOAT,
+    imc FLOAT,
+    categoria_peso VARCHAR(255),
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+) ENGINE=InnoDB;
+
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
 CREATE TABLE pruebas_fisicas (
+    id_prueba INT AUTO_INCREMENT PRIMARY KEY,
     id_estudiante INT,
     fecha_prueba DATE,
-    tipo_prueba ENUM('Carrera', 'Salto', 'Flexibilidad', 'Resistencia', 'Otros'),
+    tipo_prueba VARCHAR(75),
     resultado FLOAT,
     unidad_medida VARCHAR(20),
     observaciones TEXT,
-    PRIMARY KEY (id_estudiante, fecha_prueba),
+    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+) ENGINE=InnoDB;
+
+CREATE TABLE historial_pruebas (
+    id_estudiante INT,
+    fecha_prueba DATE,
+    tipo_prueba VARCHAR(75),
+    resultado FLOAT,
+    unidad_medida VARCHAR(20),
+    observaciones TEXT,
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
 
