@@ -326,7 +326,7 @@
                     <li class="dropdown user-menu ">
                         <button class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                             <?php if (Sessiones::getVista('estudiante')) { ?>
-                                <img src="<?= PLANTILLA ?>images/user/user.png" class="user-image rounded-circle"/>
+                                <img src="<?= PLANTILLA ?>images/user.png" class="user-image rounded-circle"/>
                             <?php } ?>
                             <span class="d-none d-lg-inline-block">
                                 <?php if (Sessiones::getClave('usuario')) {

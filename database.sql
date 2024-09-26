@@ -157,9 +157,6 @@ CREATE TABLE pruebas_fisicas (
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
 
-
-
-
 CREATE TABLE historial_pruebas (
     id_estudiante INT,
     fecha_prueba DATE,
@@ -168,27 +165,6 @@ CREATE TABLE historial_pruebas (
     unidad_medida VARCHAR(20),
     observaciones TEXT,
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-) ENGINE=InnoDB;
-CREATE TABLE estudiantes (
-    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
-    id_escuela INT,
-    primer_nombre VARCHAR(50),
-    segundo_nombre VARCHAR(50),
-    primer_apellido VARCHAR(50),
-    segundo_apellido VARCHAR(50),
-    edad INT,
-    fecha_nacimiento DATE,
-    sexo ENUM('Masculino', 'Femenino'),
-    direccion VARCHAR(255),
-    telefono VARCHAR(50),
-    email VARCHAR(100),
-    nombre_tutor VARCHAR(255),
-    telefono_tutor VARCHAR(50),
-    imagen VARCHAR(50),
-    estado ENUM('Activo', 'Inactivo'),
-    usuario VARCHAR(50),
-    clave VARCHAR (50),
-    FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
 ) ENGINE=InnoDB;
 
 -- Tabla para asignar ESTUDIANTES a un GRUPO
