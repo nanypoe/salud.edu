@@ -56,13 +56,13 @@
             if (Sessiones::accesoVista('estudiante')) {
               ?>
               <li class="section-title">
-              Funionalidades
+                Funionalidades
               </li>
 
               <li>
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>personal">
-                <i class="fa-regular fa-user"></i>
-                <span class="nav-text">Datos Personales</span>
+                  <i class="fa-regular fa-user"></i>
+                  <span class="nav-text">Datos Personales</span>
                 </a>
               </li>
 
@@ -85,8 +85,15 @@
 
               <li>
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>perfil">
-                  <i class="mdi mdi-wechat"></i>
-                  <span class="nav-text">Perfil Estudiante</span>
+                  <i class="fa-solid fa-notes-medical"></i>
+                  <span class="nav-text">Historial Estudiante</span>
+                </a>
+              </li>
+
+              <li>
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>prueba">
+                  <i class="fa-solid fa-person-running"></i>
+                  <span class="nav-text">Pruebas Físicas</span>
                 </a>
               </li>
 

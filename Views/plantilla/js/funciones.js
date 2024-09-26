@@ -1005,20 +1005,25 @@ $(function () {
               ==========DATOS DE SALUD ESTUDIANTIL===
               ======================================*/
     //Inicializar estudiantes según Docente
-    $("#grupos").on("change", function () {
-        let idGrupo = $("#grupos").val();
-        console.log(idGrupo);
-        $.ajax({
-            url: 'perfil/getEstudiante/',
-            type: 'post',
-            data: { idGrupo: idGrupo },
-            success: function (respuesta) {
-                $("#table").DataTable().destroy();
-                $("#table tbody").html(respuesta);
-                inicializarDataTable();
-            }
+    function inicializarEstudiantes(idGrupos, ruta) {
+        $(idGrupos).on("change", function () {
+            let idGrupo = $(idGrupos).val();
+            console.log(idGrupo);
+            $.ajax({
+                url: ruta,
+                type: 'post',
+                data: { idGrupo: idGrupo },
+                success: function (respuesta) {
+                    $("#table").DataTable().destroy();
+                    $("#table tbody").html(respuesta);
+                    inicializarDataTable();
+                }
+            });
         });
-    });
+    }
+
+    inicializarEstudiantes("#perfilGrupos", 'perfil/getEstudiante/');
+
 
     //Cargar datos al Modal
     $(".tablaPerfiles").on("click", ".btnEditarPerfil", function () {
@@ -1101,9 +1106,74 @@ $(function () {
         });
     });
 
-});
 
-//EVENTOS FUER DEL DOM
+
+    /*================================================
+                  ==========PRUEBAS FÍSICO-MOTRICES===
+                  ==================================*/
+    //Iniciar Estudiantes
+    inicializarEstudiantes("#pruebaGrupos", 'prueba/tablaEstudiante/');
+    //Cargar datos al Modal AGREGAR
+    $(".tablaPruebas").on("click", ".BtnAgregarPrueba", function () {
+        //Cargar Datos del Estudiante
+        let datos = JSON.parse($(this).attr("data-prueba"));
+        $("#fotoEstudiante").attr('src', "../salud.edu/Views/plantilla/images/estudianteFotos/" + datos["imagen"]);
+        $("#nombreCompleto").html(datos["primer_nombre"] + " " + datos["segundo_nombre"] + " " + datos["primer_apellido"] + " " + datos["segundo_apellido"]);
+        $("#idEstudiante").val(datos["id_estudiante"]);
+        $("#idGrupo").val(datos["id_grupo"]);
+    });
+
+    // Unidad de medida
+    $("#prueba").on("change", function () {
+        const pruebaValue = $("#prueba").val();
+        const medidaMap = {
+            "Resistencia": "min/500m",
+            "Fuerza": "kg/set",
+            "Velocidad": "m/s",
+            "Salto": "metros",
+            "Lanzamiento": "metros"
+        };
+        $("#medida").val(medidaMap[pruebaValue]);
+    });
+
+    /*Envío de DATOS DE SALUD ESTUDIANTIL al BackEnd */
+    $("#formAgregarPrueba").submit(function (e) {
+        e.preventDefault();
+        $("#medida").prop("disabled", false);
+        let formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            url: "prueba/agregarPrueba/",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log("Respuesta del servidor: ", respuesta);
+                if (respuesta.includes("Error en la consulta: ")) {
+                    alert(respuesta);
+                } else {
+                    modalFormRespuesta(
+                        "#modalAgregarPrueba",
+                        "#formAgregarPrueba", respuesta);
+                    alertaAgregado();
+                    $("#medida").prop("disable", true)
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alertaError(jqXHR, textStatus, errorThrown);
+            }
+        });
+    });
+
+
+
+});
+/*====================================================
+              ==========OTROS EVENTOS FUERA DEL DOM===
+              ======================================*/
 
 /*Función para ocultar pass*/
 function ocultarPass(elemento, icono) {
@@ -1118,6 +1188,3 @@ function ocultarPass(elemento, icono) {
         $(icono).addClass('fa-eye');
     }
 }
-
-
-

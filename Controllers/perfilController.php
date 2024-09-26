@@ -16,7 +16,7 @@ class perfilController extends Controller
         $datos = $this->_perfil->obtenerDatosDocente(Sessiones::getClave('usuario'));
         $id = $datos[0]["id_docente"];
         $fila = $this->_perfil->obtenerGrupos($id);
-        $grupos = '<option>Seleccione un grupo</option>';
+        $grupos = '<option>Seleccione un grupo de estudiantado</option>';
         foreach ($fila as $grupo) {
             $grupos .= '<option value="' . $grupo['id_grupo'] . '">' . $grupo['axo_grupo']. ' ' . $grupo['nombre_grupo'] . '</option>';
         }
