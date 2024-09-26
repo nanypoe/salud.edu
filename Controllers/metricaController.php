@@ -103,6 +103,20 @@ class metricaController extends Controller
         return $fila;
     }
 
+    public function graficoResistencia()
+    {
+        $datos = $this->_metrica->obtenerDatosEstudiante(Sessiones::getClave('usuario'));
+        $id = $datos[0]["id_estudiante"];
+        $fila = $this->_metrica->obtenerResistencia($id);
+
+
+
+        
+        
+       
+        return $fila;
+    }
+
 
 
 
@@ -113,6 +127,7 @@ class metricaController extends Controller
     {
 
         $this->_view->nombres = $this->obtenerDatos();
+        $this->_view->resistencia = $this->graficoResistencia();
         $this->_view->fuerza = $this->graficoFuerza();
         $this->_view->lanzamiento = $this->graficoLanzamiento();
         $this->_view->velocidad = $this->graficoVelocidad();
