@@ -59,4 +59,9 @@
   <!-- FAVICON -->
   <link href="<?= PLANTILLA ?>images/favicon.png" rel="shortcut icon" />
 
+  <!-- ApexCharts -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
 </head>

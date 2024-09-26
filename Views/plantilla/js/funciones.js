@@ -1188,5 +1188,3 @@ function ocultarPass(elemento, icono) {
         $(icono).addClass('fa-eye');
     }
 }
-
-
