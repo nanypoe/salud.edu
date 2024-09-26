@@ -178,9 +178,9 @@
 <!--Toaster-->
 <script src="<?= PLANTILLA ?>plugins/toaster/toastr.min.js"></script>
 
-<!--Mono, Chart, Map & Custom-->
+<!--Mono, Map & Custom-->
 <script src="<?= PLANTILLA ?>js/mono.js"></script>
-<script src="<?= PLANTILLA ?>js/chart.js"></script>
+
 <script src="<?= PLANTILLA ?>js/map.js"></script>
 <script src="<?= PLANTILLA ?>js/custom.js"></script>
 
@@ -195,6 +195,8 @@
 
 <!-- nProgress -->
 <script src="<?= PLANTILLA ?>plugins/nprogress/nprogress.js"></script>
+
+
 
 <!--Funciones JS-->
 <script src="<?= PLANTILLA ?>js/funciones.js"></script>

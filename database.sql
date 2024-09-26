@@ -131,17 +131,34 @@ CREATE TABLE historial_salud (
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
 
+DELIMITER //
+
+CREATE TRIGGER before_update_salud_estudiante
+BEFORE UPDATE ON salud_estudiante
+FOR EACH ROW
+BEGIN
+    INSERT INTO historial_salud (id_estudiante, fecha_realizacion, peso, altura, imc, categoria_peso)
+    VALUES (OLD.id_estudiante, CURDATE(), OLD.peso, OLD.altura, OLD.imc, OLD.categoria_peso);
+END;
+
+//
+
+DELIMITER ;
+
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
 CREATE TABLE pruebas_fisicas (
     id_prueba INT AUTO_INCREMENT PRIMARY KEY,
     id_estudiante INT,
-    fecha_prueba DATE,
+    fecha_prueba DATE, 
     tipo_prueba VARCHAR(75),
     resultado FLOAT,
     unidad_medida VARCHAR(20),
     observaciones TEXT,
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
+
+
+
 
 CREATE TABLE historial_pruebas (
     id_estudiante INT,
@@ -151,6 +168,27 @@ CREATE TABLE historial_pruebas (
     unidad_medida VARCHAR(20),
     observaciones TEXT,
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+) ENGINE=InnoDB;
+CREATE TABLE estudiantes (
+    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
+    id_escuela INT,
+    primer_nombre VARCHAR(50),
+    segundo_nombre VARCHAR(50),
+    primer_apellido VARCHAR(50),
+    segundo_apellido VARCHAR(50),
+    edad INT,
+    fecha_nacimiento DATE,
+    sexo ENUM('Masculino', 'Femenino'),
+    direccion VARCHAR(255),
+    telefono VARCHAR(50),
+    email VARCHAR(100),
+    nombre_tutor VARCHAR(255),
+    telefono_tutor VARCHAR(50),
+    imagen VARCHAR(50),
+    estado ENUM('Activo', 'Inactivo'),
+    usuario VARCHAR(50),
+    clave VARCHAR (50),
+    FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
 ) ENGINE=InnoDB;
 
 -- Tabla para asignar ESTUDIANTES a un GRUPO

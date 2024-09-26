@@ -1,0 +1,204 @@
+<section class="profile">
+    <!-- TITUTULO -->
+    <div class="pagetitle ml-4 mr-4">
+        <p class="h2 d-flex justify-content-center mb-2">Datos Metrica Personales</p>
+        <!-- Pestañas del título -->
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item h4"><a href="index.html">Inicio</a></li>
+                <li class="breadcrumb-item h4 active">Metrica Personal</li>
+            </ol>
+        </nav>
+    </div><!-- Final del Título -->
+
+
+    <!-- PERFIL -->
+    <div class="row ml-4 mr-4 d-flex justify-content-between">
+        <!-- Seccion izquierda -->
+        <div class="col-xl-3 card border border-primary-subtle rounded">
+            <div class="card-body profile-card d-flex flex-column align-items-center">
+                <?= $this->nombres ?>
+            </div>
+
+            <!-- Final de la sección izquierda -->
+        </div>
+
+        <!-- Seccion derecha -->
+        <div class="col-xl ml-4 card border border-primary-subtle rounded">
+            <div class="card-body profile-card d-flex flex-column">
+                <ul class="nav nav-tabs nav-tabs-bordered d-flex justify-content-center">
+
+                    <li class="nav-item">
+                        <button class="nav-link active fs-2" data-bs-toggle="tab"
+                            data-bs-target="#datosGenerales">Metrica Perfil Salud</button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="nav-link fs-2" data-bs-toggle="tab" data-bs-target="#datosSalud">Metrica Perfil
+                            Actividades</button>
+                    </li>
+
+                </ul>
+                <div class="tab-content pt-1">
+                    <div class="tab-pane fade show active justify-content-center align-items-center align-content-center"
+                        id="datosGenerales">
+                        <!-- grafico de imc  -->
+                        <div class="row">
+                            <div class="col mb-3 mt-3 col-lg-6">
+
+                                <div id="imc">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="tab-pane fade profile-overview justify-content-center align-items-center align-content-center"
+                        id="datosSalud">
+                        <!-- grafico de imc  -->
+                        <div class="row">
+                            <div class="col mb-3 mt-3 col-lg-6">
+
+                                <div id="chart">
+                                </div>
+                            </div>
+
+                            <div class="col mb-3 mt-3 col-lg-6">
+
+                                <div id="salto">
+                                </div>
+                            </div>
+
+
+                            <div class="col mb-3 mt-3 col-lg-6">
+
+                                <div id="lanzamiento">
+                                </div>
+                            </div>
+
+
+                            <div class="col mb-3 mt-3 col-lg-6">
+
+                                <div id="fuerza">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <!-- Final de la sección derecha -->
+        </div>
+
+
+
+        <!--Final del PERFIL-->
+    </div>
+
+</section>
+
+<script>
+
+
+    // grafico  de pruebas fisicas
+
+
+    function createBarChart(containerId, labels, data, title, textoEtiqueta, textoColumna, medida) {
+        const customColors = ['#008FFB', '#00E396', '#FF4560', '#775DD0', '#FEB019', '#FF66C3', '#A9A9A9'];
+
+        const options = {
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            title: {
+                text: title,
+            },
+            xaxis: {
+                categories: labels,
+                title: {
+                    text: textoEtiqueta,
+                }
+            },
+            yaxis: {
+                title: {
+                    text: textoColumna,
+                }
+            },
+            series: [{
+                name: medida,
+                data: data,
+            }],
+            colors: customColors,
+            plotOptions: {
+                bar: {
+                    distributed: true
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector(containerId), options);
+        chart.render();
+    }
+
+    // Datos del gráfico
+    const labels = <?php echo json_encode(array_column($this->velocidad, 'fecha_prueba')); ?>;
+    const data = <?php echo json_encode(array_column($this->velocidad, 'total_repeticiones')); ?>;
+    let nombre = <?php echo json_encode(array_column($this->velocidad, 'primer_nombre')); ?>[0];
+
+    // Llamar a la función para renderizar el gráfico
+    createBarChart("#chart", labels, data, 'Metrica de prueba de velocidad Realizado por ' + nombre, 'Fecha Pruebas', 'Escala de Tiempo', 'segundos');
+
+
+
+    // grafico  de IMC
+
+    const etiquetas = <?php echo json_encode(array_column($this->imc, 'tipo')); ?>;
+    const datos = <?php echo json_encode(array_column($this->imc, 'imc')); ?>;
+
+
+    // Llamar a la función para renderizar el gráfico
+    createBarChart("#imc", etiquetas, datos, 'Evolución del IMC de: ' + nombre, 'Estimaciones', 'IMC', 'IMC');
+
+    // grafico  de IMC
+
+    const etiqueta = <?php echo json_encode(array_column($this->salto, 'fecha_prueba')); ?>;
+    const dato = <?php echo json_encode(array_column($this->salto, 'total_repeticiones')); ?>;
+
+    // Llamar a la función para renderizar el gráfico
+    createBarChart("#salto", etiqueta, dato, 'Metrica de prueba de Salto Realizado por: ' + nombre, 'Fechas Realización', 'N° de saltos', 'Saltos');
+
+    // grafico  de Prueba Lanzamiento
+
+    const etiquet = <?php echo json_encode(array_column($this->lanzamiento, 'fecha_prueba')); ?>;
+    const dat = <?php echo json_encode(array_column($this->lanzamiento, 'total_repeticiones')); ?>;
+
+    // Llamar a la función para renderizar el gráfico
+    createBarChart("#lanzamiento", etiquet, dat, 'Metrica de prueba de Lanzamiento Realizado por: ' + nombre, 'Fechas Realización', 'Escala en Metros', 'Metros');
+
+
+    // grafico  de Prueba Fuerza
+
+    const etique = <?php echo json_encode(array_column($this->fuerza, 'fecha_prueba')); ?>;
+    const da= <?php echo json_encode(array_column($this->fuerza, 'total_repeticiones')); ?>;
+
+    // Llamar a la función para renderizar el gráfico
+    createBarChart("#fuerza", etique, da, 'Metrica de prueba de Fuerza Realizado por: ' + nombre, 'Fechas Realización', 'Escala en KG', 'KG');
+
+
+
+
+
+</script>

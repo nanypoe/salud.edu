@@ -65,6 +65,15 @@
                 <span class="nav-text">Datos Personales</span>
                 </a>
               </li>
+
+              <li>
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>metrica">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="nav-text">Metrica Personales</span>
+                </a>
+              </li>
+
+
             <?php } ?>
 
             <?php

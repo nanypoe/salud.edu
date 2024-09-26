@@ -15,7 +15,7 @@ class personalController extends Controller
         $nombres = '';
         foreach ($datos as $nombre) {
             $matricula = "";
-            if ($datos["id_matricula"] != "") {
+            if ($nombre["id_matricula"] != "") {
                 $matricula .= '<span class="h4 d-block mb-1" id="grupoPersonal">No matriculado</span>';
             } else {
                 $matricula .= '<span class="h3 d-block mb-1" id="grupoPersonal">' . $nombre["axo_grupo"] . ' ' . $nombre["nombre_grupo"] . '</span>';
