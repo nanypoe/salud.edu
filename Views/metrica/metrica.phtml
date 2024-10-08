@@ -167,10 +167,10 @@
 
     const etiquetas = <?php echo json_encode(array_column($this->imc, 'tipo')); ?>;
     const datos = <?php echo json_encode(array_column($this->imc, 'imc')); ?>;
-
+    let nombr = <?php echo json_encode(array_column($this->imc, 'primer_nombre')); ?>[0];
 
     // Llamar a la función para renderizar el gráfico
-    createBarChart("#imc", etiquetas, datos, 'Evolución del IMC de: ' + nombre, 'Estimaciones', 'IMC', 'IMC');
+    createBarChart("#imc", etiquetas, datos, 'Evolución del IMC de: ' + nombr, 'Estimaciones', 'IMC', 'IMC');
 
     // grafico  de IMC
 

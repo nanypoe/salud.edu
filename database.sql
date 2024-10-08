@@ -131,6 +131,7 @@ CREATE TABLE historial_salud (
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
 ) ENGINE=InnoDB;
 
+-- Trigger para cambios antes de actualizar SALUD ESTUDIANTE
 DELIMITER //
 
 CREATE TRIGGER before_update_salud_estudiante
