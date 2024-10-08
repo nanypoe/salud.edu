@@ -11,15 +11,6 @@ class indexController extends Controller
 
     }
 
-    // public function obtenerUbicaciones()
-    // {
-    //     $fila = $this->_index->obtenerUbi();
-    //     for ($i = 0; $i < count($fila); $i++) {
-    //         $datos = json_encode($fila);
-    //     }
-    //     return $datos;
-    // }
-
     public function index()
     {
         
