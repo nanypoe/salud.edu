@@ -175,8 +175,8 @@
 <!--Quill-->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-<!--Toaster-->
-<script src="<?= PLANTILLA ?>plugins/toaster/toastr.min.js"></script>
+<!-- Toaster
+<script src="<?= PLANTILLA ?>plugins/toaster/toastr.min.js"></script> -->
 
 <!--Mono, Map & Custom-->
 <script src="<?= PLANTILLA ?>js/mono.js"></script>

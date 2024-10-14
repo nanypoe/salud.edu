@@ -12,6 +12,7 @@ class usuarioController extends Controller
     /*Función para RENDERIZAR la Vista REGISTRO Y LISTADO DE DEPARTAMENTOS*/
     public function index()
     {
+        Sessiones::acceso('admin');
         $this->_view->tabla = $this->verUsuario();
         $this->_view->renderizar('usuario');
     }

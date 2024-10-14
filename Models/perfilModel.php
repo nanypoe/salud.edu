@@ -33,7 +33,7 @@ class perfilModel extends Model
         return $this->_db->query("SELECT * FROM grupos INNER JOIN matricula ON grupos.id_grupo=matricula.id_grupo INNER JOIN  estudiantes ON matricula.id_estudiante=estudiantes.id_estudiante WHERE grupos.id_grupo='$id'")->fetchAll();
     } else {
         // Execute the second query if records are found in salud_estudiante
-        return $this->_db->query("SELECT * FROM grupos INNER JOIN matricula ON grupos.id_grupo=matricula.id_grupo INNER JOIN  estudiantes ON matricula.id_estudiante=estudiantes.id_estudiante INNER JOIN salud_estudiante ON salud_estudiante.id_estudiante=estudiantes.id_estudiante WHERE grupos.id_grupo='$id'")->fetchAll();
+        return $this->_db->query("SELECT * FROM grupos INNER JOIN matricula ON grupos.id_grupo=matricula.id_grupo INNER JOIN  estudiantes ON matricula.id_estudiante=estudiantes.id_estudiante WHERE grupos.id_grupo='$id'")->fetchAll();
     }
 }
 

@@ -262,6 +262,7 @@ CREATE TABLE
     ) ENGINE = InnoDB;
 
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
+
 CREATE TABLE
     pruebas_fisicas (
         id_prueba INT AUTO_INCREMENT PRIMARY KEY,

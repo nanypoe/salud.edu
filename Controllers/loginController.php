@@ -31,6 +31,7 @@
         {
             Sessiones::salir();
             $this->redireccionar('login');
+            
         }
     }
 ?>

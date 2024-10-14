@@ -84,6 +84,13 @@
                                 <div id="fuerza">
                                 </div>
                             </div>
+
+
+                            <div class="col mb-3 mt-3 col-lg-12">
+
+                                <div id="velocidad">
+                                </div>
+                            </div>
                         </div>
 
 
@@ -196,6 +203,16 @@
 
     // Llamar a la función para renderizar el gráfico
     createBarChart("#fuerza", etique, da, 'Metrica de prueba de Fuerza Realizado por: ' + nombre, 'Fechas Realización', 'Escala en KG', 'KG');
+
+
+    // grafico  de Prueba Resistencia
+
+    const etiqu = <?php echo json_encode(array_column($this->resistencia, 'fecha_prueba')); ?>;
+    const d= <?php echo json_encode(array_column($this->resistencia, 'total_repeticiones')); ?>;
+
+    // Llamar a la función para renderizar el gráfico
+    createBarChart("#velocidad", etiqu, d, 'Metrica de prueba de Resistencia Realizado por: ' + nombre, 'Fechas Realización', 'Escala en Minutos', 'Min');
+
 
 
 
