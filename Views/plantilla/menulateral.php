@@ -11,7 +11,7 @@
       <div id="sidebar" class="sidebar sidebar-with-footer">
         <!-- Aplication Brand -->
         <div class="app-brand">
-          <a href="index.php">
+          <a href="<?=BASE_URL?>index">
             <img src="<?= PLANTILLA ?>images/logo/hNegativo.png" class="brand-image">
           </a>
         </div>
@@ -20,7 +20,7 @@
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
-            <li class="active">
+            <li class="">
               <a class="sidenav-item-link" href="<?= BASE_URL ?>index">
                 <i class="fa-solid  fa-house"></i>
                 <span class="nav-text">Inicio</span>
