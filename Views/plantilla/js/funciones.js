@@ -4,7 +4,19 @@ $(function () {
     ================FUNCIONES GLOBALES====
     ======================================*/
 
+    //Pestañas activas en Menú Lateral
+    $('a[href*="' + window.location.pathname + '"]').parents('li, ul').addClass('active');
+    $(".sidenav-item-link").click(function () {
+        var callItem = $(this);
+        callItem.addClass('active');
+        $(".sidenav-item-link").not(callItem).removeClass('active');
+        var activeurl = window.location.pathname;
+        $('a[href="' + activeurl + '"]').parent('li').addClass('active');
+        $('a[href="' + activeurl + '"]').parent('li').parent('ul').parent('li').addClass('active');
+    });
+
     /*===== Inicialización de DATATABLES =====*/
+
     function inicializarDataTable() {
         $("#table").DataTable({
             dom: "Bfrtip",

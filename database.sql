@@ -190,108 +190,101 @@ CREATE TABLE
         FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
     ) ENGINE = InnoDB;
 
-CREATE TABLE historial_pruebas (
-    id_estudiante INT,
-    fecha_prueba DATE,
-    tipo_prueba VARCHAR(75),
-    resultado FLOAT,
-    unidad_medida VARCHAR(20),
-    observaciones TEXT,
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-) ENGINE=InnoDB;
+CREATE TABLE
+    historial_pruebas (
+        id_estudiante INT,
+        fecha_prueba DATE,
+        tipo_prueba VARCHAR(75),
+        resultado FLOAT,
+        unidad_medida VARCHAR(20),
+        observaciones TEXT,
+        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+    ) ENGINE = InnoDB;
 
-CREATE TABLE estudiantes (
-    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
-    id_escuela INT,
-    primer_nombre VARCHAR(50),
-    segundo_nombre VARCHAR(50),
-    primer_apellido VARCHAR(50),
-    segundo_apellido VARCHAR(50),
-    edad INT,
-    fecha_nacimiento DATE,
-    sexo ENUM('Masculino', 'Femenino'),
-    direccion VARCHAR(255),
-    telefono VARCHAR(50),
-    email VARCHAR(100),
-    nombre_tutor VARCHAR(255),
-    telefono_tutor VARCHAR(50),
-    imagen VARCHAR(50),
-    estado ENUM('Activo', 'Inactivo'),
-    usuario VARCHAR(50),
-    clave VARCHAR (50),
-    FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
-) ENGINE=InnoDB;
+CREATE TABLE
+    estudiantes (
+        id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
+        id_escuela INT,
+        primer_nombre VARCHAR(50),
+        segundo_nombre VARCHAR(50),
+        primer_apellido VARCHAR(50),
+        segundo_apellido VARCHAR(50),
+        edad INT,
+        fecha_nacimiento DATE,
+        sexo ENUM ('Masculino', 'Femenino'),
+        direccion VARCHAR(255),
+        telefono VARCHAR(50),
+        email VARCHAR(100),
+        nombre_tutor VARCHAR(255),
+        telefono_tutor VARCHAR(50),
+        imagen VARCHAR(50),
+        estado ENUM ('Activo', 'Inactivo'),
+        usuario VARCHAR(50),
+        clave VARCHAR(50),
+        FOREIGN KEY (id_escuela) REFERENCES escuelas (id_escuela)
+    ) ENGINE = InnoDB;
 
 -- Tabla Matrícula
-CREATE TABLE  matricula (
-    id_matricula INT AUTO_INCREMENT PRIMARY KEY,
-    id_grupo INT,
-    id_estudiante INT,
-    FOREIGN KEY  (id_grupo) REFERENCES grupos (id_grupo),
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-)ENGINE=InnoDB;
+CREATE TABLE
+    matricula (
+        id_matricula INT AUTO_INCREMENT PRIMARY KEY,
+        id_grupo INT,
+        id_estudiante INT,
+        FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo),
+        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+    ) ENGINE = InnoDB;
 
 -- Tabla para los Datos de SALUD del ESTUDIANTE
-CREATE TABLE salud_estudiante (
-    id_estudiante INT,
-    peso FLOAT,
-    altura FLOAT,
-    imc FLOAT,
-    categoria_peso VARCHAR(255),
-    condicion_medica VARCHAR (255),
-    descripcion TEXT,
-    medicacion TEXT,
-    somatotipo VARCHAR (255),
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-) ENGINE=InnoDB;
+CREATE TABLE
+    salud_estudiante (
+        id_estudiante INT,
+        peso FLOAT,
+        altura FLOAT,
+        imc FLOAT,
+        categoria_peso VARCHAR(255),
+        condicion_medica VARCHAR(255),
+        descripcion TEXT,
+        medicacion TEXT,
+        somatotipo VARCHAR(255),
+        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+    ) ENGINE = InnoDB;
 
 --  Tabla para HISTORIA de SALUD
-CREATE TABLE historial_salud (
-    id_estudiante INT,
-    fecha_realizacion DATE,
-    peso FLOAT,
-    altura FLOAT,
-    imc FLOAT,
-    categoria_peso VARCHAR(255),
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-) ENGINE=InnoDB;
-
--- Trigger para cambios antes de actualizar SALUD ESTUDIANTE
-DELIMITER //
-
-CREATE TRIGGER before_update_salud_estudiante
-BEFORE UPDATE ON salud_estudiante
-FOR EACH ROW
-BEGIN
-    INSERT INTO historial_salud (id_estudiante, fecha_realizacion, peso, altura, imc, categoria_peso)
-    VALUES (OLD.id_estudiante, CURDATE(), OLD.peso, OLD.altura, OLD.imc, OLD.categoria_peso);
-END;
-
-//
-
-DELIMITER ;
+CREATE TABLE
+    historial_salud (
+        id_estudiante INT,
+        fecha_realizacion DATE,
+        peso FLOAT,
+        altura FLOAT,
+        imc FLOAT,
+        categoria_peso VARCHAR(255),
+        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+    ) ENGINE = InnoDB;
 
 -- Tabla de PRUEBAS FÍSICO-MOTRICES
-CREATE TABLE pruebas_fisicas (
-    id_prueba INT AUTO_INCREMENT PRIMARY KEY,
-    id_estudiante INT,
-    fecha_prueba DATE, 
-    tipo_prueba VARCHAR(75),
-    resultado FLOAT,
-    unidad_medida VARCHAR(20),
-    observaciones TEXT,
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-) ENGINE=InnoDB;
 
-CREATE TABLE historial_pruebas (
-    id_estudiante INT,
-    fecha_prueba DATE,
-    tipo_prueba VARCHAR(75),
-    resultado FLOAT,
-    unidad_medida VARCHAR(20),
-    observaciones TEXT,
-    FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
-) ENGINE=InnoDB;
+CREATE TABLE
+    pruebas_fisicas (
+        id_prueba INT AUTO_INCREMENT PRIMARY KEY,
+        id_estudiante INT,
+        fecha_prueba DATE,
+        tipo_prueba VARCHAR(75),
+        resultado FLOAT,
+        unidad_medida VARCHAR(20),
+        observaciones TEXT,
+        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+    ) ENGINE = InnoDB;
+
+CREATE TABLE
+    historial_pruebas (
+        id_estudiante INT,
+        fecha_prueba DATE,
+        tipo_prueba VARCHAR(75),
+        resultado FLOAT,
+        unidad_medida VARCHAR(20),
+        observaciones TEXT,
+        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
+    ) ENGINE = InnoDB;
 
 -- Tabla para asignar ESTUDIANTES a un GRUPO
 CREATE TABLE
@@ -361,33 +354,35 @@ VALUES
     ("Costa Caribe Sur");
 
 -- Procedimiento de Almacenado para agregar MUNICIPIO a los DEPARTAMENTOS
-DELIMITER / / CREATE PROCEDURE ingresarMunicipios (
+DELIMITER //
+CREATE PROCEDURE ingresarMunicipios (
     IN deptoNombre VARCHAR(50),
     IN municipio VARCHAR(255)
-) BEGIN DECLARE deptoId INT;
+)
+BEGIN
+    DECLARE deptoId INT;
 
--- Obtener el id del departamento basado en su nombre
-SELECT
-    id_departamento INTO deptoId
-FROM
-    departamentos
-WHERE
-    nombre_departamento = deptoNombre;
+    -- Obtener el id del departamento basado en su nombre
+    SELECT
+        id_departamento INTO deptoId
+    FROM
+        departamentos
+    WHERE
+        nombre_departamento = deptoNombre;
 
--- Inserta los municipios, si el departamento existe
-IF deptoId IS NOT NULL THEN
-INSERT INTO
-    municipios (id_departamento, nombre_municipio)
-VALUES
-    (deptoId, municipio);
-
-ELSE SIGNAL SQLSTATE '45000'
-SET
-    MESSAGE_TEXT = 'Departamento no encontrado';
-
-END IF;
-
-END / / DELIMITER;
+    -- Inserta los municipios, si el departamento existe
+    IF deptoId IS NOT NULL THEN
+        INSERT INTO
+            municipios (id_departamento, nombre_municipio)
+        VALUES
+            (deptoId, municipio);
+    ELSE
+        SIGNAL SQLSTATE '45000'
+        SET
+            MESSAGE_TEXT = 'Departamento no encontrado';
+    END IF;
+END//
+DELIMITER ;
 
 -- Agregando los municipios de MADRIZ
 CALL ingresarMunicipios ('Madriz', 'Somoto');
