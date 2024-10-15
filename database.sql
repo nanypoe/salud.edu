@@ -81,15 +81,6 @@ CREATE TABLE
         FOREIGN KEY (docente_id) REFERENCES docentes (id_docente)
     ) ENGINE = InnoDB;
 
--- Tabla MATERIA
-CREATE TABLE
-    materias (
-        id_materia INT PRIMARY KEY AUTO_INCREMENT,
-        id_grupo INT,
-        nombre_materia VARCHAR(45),
-        FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo)
-    ) ENGINE = InnoDB;
-
 -- Tabla ESTUDIANTES
 CREATE TABLE
     estudiantes (
