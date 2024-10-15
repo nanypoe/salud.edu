@@ -12398,7 +12398,6 @@ code {
 }
 .navbar .sidebar-offcanvas-toggle:before,
 .navbar .sidebar-toggle:before {
-  content: "\f35c";
   font-family: var(--font-family-poppins);
 }
 .navbar .page-title {
@@ -12600,12 +12599,12 @@ code {
 }
 .navbar .navbar-right .navbar-nav .user-menu .dropdown-link-item {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-between;
 }
 .navbar .navbar-right .navbar-nav .user-menu .dropdown-link-item .nav-text {
-  margin-right: auto;
+  margin-right: auto
 }
 .navbar .navbar-right .navbar-nav .user-menu .dropdown-menu {
   width: 210px;
@@ -12659,7 +12658,6 @@ code {
 .navbar .navbar-right .navbar-nav .user-menu .dropdown-toggle:after {
   border: none;
   font-family: var(--font-family-poppins);
-  content: "\f140";
   vertical-align: -3px;
   font-size: 1.25rem;
   transform: rotate(0);
@@ -12682,7 +12680,6 @@ code {
 .navbar .dropdown-menu {
   width: 215px;
   padding: 0 0 0 0;
-  margin: 0;
   top: 100%;
   border-color: transparent;
 }
@@ -13486,7 +13483,7 @@ label {
 }
 
 .sidebar li > a .caret:before {
-  font-family: "Material Design Icons" !important;
+  font-family: var(--font-family-poppins) !important;
   font-weight: 400;
   font-style: normal;
   font-variant: normal;
@@ -15043,7 +15040,7 @@ table.dataTable thead .sorting {
   display: none;
 }
 .icon-burger-mini:before {
-  font-family: "Material Design Icons";
+  font-family: var(--font-family-poppins);
   content: "\f1d9";
   color: #b6bdca;
 }
@@ -15309,7 +15306,7 @@ table.dataTable thead .sorting {
 
 .breadcrumb-item + .breadcrumb-item::before {
   content: "\f142";
-  font-family: "Material Design Icons";
+  font-family: var(--font-family-poppins);
 }
 
 /*===== EMAIL =====*/
@@ -15776,7 +15773,7 @@ table.dataTable thead .sorting {
 }
 .circle.circle-lg h2 {
   font-size: 45px;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family-poppins), sans-serif;
 }
 
 /*===== SPINKITS =====*/
@@ -16874,7 +16871,7 @@ input[type=radio] {
   line-height: 1;
   font-size: 0.625rem;
   font-weight: 400;
-  font-family: "Karla", sans-serif;
+  font-family: var(--font-family-poppins), sans-serif;
   text-align: center;
   transition: inherit;
 }
@@ -16912,7 +16909,7 @@ input[type=radio] {
   line-height: 1;
   font-size: 1rem;
   font-weight: 400;
-  font-family: "Material Design Icons";
+  font-family: var(--font-family-poppins);
   text-align: center;
   transition: inherit;
 }
@@ -17132,7 +17129,7 @@ div.copied {
   content: "\f12c";
   font-size: 0.75rem;
   color: #8a909d;
-  font-family: "Material Design Icons";
+  font-family: var(--font-family-poppins);
 }
 
 /*===== TOASTS =====*/
