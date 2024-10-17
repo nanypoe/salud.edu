@@ -1,19 +1,19 @@
 <?php
 class escuelaController extends Controller
 {
-    private $_escue;
+    private $_escuela;
 
     function __construct()
     {
         parent::__construct();
-        $this->_escue = $this->loadModel('escuela');
+        $this->_escuela = $this->loadModel('escuela');
     }
 
     /*Función para RENDERIZAR la Vista REGISTRO Y LISTADO DE MUNICIPIOS y DEPARTAMENTOS*/
     public function index()
     {
         /*Mandar DATOS de DEPARTAMENTOS a la Vista ESCUELAS*/
-        $fila = $this->_escue->obtenerDepartamento();
+        $fila = $this->_escuela->obtenerDepartamento();
         $datos = '<option value="0"> Seleccione un Departamento</option>';
         for ($i = 0; $i < count($fila); $i++) {
             $datos .= '<option value="' . $fila[$i]['id_departamento'] . '">' . $fila[$i]['nombre_departamento'] . '</option>';
@@ -27,7 +27,7 @@ class escuelaController extends Controller
     //Mandar DATOS de MUNICIPIOS a la Vista ESCUELAS
     public function obtenerMunicipio()
     {
-        $fila = $this->_escue->obtenerMunicipio($this->getTexto('idDepartamento'));
+        $fila = $this->_escuela->obtenerMunicipio($this->getTexto('idDepartamento'));
         $datos = '<option value="0"> Seleccione un Municipio</option>';
         for ($i = 0; $i < count($fila); $i++) {
             $datos .= '<option value="' . $fila[$i]['id_municipio'] . '">' . $fila[$i]['nombre_municipio'] . '</option>';
@@ -38,7 +38,7 @@ class escuelaController extends Controller
     //Mandar DATOS de AÑO LECTIVO a la Vista ESCUELAS
     public function obtenerLectivo()
     {
-        $fila = $this->_escue->obtenerLectivo();
+        $fila = $this->_escuela->obtenerLectivo();
         $datos = '<option value="0"> Seleccione el Año Lectivo</option>';
         for ($i = 0; $i < count($fila); $i++) {
             $datos .= '<option value="' . $fila[$i]['id_lectivo'] . '">' . $fila[$i]['axo'] . '</option>';
@@ -49,7 +49,7 @@ class escuelaController extends Controller
     //OBTENER Datos de la tabla ESCUELAS en DataTable
     public function verEscuela()
     {
-        $fila = $this->_escue->obtenerEscuela();
+        $fila = $this->_escuela->obtenerEscuela();
         $tabla = '';
         for ($i = 0; $i < count($fila); $i++) {
             $datos = json_encode($fila[$i]);
@@ -76,7 +76,7 @@ class escuelaController extends Controller
     //AGREGAR Escuela
     public function agregarEscuela()
     {
-        $this->_escue->agregarEscuela(
+        $this->_escuela->agregarEscuela(
             $this->getTexto('idAñoLectivo'),
             $this->getTexto('municEscuela'),
             $this->getTexto('nombreEscuela'),
@@ -91,7 +91,7 @@ class escuelaController extends Controller
     //EDITAR Escuela
     public function editarEscuela()
     {
-        $this->_escue->editarEscuela(
+        $this->_escuela->editarEscuela(
             $this->getTexto('idEscuela'),
             $this->getTexto('municEscuelaUp'),
             $this->getTexto('idAñoLectivoUp'),
@@ -107,7 +107,7 @@ class escuelaController extends Controller
     //BORRAR Escuela
     public function borrarEscuela()
     {
-        $this->_escue->borrarEscuela($this->getTexto('idEscuelaDel'));
+        $this->_escuela->borrarEscuela($this->getTexto('id'));
         echo $this->verEscuela();
     }
 }

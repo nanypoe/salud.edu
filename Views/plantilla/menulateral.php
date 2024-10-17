@@ -89,19 +89,19 @@
                 </a>
               </li>
 
-              <!-- CRUD: Departamentos -->
-              <li class="crudDepartamentos">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
-                  <i class="fa-solid fa-earth-americas"></i>
-                  <span class="nav-text">Departamentos</span>
-                </a>
-              </li>
-
               <!-- CRUD: Año Lectivo -->
               <li class="crudLectivo">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>lectivo">
                   <i class="fa-regular fa-calendar"></i>
                   <span class="nav-text">Años Lectivos</span>
+                </a>
+              </li>
+
+              <!-- CRUD: Departamentos -->
+              <li class="crudDepartamentos">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>departamento">
+                  <i class="fa-solid fa-earth-americas"></i>
+                  <span class="nav-text">Departamentos</span>
                 </a>
               </li>
 
@@ -145,6 +145,31 @@
                 </a>
               </li>
 
+              <!-- CRUD: Matricula -->
+              <li class="nav-item">
+                <a class="sidenav-item-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                  <i class="fa-solid fa-person-circle-plus"></i><span>Matricula</span><i
+                    class="fa-solid fa-caret-down ms-auto"></i>
+                </a>
+
+                <ul id="forms-nav" class="collapse" data-bs-parent="#sidebar-nav">
+
+                  <div class="sub-menu">
+                    <li>
+                      <a href="<?= BASE_URL ?>matricula" class="sidenav-item-link">
+                        <i class="fa-solid fa-minus mr-3"></i><span>Sin Matrícula</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="<?= BASE_URL ?>matriculado">
+                        <i class="fa-solid fa-minus mr-3"></i><span>Matrículados</span>
+                      </a>
+                    </li>
+                  </div>
+
+                </ul>
+              </li>
+
               <!-- CRUD: Eventos -->
               <li class="crudEstudiantes">
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>eventos">
@@ -152,6 +177,8 @@
                   <span class="nav-text">Eventos</span>
                 </a>
               </li>
+
+
 
             </ul>
           </div>
