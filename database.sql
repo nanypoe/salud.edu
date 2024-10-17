@@ -277,17 +277,6 @@ CREATE TABLE
         FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante)
     ) ENGINE = InnoDB;
 
--- Tabla para asignar ESTUDIANTES a un GRUPO
-CREATE TABLE
-    asignacion_estudiantes (
-        id_asignacion INT AUTO_INCREMENT PRIMARY KEY,
-        id_estudiante INT,
-        id_grupo INT,
-        fecha_asignacion DATE NOT NULL,
-        FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante) ON DELETE CASCADE,
-        FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo) ON DELETE CASCADE
-    ) ENGINE = InnoDB;
-
 -- Tabla de EVENTOS Deportivos y otros
 CREATE TABLE
     eventos_deportivos (
@@ -719,3 +708,14 @@ VALUES
 --     nombre_grado VARCHAR (15) NOT NULL,
 --     PRIMARY KEY (id_grado, nombre_grado)
 -- )ENGINE=InnoDB;
+
+-- -- Tabla para asignar ESTUDIANTES a un GRUPO
+-- CREATE TABLE
+--     asignacion_estudiantes (
+--         id_asignacion INT AUTO_INCREMENT PRIMARY KEY,
+--         id_estudiante INT,
+--         id_grupo INT,
+--         fecha_asignacion DATE NOT NULL,
+--         FOREIGN KEY (id_estudiante) REFERENCES estudiantes (id_estudiante) ON DELETE CASCADE,
+--         FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo) ON DELETE CASCADE
+--     ) ENGINE = InnoDB;

@@ -19,8 +19,8 @@ class errorController extends Controller{
     <div class="row justify-content-center mt-5">
       <div class="text-center page-404">
         <h1 class="error-title">505</h1>
-        <p class="pt-4 pb-5 error-subtitle">No tienes priveligios sufientes para acceder.</p>
-        <a href="'.BASE_URL.'index'.'" class="btn btn-primary btn-pill">Back to Home</a>
+        <p class="pt-4 pb-5 error-subtitle">Privilegios Insuficientes para Acceder</p>
+        <a href="'.BASE_URL.'index'.'" class="btn btn-primary btn-pill">LLévame al Inicio</a>
       </div>
     </div>
   </div>
@@ -30,8 +30,8 @@ class errorController extends Controller{
   <div class="d-flex flex-column justify-content-between">
     <div class="row justify-content-center mt-5">
       <div class="text-center page-404">
-        <h1 class="error-title">505</h1>
-        <p class="pt-4 pb-5 error-subtitle">No a ingresado al sistema.</p>
+        <h1 class="error-title">504</h1>
+        <p class="pt-4 pb-5 error-subtitle">Es necesario ingresar al sistema para poder observar esta página</p>
         <a href="'.BASE_URL.'index'.'" class="btn btn-primary btn-pill">Ingresar</a>
       </div>
     </div>

@@ -33,6 +33,24 @@ $(function () {
     }
     inicializarDataTable();
 
+    //Inicializar estudiantes según corresponda
+    function inicializarEstudiantes(idGrupos, ruta) {
+        $(idGrupos).on("change", function () {
+            let idGrupo = $(idGrupos).val();
+            console.log(idGrupo);
+            $.ajax({
+                url: ruta,
+                type: 'post',
+                data: { idGrupo: idGrupo },
+                success: function (respuesta) {
+                    $("#table").DataTable().destroy();
+                    $("#table tbody").html(respuesta);
+                    inicializarDataTable();
+                }
+            });
+        });
+    }
+
     /*Reinicialización de MODAL: recibe como parámetros el id del Modal y el id del Form*/
 
     function modalFormRespuesta(modal, form, respuesta) {
@@ -72,6 +90,15 @@ $(function () {
         Swal.fire({
             title: "¡Eliminado!",
             text: "Se ha eliminado el registro de forma correcta",
+            icon: "success",
+        });
+    }
+
+    /*Alerta de de Registro MATRICULADO */
+    function alertaMatriculado() {
+        Swal.fire({
+            title: "¡Matriculado!",
+            text: "Se ha realizado la matrícula del Estudiante adecuadamente.",
             icon: "success",
         });
     }
@@ -541,7 +568,7 @@ $(function () {
     });
 
     //ELIMINAR Escuelas
-    $("#table").on("click", ".BtnBorrarEscuela", function () {
+    $(".tablaEscuelas").on("click", ".BtnBorrarEscuela", function () {
         Swal.fire({
             title: "¿Estas seguro?",
             text: "Que deseas eliminar el registro!",
@@ -553,11 +580,12 @@ $(function () {
             cancelButtonText: "No, Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                let idEscuelaDel = $(this).attr('data-id');
+                let id = $(this).attr('data-id');
+                console.log(id);
                 $.ajax({
                     url: 'escuela/borrarEscuela/',
                     type: 'post',
-                    data: { idEscuelaDel: idEscuelaDel },
+                    data: { id: id },
                     success: function (respuesta) {
                         postBorrar(respuesta);
                         alertaEliminado();
@@ -910,27 +938,44 @@ $(function () {
         });
     });
 
+    /*=====================================
+    ===============MATRICULAS==============
+    ======================================*/
+    $("#matriculaGrupos").on("change", function () {
+        $("#BtnMatricular").attr("disabled", false);
+    });
+    /*REALIZAR Matricula*/
+    $(".tablaMatricula").on("click", "#BtnMatricular", function () {
+        let estudiante = $(this).attr('data-estudiante');
+        let grupo = $("#matriculaGrupos").val();
+        $.ajax({
+            url: 'matricula/matricular/',
+            type: 'post',
+            data: { estudiante: estudiante, grupo: grupo },
+            success: function (respuesta) {
+                postBorrar(respuesta);
+                alertaMatriculado();
+            }
+        });
+    });
+
+    /*BORRAR Matricula */
+    $(".tablaMatriculados").on("click", "#BtnBorrarMatricula", function () {
+        let estudiante = $(this).attr('data-estudiante');
+        $.ajax({
+            url: 'matriculado/borrarMatricula/',
+            type: 'post',
+            data: { estudiante: estudiante },
+            success: function (respuesta) {
+                postBorrar(respuesta);
+                alertaEliminado();
+            }
+        });
+    });
+
     /*=========================================
               ==========DATOS DE SALUD ESTUDIANTIL===
               ======================================*/
-    //Inicializar estudiantes según Docente
-    function inicializarEstudiantes(idGrupos, ruta) {
-        $(idGrupos).on("change", function () {
-            let idGrupo = $(idGrupos).val();
-            console.log(idGrupo);
-            $.ajax({
-                url: ruta,
-                type: 'post',
-                data: { idGrupo: idGrupo },
-                success: function (respuesta) {
-                    $("#table").DataTable().destroy();
-                    $("#table tbody").html(respuesta);
-                    inicializarDataTable();
-                }
-            });
-        });
-    }
-
     inicializarEstudiantes("#perfilGrupos", 'perfil/getEstudiante/');
 
 

@@ -135,8 +135,8 @@ class escuelaModel extends Model
     }
 
     // //ELIMINACIÓN
-    public function borrarEscuela($idEscuelaDel)
+    public function borrarEscuela($id)
     {
-        $this->_db->prepare('DELETE FROM escuelas WHERE id_escuela=:idEscuelaDel')->execute(array('idEscuelaDel' => $idEscuelaDel));
+        $this->_db->prepare("DELETE FROM escuelas WHERE id_escuela=:id;")->execute(array('id' => $id));
     }
 }
