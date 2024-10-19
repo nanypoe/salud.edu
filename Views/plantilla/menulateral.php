@@ -3,12 +3,12 @@
   <!-- ====================================
     ——— WRAPPER
     ===================================== -->
-  < class="wrapper">
+  <div class="wrapper">
     <!-- ====================================
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
     <aside class="left-sidebar sidebar-dark" id="left-sidebar">
-      <div id="sidebar" class="sidebar sidebar-with-footer">
+      <div id="sidebar" class="sidebar">
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="<?= BASE_URL ?>index">
@@ -33,6 +33,8 @@
               <li class="section-title">
                 Protagonistas
               </li>
+
+              
 
               <li>
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>personal">
@@ -69,6 +71,13 @@
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>prueba">
                   <i class="fa-solid fa-person-running"></i>
                   <span class="nav-text">Pruebas Físicas</span>
+                </a>
+              </li>
+
+              <li>
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>asignacion">
+                  <i class="fa-solid fa-dumbbell"></i>
+                  <span class="nav-text">Asignar Plan</span>
                 </a>
               </li>
 
@@ -146,13 +155,13 @@
               </li>
 
               <!-- CRUD: Matricula -->
-              <li class="nav-item">
-                <a class="sidenav-item-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+              <li class="crudMatricula">
+                <a class="sidenav-item-link" data-bs-target="#nav-matricula" data-bs-toggle="collapse" href="#">
                   <i class="fa-solid fa-person-circle-plus"></i><span>Matricula</span><i
                     class="fa-solid fa-caret-down ms-auto"></i>
                 </a>
 
-                <ul id="forms-nav" class="collapse" data-bs-parent="#sidebar-nav">
+                <ul id="nav-matricula" class="collapse" data-bs-parent="#sidebar-nav">
 
                   <div class="sub-menu">
                     <li>
@@ -170,16 +179,32 @@
                 </ul>
               </li>
 
-
-              <!-- CRUD: Plan  -->
-              <li class="crudPlan">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>plan">
-                  <i class="fa-regular fa-calendar-minus"></i>
-                  <span class="nav-text">Planes de Ejercicio</span>
+              <!-- CRUD: EJERCICIOS -->
+              <li class="crudEjercicios">
+                <a class="sidenav-item-link" data-bs-target="#nav-ejercicio" data-bs-toggle="collapse" href="#">
+                <i class="fa-solid fa-notes-medical"></i><span>Medidas</span><i
+                    class="fa-solid fa-caret-down ms-auto"></i>
                 </a>
+
+                <ul id="nav-ejercicio" class="collapse" data-bs-parent="#sidebar-nav">
+
+                  <div class="sub-menu">
+                    <li>
+                      <a href="<?= BASE_URL ?>plan" class="sidenav-item-link">
+                        <i class="fa-solid fa-calendar mr-3"></i><span>Planes de ejercicio</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="<?= BASE_URL ?>ejercicio" class="sidenav-item-link">
+                        <i class="fa-solid fa-dumbbell mr-3"></i><span>Ejercicios</span>
+                      </a>
+                    </li>
+
+
+                  </div>
+
+                </ul>
               </li>
-
-
 
             </ul>
           </div>

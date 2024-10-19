@@ -1,18 +1,11 @@
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */
-
 @charset "UTF-8";
-/*!
- * Bootstrap v4.6.1 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
+
+
+
 :root {
+  --primary-color: #333;
+  --secondary-color: #666;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -26,11 +19,11 @@
   --white: #ffffff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #9e6de0;
+  --primary:  #165874;
   --secondary: #eb5b5a;
   --success: #0acb8e;
   --info: #04c7e0;
-  --warning: #fec400;
+  --warning:  #165874;
   --danger: #fe5461;
   --light: #f0f1f5;
   --dark: #31343d;
@@ -72,7 +65,14 @@ body {
   line-height: 1.5;
   color: var(--dark);
   text-align: left;
-  background-color: var(--white);
+  /* background-color: var(--white); */
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.high-contrast {
+  --primary-color: #fff;
+  --secondary-color: #000;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -2605,30 +2605,30 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning {
-  color: #2f2f2f;
-  background-color: #fec400;
-  border-color: #fec400;
+  color: #fff;
+  background-color: #165874;
+  border-color: #165874;
 }
 .btn-warning:hover {
-  color: #2f2f2f;
-  background-color: #d8a600;
-  border-color: #cb9d00;
+  color: #fff;
+  background-color: #165874;
+  border-color: #165874;
 }
 .btn-warning:focus, .btn-warning.focus {
-  color: #2f2f2f;
-  background-color: #d8a600;
-  border-color: #cb9d00;
-  box-shadow: 0 0 0 0.2rem rgba(223, 174, 7, 0.5);
+  color: #fff;
+  background-color: #165874;
+  border-color: #165874;
+  box-shadow: 0 0 0 0.2rem #165874;
 }
 .btn-warning.disabled, .btn-warning:disabled {
-  color: #2f2f2f;
-  background-color: #fec400;
-  border-color: #fec400;
+  color: #fff;
+  background-color: #165874;
+  border-color: #165874;
 }
 .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .show > .btn-warning.dropdown-toggle {
-  color: #2f2f2f;
-  background-color: #cb9d00;
-  border-color: #be9300;
+  color: fff;
+  background-color: #165874;
+  border-color: #165874;
 }
 .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled).active:focus, .show > .btn-warning.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(223, 174, 7, 0.5);
@@ -14871,7 +14871,7 @@ table.dataTable thead .sorting {
 }
 
 .btn-warning.ladda-button[data-loading]:hover {
-  background-color: #fec400;
+  background-color: #165874;
 }
 
 .btn-danger.ladda-button[data-loading]:hover {

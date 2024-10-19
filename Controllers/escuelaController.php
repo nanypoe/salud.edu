@@ -59,7 +59,7 @@ class escuelaController extends Controller
                 <td>' . $fila[$i]['nombre_municipio'] . '</td>
                 <td>' . $fila[$i]['id_escuela'] . '</td>
                 <td>' . $fila[$i]['nombre'] . '</td>
-                <td>' . $fila[$i]['direccion'] . '</td>
+                <td>' . $fila[$i]['direccion_escuela'] . '</td>
                 <td>' . $fila[$i]['telefono'] . '</td>
                 <td>' . $fila[$i]['longitud'] . '</td>
                 <td>' . $fila[$i]['latitud'] . '</td>
