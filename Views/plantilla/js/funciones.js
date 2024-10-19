@@ -973,6 +973,99 @@ $(function () {
         });
     });
 
+    /*====================================
+      ================EJERCICIOS==============
+      ======================================*/
+    /*AGREGAR Ejercicios*/
+    $("#formAgregarEjercicio").submit(function (e) {
+        e.preventDefault();
+        let ejercicio = $("#ejercicio").val();
+        let descripcion = $("#descripcion").val();
+        let categoria = $("#categoria").val();
+        let duracion = $("#duracion").val();
+        $.ajax({
+            url: "ejercicio/agregarEjercicio/",
+            type: "POST",
+            data: { ejercicio: ejercicio, descripcion: descripcion,categoria:categoria, duracion: duracion },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalAgregarEjercicio",
+                    "#formAgregarEjercicio", respuesta);
+                alertaAgregado();
+            },
+        });
+    });
+
+    /*EDITAR Ejercicios*/
+    /*CARGAR los datos de Ejercicios al modal EDITAR*/
+    $(".tablaEjercicios").on("click", ".btnEditarEjercicio", function () {
+        let datos = JSON.parse($(this).attr("data-ejercicio"));
+        $("#ejercicioUp").val(datos["nombre_ejercicio"]);
+        $("#descripcionUp").val(datos["descripcion"]);
+        $("#categoriaUp").val(datos["categoria"]);
+        $("#duracionUp").val(datos["duracion_estimada"]);
+        $("#idEjercicio").val(datos["id_ejercicio"]);
+    });
+
+    /*ENVIAR al Backend datos de Ejercicios editados*/
+    $('#formEditarEjercicio').submit(function (e) {
+        $('#idEjercicio').prop("disabled", false);
+        let idEjercicio  = $("#idEjercicio").val();
+        let ejercicio = $('#ejercicioUp').val();
+        let descripcion = $('#descripcionUp').val();
+        let categoria = $('#categoriaUp').val();
+        let duracion = $('#duracionUp').val();
+        e.preventDefault();
+        console.log(idEjercicio,ejercicio,descripcion,categoria,duracion);
+        $.ajax({
+            url: 'ejercicio/editarEjercicio/',
+            type: "POST",
+            data: {
+                idEjercicio:idEjercicio, ejercicio: ejercicio, descripcion: descripcion, categoria: categoria, duracion: duracion
+            },
+            success: function (respuesta) {
+                modalFormRespuesta(
+                    "#modalEditarEjercicio",
+                    "#formEditarEjercicio", respuesta
+                );
+                alertaModificado();
+            }
+        });
+    });
+
+    /*ELIMINAR EJERCICIO*/
+    $("#table").on("click", ".BtnBorrarEjercicio", function () {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Que deseas eliminar el registro!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!",
+            cancelButtonText: "No, Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let idEjercicioDel = $(this).attr('data-id');
+                $.ajax({
+                    url: 'ejercicio/borrarEjercicio/',
+                    type: 'post',
+                    data: { idEjercicioDel: idEjercicioDel },
+                    success: function (respuesta) {
+                        postBorrar(respuesta);
+                        alertaEliminado();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alertaError(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                alertaCancelado();
+            }
+        });
+    });
+
+
     /*=========================================
               ==========DATOS DE SALUD ESTUDIANTIL===
               ======================================*/
