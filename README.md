@@ -54,3 +54,97 @@ La aplicación será desarrollada utilizando tecnologías como HTML, CSS con Boo
         ◦ Se realizaron pruebas con diferentes tipos de gráficos para confirmar su correcta integración.
         
 Todas las tareas relacionadas con la configuración del entorno de desarrollo se completaron con éxito. El entorno está ahora totalmente preparado para soportar el desarrollo de las funcionalidades principales de la aplicación. El equipo de desarrollo puede proceder con las siguientes fases del proyecto, confiando en que el entorno es estable, funcional y bien estructurado.
+
+#########################
+
+Instalación
+
+    Clonar el repositorio:
+
+    bash
+
+git clone https://github.com/nanypoe/Salud.Edu.git
+
+Iniciar el servidor local, puede utilizarse XAMPP, WAMP-Server.
+
+Ejecutar el script de la Base de Datos contenido en el archivo database.sql, en un gestor de Base de Datos como PHPmyAdmin o MySQL Workbench.
+
+Iniciar la aplicación y hacer un Login, con el token proporcionado.
+
+Iniciar el servidor lic
+
+
+Contacto
+
+Para consultas o problemas con la aplicación, contacta al equipo de desarrollo en:
+Email: saludedu@soporte.com
+
+########
+
+Roles de usuario
+Administrador
+
+El administrador tiene acceso completo a las funcionales CRUD de la aplicación de los datos base de Escuelas, municipios, etc. Puede gestionar usuarios, revisar reportes de salud a nivel nacional, y configurar la plataforma.
+Funcionalidades del Administrador:
+
+    Gestión de usuarios:
+        Crear, editar y eliminar cuentas de docentes y estudiantes.
+        Asignar roles y permisos.
+
+    Visualización de reportes:
+        Generar reportes de salud a nivel escolar y nacional.
+        Exportar datos en formatos PDF o CSV para su análisis.
+
+    Configuración del sistema:
+        Configurar eventos deportivos.
+        Ajustar recomendaciones de actividades físicas basadas en criterios de salud pública.
+
+Cómo usar:
+
+    Inicio de sesión: Usar el email y la contraseña asignada para acceder al panel de administrador.
+    Gestión: Desde el panel principal, utilizar la sección de administración para manejar usuarios y reportes.
+    Reportes: En la pestaña de "Reportes", generar vistas y estadísticas según los datos de los estudiantes.
+
+Docente
+
+Los docentes son responsables de registrar y monitorear la salud de los estudiantes a su cargo. Tienen acceso a herramientas que les permiten generar reportes y ver el progreso de sus estudiantes.
+Funcionalidades del Docente:
+
+    Registro de salud de los estudiantes:
+        Ingresar o actualizar datos como peso, talla e IMC.
+        Revisar recomendaciones automáticas para cada estudiante.
+
+    Visualización de progreso:
+        Ver gráficos del progreso de la salud física de los estudiantes.
+        Asignar actividades físicas y controlar el seguimiento.
+
+    Notificaciones y recordatorios:
+        Enviar alertas a estudiantes sobre eventos deportivos y actividades asignadas.
+
+Cómo usar:
+
+    Inicio de sesión: Usar el email registrado para acceder al panel de docente.
+    Registrar datos de salud: Desde la pestaña "Estudiantes", seleccionar al estudiante y actualizar sus datos de salud.
+    Generar reportes: Utilizar la sección de "Reportes" para ver el progreso individual o grupal.
+
+Estudiante
+
+Los estudiantes pueden revisar sus registros de salud, ver recomendaciones personalizadas y participar en eventos deportivos organizados por su escuela o comunidad.
+Funcionalidades del Estudiante:
+
+    Revisión de progreso:
+        Ver su historial de peso, talla e IMC.
+        Seguir recomendaciones personalizadas para mejorar su salud.
+
+    Participación en eventos:
+        Consultar eventos deportivos disponibles.
+        Inscribirse a actividades físicas sugeridas por el docente.
+
+    Notificaciones:
+        Recibir alertas sobre nuevas actividades y eventos deportivos.
+
+Cómo usar:
+
+    Inicio de sesión: Usar el ID de estudiante para ingresar a la aplicación.
+    Ver progreso: Desde el panel principal, acceder a la sección "Mi salud" para revisar sus datos.
+    Eventos deportivos: Consultar eventos y confirmar participación desde la pestaña de "Eventos".
