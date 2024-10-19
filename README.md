@@ -59,20 +59,12 @@ Todas las tareas relacionadas con la configuración del entorno de desarrollo se
 
 Instalación
 
-    Clonar el repositorio:
+    git clone https://github.com/nanypoe/Salud.Edu.git
+    Iniciar el servidor local, puede utilizarse XAMPP, WAMP-Server.
+    Ejecutar el script de la Base de Datos contenido en el archivo database.sql, en un gestor de Base de Datos como PHPmyAdmin o MySQL Workbench.
+    Iniciar la aplicación y hacer un Login, con el token proporcionado.
 
-    bash
-
-git clone https://github.com/nanypoe/Salud.Edu.git
-
-Iniciar el servidor local, puede utilizarse XAMPP, WAMP-Server.
-
-Ejecutar el script de la Base de Datos contenido en el archivo database.sql, en un gestor de Base de Datos como PHPmyAdmin o MySQL Workbench.
-
-Iniciar la aplicación y hacer un Login, con el token proporcionado.
-
-Iniciar el servidor lic
-
+############
 
 Contacto
 
