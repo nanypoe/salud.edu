@@ -938,6 +938,7 @@ $(function () {
         });
     });
 
+
     /*=====================================
     ===============MATRICULAS==============
     ======================================*/
@@ -1122,9 +1123,37 @@ $(function () {
         });
     });
 
+    /*====================================================
+              ==========OTRAS FUNCIONES===
+              ======================================*/
+
+    /*====================================================
+    ==========ALERTA DE INACTIVIDAD===
+    ======================================*/
+    var tiempoAntesDeCerrar = 1800; // 30 minutos
+
+    // Mostrar la alerta después de 15 segundos
+    setTimeout(function () {
+        Swal.fire({
+            title: 'Cierre de sesión',
+            text: 'Tu sesión se cerrará en ' + tiempoAntesDeCerrar + ' segundos.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Cerrar sesión',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Aquí puedes redirigir al usuario a la página de cierre de sesión
+                window.location.href = "<?= BASE_URL ?>error"; // Cambia esto a la URL de cierre de sesión
+            }
+        });
+    }, tiempoAntesDeCerrar * 1000); // Convertir a milisegundos
+
 
 
 });
+
 /*====================================================
               ==========OTROS EVENTOS FUERA DEL DOM===
               ======================================*/

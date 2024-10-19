@@ -3,7 +3,7 @@
   <!-- ====================================
     ——— WRAPPER
     ===================================== -->
-  < class="wrapper">
+  <div class="wrapper">
     <!-- ====================================
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
@@ -69,6 +69,13 @@
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>prueba">
                   <i class="fa-solid fa-person-running"></i>
                   <span class="nav-text">Pruebas Físicas</span>
+                </a>
+              </li>
+
+              <li>
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>asignacion">
+                <i class="fa-solid fa-dumbbell"></i>
+                  <span class="nav-text">Asignar Plan</span>
                 </a>
               </li>
 
