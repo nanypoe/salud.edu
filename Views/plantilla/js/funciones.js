@@ -3,6 +3,7 @@ $(function () {
     /*====================================
     ================FUNCIONES GLOBALES====
     ======================================*/
+})
 
     //Pestañas activas en Menú Lateral
     $('a[href*="' + window.location.pathname + '"]').parents('li, ul').addClass('active');
@@ -429,7 +430,7 @@ $(function () {
     /*CARGAR los datos de MUNICIPIOS al modal EDITAR*/
     $(".tablaMunicipios").on("click", ".btnEditarMunicipio", function () {
         let datos = JSON.parse($(this).attr("data-municipio"));
-        $("#muniIdUp").val(datos["id_municipio"]);
+        $("#idPlanUp").val(datos["id_municipio"]);
         $("#municipioUp").val(datos["nombre_municipio"]);
     });
 
@@ -1215,12 +1216,93 @@ $(function () {
         });
     });
 
+    /*====================================
+    ==============PLAN EJERCICIO==============
+  ======================================*/
+  /*AGREGAR Ejercicios*/
+  $("#formAgregarPlan").submit(function (e) {
+    e.preventDefault();
+    let Nrepeticiones = $("#nRepeticiones").val();
+    let Nseries = $("#nSeries").val();
+    $.ajax({
+        url: "plan/agregarPlan/",
+        type: "POST",
+        data: { Nrepeticiones: Nrepeticiones, Nseries: Nseries},
+        success: function (respuesta) {
+            modalFormRespuesta(
+                "#modalAgregarPlan",
+                "#formAgregarPlan", respuesta);
+            alertaAgregado();
+        },
+    });
+});
 
+/*EDITAR Ejercicios*/
+/*CARGAR los datos de Ejercicios al modal EDITAR*/
+$(".tablaplan").on("click", ".btnEditarPlan", function () {
+    let datos = JSON.parse($(this).attr("data-ejercicios_plan"));
+    $("#nRepeticionesUp").val(datos["repeticiones"]);
+    $("#nSeriesUp").val(datos["series"]);
 
+/*ENVIAR al Backend datos de Ejercicios editados*/
+$('#formEditarPlan').submit(function (e) {
+    $('#idPlan').prop("disabled", false);
+    let idPlan  = $("#idPlan").val();
+    let nRepeticiones = $('#repeticionesUp').val();
+    let nSeries = $('#seriesUp').val();
+    e.preventDefault();
+    console.log(idPlan,nRepeticiones,nSeries);
+    $.ajax({
+        url: 'plan/editarPlan/',
+        type: "POST",
+        data: {
+            idPlan:idPlan, Nrepeticiones: Nrepeticiones, Nseries: Nseries
+        },
+        success: function (respuesta) {
+            modalFormRespuesta(
+                "#modalEditarPlan",
+                "#formEditarPlan", respuesta
+            );
+            alertaModificado();
+        }
+    });XMLDocument
+});
+
+/*ELIMINAR EJERCICIO*/
+$("#table").on("click", ".BtnBorrarPlan", function () {
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "Que deseas eliminar el registro!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let idPlan = $(this).attr('data-id');
+            $.ajax({
+                url: 'plan/borrarPlan/',
+                type: 'post',
+                data: { idPlan: idPlan },
+                success: function (respuesta) {
+                    postBorrar(respuesta);
+                    alertaEliminado();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alertaError(jqXHR, textStatus, errorThrown);
+                }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            alertaCancelado();
+        }
+    });
+});
 });
 /*====================================================
-              ==========OTROS EVENTOS FUERA DEL DOM===
-              ======================================*/
+==========OTROS EVENTOS FUERA DEL DOM===
+======================================*/
 
 /*Función para ocultar pass*/
 function ocultarPass(elemento, icono) {
