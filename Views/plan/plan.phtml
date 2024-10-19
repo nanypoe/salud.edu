@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <center><strong>Planes de Ejercicios</strong></center>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button data-bs-target="#modalAgregarPlan" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Plan de Ejercicios</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table id="table" class="tablaPlan">
+                <thead>
+                    <tr>
+                        <th>ID Plan</th>
+                        <th>Repeticiones</th>
+                        <th>Series</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <?= $this->tabla ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal agregar Plan de ejercicios -->
+
+    <div class="modal fade" id="modalAgregarPlan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Planes de ejercicio</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formAgregarPlan" enctype="multipart/form-data">
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="id_ejercicio" class="form-label">PLan de ejercicios a seguir</label>
+                            <select class="form-select" name="plan" id="plan"> 
+                                <?=$this->ejercicios?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="repeticiones" class="form-label">Repeticiones</label>
+                            <input type="text" class="form-control" id="nRepeticiones" name="nRepeticiones">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="series" class="form-label">Series</label>
+                            <input type="text" class="form-control" id="nSeries" name="nSeries">
+                        </div>      
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Actualizar Plan ejercicio -->
+<!-- Modal Actualizar plan de ejercicio -->
+
+<div class="modal fade" id="modalEditarPlan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar el Plan de ejercicio</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formEditarPlan" enctype="multipart/form-data">
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="idPlan" class="form-label">ID Plan de ejercicio</label>
+                            <input type="text" id="idPlan" name="idPlan" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="repeticionesUp" class="form-label">Repeticiones</label>
+                            <input type="text" class="form-control" id="repeticionesUp" name="repeticionesUp">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="seriesUp" class="form-label">Series</label>
+                            <input type="text" class="form-control" id="seriesUp" name="seriesUp">
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
