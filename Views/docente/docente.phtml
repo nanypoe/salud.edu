@@ -7,7 +7,8 @@
 
     <div class="row">
         <div class="col">
-            <button data-bs-target="#modalAgregarDocente" data-bs-toggle="modal" class="btn btn-primary float-right"><i class="fas fa-solid fa-plus"></i> Agregar Docente</button>
+            <button data-bs-target="#modalAgregarDocente" data-bs-toggle="modal" class="btn btn-primary float-right"><i
+                    class="fas fa-solid fa-plus"></i> Agregar Docente</button>
         </div>
     </div>
 
@@ -23,7 +24,7 @@
                         <th>Teléfono</th>
                         <th>Acciones</th>
                     </tr>
-                </thead> 
+                </thead>
                 <tbody>
                     <?= $this->tabla ?>
                 </tbody>
@@ -36,9 +37,9 @@
 
 <!-- Modal agregar Docente -->
 
-    <div class="modal fade" id="modalAgregarDocente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<div class="modal fade" id="modalAgregarDocente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Docente</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -49,8 +50,8 @@
 
                         <div class="mb-3 col-lg-12">
                             <label for="id_escuela" class="form-label">Escuela en la que labora</label>
-                            <select class="form-select" name="id_escuela" id="id_escuela"> 
-                                <?=$this->escuelas?>
+                            <select class="form-select" name="id_escuela" id="id_escuela">
+                                <?= $this->escuelas ?>
                             </select>
                         </div>
 
@@ -84,20 +85,21 @@
                             <input type="password" class="form-control" id="claveDocente" name="claveDocente">
                         </div>
 
-                        
+
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar
+                    Cambios</button>
             </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
 
 
-    <!-- Modal Actualizar Docente -->
+<!-- Modal Actualizar Docente -->
 <!-- Modal Actualizar Docente -->
 
 <div class="modal fade" id="modalEditarDocente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,8 +120,8 @@
 
                         <div class="mb-3 col-lg-12">
                             <label for="escuelaDocenteUp" class="form-label">Escuela en la que labora</label>
-                            <select class="form-select" id="escuelaDocenteUp" name="escuelaDocenteUp"> 
-                                <?=$this->escuelas?>
+                            <select class="form-select" id="escuelaDocenteUp" name="escuelaDocenteUp">
+                                <?= $this->escuelas ?>
                             </select>
                         </div>
 
@@ -142,14 +144,15 @@
                             <label for="telefonoDocenteUp" class="form-label">Teléfono</label>
                             <input type="tel" class="form-control" id="telefonoDocenteUp" name="telefonoDocenteUp">
                         </div>
-                        
+
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar
+                    Cambios</button>
             </div>
             </form>
-            </div>
         </div>
     </div>
+</div>

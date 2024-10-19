@@ -18,7 +18,10 @@ class estudianteModel extends Model
     //Función para OBTENER Datos Estudiantes
     public function obtenerDatosEstudiantes()
     {
-        return $this->_db->query("SELECT * FROM estudiantes INNER JOIN escuelas  ON estudiantes.id_escuela = escuelas.id_escuela")->fetchAll();
+        return $this->_db->query("SELECT nombre, id_estudiante, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion, escuelas.telefono, email, nombre_tutor, telefono_tutor, estado 
+FROM estudiantes 
+INNER JOIN escuelas ON estudiantes.id_escuela = escuelas.id_escuela;
+")->fetchAll();
     }
 
     //Función para agregar Estudiante con Foto
@@ -40,7 +43,16 @@ class estudianteModel extends Model
         $imagen,
         $usuario,
         $clave
-    ) {
+    ) {// Validación de datos
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception('Correo electrónico inválido');
+        }
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $usuario)) {
+            throw new Exception('Nombre de usuario inválido');
+        }
+        if (strlen($clave) < 8) {
+            throw new Exception('Contraseña demasiado corta');
+        }
         try {
             $stmt = $this->_db->prepare("INSERT INTO estudiantes(id_escuela, primer_nombre,  segundo_nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, sexo, direccion,  telefono, email, nombre_tutor, telefono_tutor, estado, imagen, usuario, clave) VALUES (:idEscuela, :pNombre, :sNombre, :pApellido, :sApellido, :edad, :nacimiento, :sexo, :direccion, :telefono, :email,  :tutor, :tutorTel, :estado, :imagen,  :usuario, :clave
             )");
@@ -60,13 +72,13 @@ class estudianteModel extends Model
                 'tutorTel' => $tutorTel,
                 'estado' => $estado,
                 'imagen' => $imagen,
-                'usuario'=> $usuario,
-                'clave'=> $clave
+                'usuario' => $usuario,
+                'clave' => $clave
             ));
             //Hash de la clave
             $hash = password_hash($clave, PASSWORD_DEFAULT);
             $stmt = $this->_db->prepare("INSERT INTO usuarios (usuario, clave, rol) VALUES  (:usuario, :hash, 'estudiante')");
-            $stmt->execute(array('usuario'=>$usuario, 'hash'=>$hash));
+            $stmt->execute(array('usuario' => $usuario, 'hash' => $hash));
         } catch (PDOException $e) {
             echo "Error al agregar estudiante: " . $e->getMessage();
             return false;
@@ -110,13 +122,13 @@ class estudianteModel extends Model
                 'tutor' => $tutor,
                 'tutorTel' => $tutorTel,
                 'estado' => $estado,
-                'usuario'=> $usuario,
-                'clave'=> $clave
+                'usuario' => $usuario,
+                'clave' => $clave
             ));
             //Hash de la clave
             $hash = password_hash($clave, PASSWORD_DEFAULT);
             $stmt = $this->_db->prepare("INSERT INTO usuarios (usuario, clave, rol) VALUES  (:usuario, :hash, 'estudiante')");
-            $stmt->execute(array('usuario'=>$usuario, 'hash'=>$hash));
+            $stmt->execute(array('usuario' => $usuario, 'hash' => $hash));
         } catch (PDOException $e) {
             echo "Error al agregar estudiante: " . $e->getMessage();
             return false;
@@ -183,7 +195,7 @@ class estudianteModel extends Model
             return false;
         }
     }
-    
+
     public function editarEstudianteNoFoto(
         $idEstudiante,
         $idEscuelaUp,
