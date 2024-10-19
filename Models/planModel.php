@@ -11,6 +11,11 @@ class planModel extends Model
     // ########## C.R.U.D ###### //
     // LECTURA
     /*Función para OBTENER datos de Ejercicio para la Vista*/
+
+    public function obtenerEjercicios(){
+        return $this->_db->query("SELECT * FROM ejercicios")->fetchAll();
+    }
+
     public function obtenerDatosPlan()
     {
         return $this->_db->query("SELECT * FROM ejercicios_plan")->fetchAll();
@@ -19,9 +24,12 @@ class planModel extends Model
 
     // CREACIÓN
     /*Función para AGREGAR Ejercicio*/
-    public function agregarPlan($idPlan, $nRepeticiones, $nSeries)
+    public function agregarPlan($idEjercicio, $repeticiones, $series)
     {
-        $this->_db->prepare("INSERT INTO ejercicios_plan ( repeticiones, series) VALUES (:idPlan, :nRepeticiones, :nSeries);")->execute(array('idPlan' => $idPlan,'nRepeticiones' => $nRepeticiones, 'nSeries' => $nSeries));
+        $this->_db->prepare("INSERT INTO ejercicios_plan (id_ejercicio, repeticiones, series) VALUES (:idEjercicio, :repeticiones, :series);")->execute(array(
+            'idEjercicio' => $idEjercicio,
+            'repeticiones' => $repeticiones,
+            'series' => $series));
     }
 
     // EDICION
@@ -35,8 +43,8 @@ class planModel extends Model
         try {
             // Preparamos la consulta con placeholders
             $stmt = $this->_db->prepare("UPDATE ejercicios_plan SET 
-            repeticiones=:nRepeticiones,
-            series=:nSeries
+            repeticiones=:repeticiones,
+            series=:series
             WHERE
             id_plan=:idPlan;
             ");

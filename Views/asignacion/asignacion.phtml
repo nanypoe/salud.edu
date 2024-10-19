@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <center><strong>Asignar Ejercicios y Planes de Ejercicio</strong></center>
+        </div>
+    </div>
+    <div class="mt-3 mb-2">
+        <select name="perfilGrupos" id="perfilGrupos" class="form-select">
+            <?= $this->grupos ?>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table id="table" class="tablaPerfiles">
+                <thead>
+                    <tr>
+                        <th>ID Alumno</th>
+                        <th>Nombre Completo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: ASIGNAR EJERCICIOS Y PLANES DE EJERCICIO -->
+
+<div class="modal fade" id="modalAsignarEjercicios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Asignar Ejercicios y Planes de Ejercicio
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="row" method="post" id="formAsignarEjercicios">
+
+                        <input type="hidden" id="idEstudiante" name="idEstudiante">
+                        <input type="hidden" id="idGrupo" name="idGrupo">
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-12 d-flex justify-content-center">
+                                <img src="" alt="foto" class="img-thumbnail" style="width:200px; height:auto"
+                                    id="fotoEstudiante">
+                            </div>
+                            <div class="mb-2 col-lg-12 d-flex justify-content-center">
+                                <p class="h3" id="nombreCompleto"></p>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="ejercicio" class="form-label">Ejercicio</label>
+                            <select name="ejercicio" id="ejercicio" class="form-select">
+                                <option value="0">Seleccione un ejercicio</option>
+                                <option value="sentadillas">Sentadillas</option>
+                                <option value="flexiones">Flexiones</option>
+                                <option value="abdominales">Abdominales</option>
+                                <option value="remo">Remo</option>
+                                <option value="prensa de banca">Prensa de banca</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="planEjercicio" class="form-label">Plan de Ejercicio</label>
+                            <select name="planEjercicio" id="planEjercicio" class="form-select">
+                                <option value="0">Seleccione un plan de ejercicio</option>
+                                <option value="básico">Básico</option>
+                                <option value="intermedio">Intermedio</option>
+                                <option value="avanzado">Avanzado</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="duracion" class="form-label">Duración (minutos)</label>
+                            <input type="number" class="form-control" id="duracion" name="duracion">
+                        </div>
+
+                        <div class="mb-3 col-lg-6">
+                            <label for="frecuencia" class="form-label">Frecuencia (días a la semana)</label>
+                            <input type="number" class="form-control" id="frecuencia" name="frecuencia">
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn -primary">Asignar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#perfilGrupos').on('change', function() {
+            var grupoId = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: '<?= BASE_URL?>/estudiantes/obtenerEstudiantes',
+                data: { grupoId: grupoId },
+                success: function(data) {
+                    var estudiantes = JSON.parse(data);
+                    $('#table tbody').empty();
+                    $.each(estudiantes, function(index, estudiante) {
+                        $('#table tbody').append('<tr>' +
+                            '<td>' + estudiante.idEstudiante + '</td>' +
+                            '<td>' + estudiante.nombreCompleto + '</td>' +
+                            '<td>' +
+                            '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAsignarEjercicios" onclick="asignarEjercicio(' + estudiante.idEstudiante + ',' + grupoId + ')">Asignar</button>' +
+                            '</td>' +
+                            '</tr>');
+                    });
+                }
+            });
+        });
+    });
+
+    function asignarEjercicio(idEstudiante, idGrupo) {
+        $('#idEstudiante').val(idEstudiante);
+        $('#idGrupo').val(idGrupo);
+        $.ajax({
+            type: 'POST',
+            url: '<?= BASE_URL?>/estudiantes/getEstudianteById',
+            data: { idEstudiante: idEstudiante },
+            success: function(data) {
+                var estudiante = JSON.parse(data);
+                $('#nombreCompleto').text(estudiante.nombreCompleto);
+                $('#fotoEstudiante').attr('src', '<?= BASE_URL?>/uploads/' + estudiante.foto);
+            }
+        });
+    }
+</script>

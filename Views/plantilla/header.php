@@ -48,6 +48,10 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <button class="dropdown-link-item" data-bs-toggle="dropdown"><i class="fa-solid fa-eye" id="accessibility-button"></i></button>
+                        </i></button>
+                    </li>
                 </ul>
             </div>
         </nav>

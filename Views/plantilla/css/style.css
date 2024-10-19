@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
+
+
+
 :root {
+  --primary-color: #333;
+  --secondary-color: #666;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -60,7 +65,14 @@ body {
   line-height: 1.5;
   color: var(--dark);
   text-align: left;
-  background-color: var(--white);
+  /* background-color: var(--white); */
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.high-contrast {
+  --primary-color: #fff;
+  --secondary-color: #000;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
