@@ -16,7 +16,7 @@
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
-        <div class="sidebar-left" data-simplebar style="height: 100%;">
+        <div class="sidebar-left sidebar-with-footer" data-simplebar style="height: 100%;">
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
 
@@ -170,11 +170,12 @@
                 </ul>
               </li>
 
-              <!-- CRUD: Eventos -->
-              <li class="crudEstudiantes">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>ejercicio">
-                <i class="fa-solid fa-dumbbell"></i>
-                  <span class="nav-text">Ejercicios</span>
+
+              <!-- CRUD: Plan  -->
+              <li class="crudPlan">
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>plan">
+                  <i class="fa-regular fa-calendar-minus"></i>
+                  <span class="nav-text">Planes de Ejercicio</span>
                 </a>
               </li>
 
