@@ -8,7 +8,7 @@
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
     <aside class="left-sidebar sidebar-dark" id="left-sidebar">
-      <div id="sidebar" class="sidebar sidebar-with-footer">
+      <div id="sidebar" class="sidebar">
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="<?= BASE_URL ?>index">
@@ -33,6 +33,8 @@
               <li class="section-title">
                 Protagonistas
               </li>
+
+              
 
               <li>
                 <a class="sidenav-item-link" href="<?= BASE_URL ?>personal">
