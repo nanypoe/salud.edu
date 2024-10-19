@@ -8,7 +8,7 @@
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
     <aside class="left-sidebar sidebar-dark" id="left-sidebar">
-      <div id="sidebar" class="sidebar">
+      <div id="sidebar" class="sidebar sidebar-with-footer">
         <!-- Aplication Brand -->
         <div class="app-brand">
           <a href="<?= BASE_URL ?>index">
@@ -172,9 +172,9 @@
 
               <!-- CRUD: Eventos -->
               <li class="crudEstudiantes">
-                <a class="sidenav-item-link" href="<?= BASE_URL ?>eventos">
-                  <i class="fa-regular fa-calendar-minus"></i>
-                  <span class="nav-text">Eventos</span>
+                <a class="sidenav-item-link" href="<?= BASE_URL ?>ejercicio">
+                <i class="fa-solid fa-dumbbell"></i>
+                  <span class="nav-text">Ejercicios</span>
                 </a>
               </li>
 
